@@ -18,7 +18,7 @@
 #### Sorting I
 1. [x] Selection Sort
     - [Theory](Notes/DSA/2_Sorting.md) | [Code](src/main/java/com/dncoyote/DSA/sorting/SelectionSort.java)
-2. [x] Bubble Sort(Notes/DSA/2_Sorting.md)
+2. [x] Bubble Sort
     - [Theory](Notes/DSA/2_Sorting.md) | [Code](src/main/java/com/dncoyote/DSA/sorting/BubbleSort.java)
 3. [x] Insertion Sort
     - [Theory](Notes/DSA/2_Sorting.md) | [Code](src/main/java/com/dncoyote/DSA/sorting/InsertionSort.java)
