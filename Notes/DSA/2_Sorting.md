@@ -281,6 +281,7 @@ public class MergeSort {
 
 ## **Quick Sort**
 > Time Complexity - O(n log n)
+
 > Space Complexity - O(1)
 - Quick Sort is a highly efficient sorting algorithm that falls under the category of divide-and-conquer algorithms. 
 - It works by selecting a "pivot" element from the array and partitioning the other elements into two sub-arrays according to whether they are less than or greater than the pivot. 
