@@ -52,7 +52,8 @@
 13. [ ] Longest subarray with given sum K(positives)
 14. [ ] Longest subarray with sum K (Positives + Negatives)
 #### Medium 
-1. [ ] 2Sum Problem
+1. [x] Two Sum Problem
+   - [Theory](Notes/DSA/3_Arrays_Problems.md) | [Code](src/main/java/com/dncoyote/DSA/arrays_medium/TwoSum.java)
 2. [ ] Sort an array of 0's 1's and 2's
 3. [ ] Majority Element (>n/2 times)
 4. [ ] Kadane's Algorithm, maximum subarray sum
