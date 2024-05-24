@@ -19,7 +19,9 @@ names[2] = "Charlie";
 # Easy
 
 ## **Find the largest element in Array** 
+[Video](https://www.youtube.com/watch?v=37E9ckMDdTk&t=526s&ab_channel=takeUforward) | [Code](src/main/java/com/dncoyote/DSA/arrays_easy/LargestElement.java)
 #### Brute
+> Time Complexity - O(n log n)
 - Quick Sort
 
 #### Optimal
@@ -44,10 +46,14 @@ public class LargestElement {
     }
 }
 ```
+##### Explanation
+- Assume that first element is the largest, iterate through the array and find the largest.
 ## **Find the smallest element in Array** 
 
 ## **Find the second largest element in Array** 
+[Explanation](https://www.youtube.com/watch?v=37E9ckMDdTk&t=526s&ab_channel=takeUforward)
 #### Brute
+> Time Complexity - O(n log n)
 - Quick Sort
 - Find `arr[n-2]`, check whether its equal to `arr[n-1]`(largest), if its not equal then `arr[n-2]` is second largest, if its equal then find `arr[n-3]` and repeat comparison.
 
@@ -108,10 +114,12 @@ public class SecondLargestElement {
     }
 }
 ```
+##### Explanation
 
 ## **Find the second smallest element in Array** 
 
 ## **Check if Array is sorted** 
+[Explanation](https://www.youtube.com/watch?v=37E9ckMDdTk&t=526s&ab_channel=takeUforward)
 #### Optimal
 >Time Complexity - O(N)
 -  `for (int i = 1; i < arr.length; i++)` No need to check for the first element.
