@@ -1,5 +1,5 @@
 # **Arrays**
-- test
+
 # Introduction
 ## **Arrays**
 - Array is a data structure that allows you to store multiple values of the same type under a single variable name.
