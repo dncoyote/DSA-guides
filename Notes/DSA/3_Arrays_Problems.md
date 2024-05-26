@@ -114,8 +114,8 @@ public class SecondLargestElement {
     }
 }
 ```
-##### Explanation
-
+#### Explanation
+- Consider two variables `largest` and `secondLargest` and initialize it with `Integer.MIN_VALUE`
 ## **Find the second smallest element in Array** 
 
 ## **Check if Array is sorted** 
@@ -145,6 +145,8 @@ public class IsArraySorted {
     }
 }
 ```
+#### Explanation
+-
 
 ## **Remove duplicates from a sorted array** 
 #### Brute
