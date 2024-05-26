@@ -180,6 +180,8 @@ public class RemoveDuplicatesFromSortedArray {
     }
 }
 ```
+## **Left Rotate an array by one place**
+
 ---
 # Medium
 ## **Two Sum** 
