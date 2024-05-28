@@ -146,6 +146,7 @@ public class IsArraySorted {
 }
 ```
 #### Explanation
+
 -
 
 ## **Remove duplicates from a sorted array** 
@@ -155,6 +156,7 @@ public class IsArraySorted {
 
 #### Optimal
 >Time Complexity - O(N)
+
 >Space Complexity - O(1)
 
 ```java
@@ -179,9 +181,58 @@ public class RemoveDuplicatesFromSortedArray {
         return i + 1;
     }
 }
-```
+``` 
 ## **Left Rotate an array by one place**
+#### Optimal
+>Time Complexity - O(N)
 
+>Space Complexity - O(1)
+
+- Move every element to its left position.
+- First element will always move to the last position.
+
+```java
+public class LeftRotateArrayByOnePlace {
+
+    public static void main(String[] args) {
+        int arr[] ={1,2,3,4,5};
+        int result[] = leftRotate(arr);
+
+        System.out.println("After Rotation");
+        for(int n: result){
+            System.out.println(n);
+        }
+    }
+
+    private static int[] leftRotate(int[] arr) {
+        int temp = arr[0];
+        for(int i=1;i<arr.length;i++){
+            arr[i-1]= arr[i];
+        }
+        arr[arr.length-1]=temp;
+        return arr;
+    }
+}
+```
+## **Left Rotate an array by D places**
+#### Brute
+>Time Complexity -
+
+>Space Complexity -
+```java
+```
+
+#### Optimal
+>Time Complexity - 
+
+>Space Complexity - 
+
+- Move every element to its left position by D places.
+- First D elements will always move to the last position.
+
+```java
+
+```
 ---
 # Medium
 ## **Two Sum** 
