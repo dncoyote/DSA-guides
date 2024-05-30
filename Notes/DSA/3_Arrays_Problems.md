@@ -233,6 +233,22 @@ public class LeftRotateArrayByOnePlace {
 ```java
 
 ```
+# **Move zeroes to end**
+#### Brute
+>Time Complexity -
+
+>Space Complexity -
+```java
+```
+
+#### Optimal
+>Time Complexity -
+
+>Space Complexity -
+
+```java
+
+```
 ---
 # Medium
 ## **Two Sum** 
