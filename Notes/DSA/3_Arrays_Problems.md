@@ -199,38 +199,70 @@ public class LeftRotateArrayByOnePlace {
         int result[] = leftRotate(arr);
 
         System.out.println("After Rotation");
-        for(int n: result){
+        for(int n : result){
             System.out.println(n);
         }
     }
 
     private static int[] leftRotate(int[] arr) {
         int temp = arr[0];
-        for(int i=1;i<arr.length;i++){
-            arr[i-1]= arr[i];
+        for(int i=1; i<arr.length; i++){
+            arr[i-1] = arr[i];
         }
-        arr[arr.length-1]=temp;
+        arr[arr.length-1] =temp;
         return arr;
     }
 }
 ```
 ## **Left Rotate an array by D places**
 #### Brute
->Time Complexity -
+>Time Complexity - O(n+D)
 
 >Space Complexity -
 ```java
 ```
 
 #### Optimal
->Time Complexity - 
+>Time Complexity - O(2n)
 
->Space Complexity - 
+>Space Complexity - O(1)
 
 - Move every element to its left position by D places.
 - First D elements will always move to the last position.
 
 ```java
+public class LeftRotateArrayByKPlacesOptimal {
+
+    public static void main(String[] args) {
+        int arr[] = { 1, 2, 3, 4, 5, 6, 7 };
+        int k = 8;
+        int result[] = leftRotateByK(arr, k);
+
+        System.out.println("After Rotation");
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] leftRotateByK(int[] arr, int k) {
+        int n = arr.length;
+        int temp[] = new int[k];
+        k = k % n;
+        // Create a temporary array to store the first K elements
+        for (int i = 0; i < k; i++) {
+            temp[i] = arr[i];
+        }
+        // Shift the remaining elements of the original array to the left
+        for (int i = 0; i < n - k; i++) {
+            arr[i] = arr[i + k];
+        }
+        // Copy the elements from the temporary array back to the original array
+        for (int i = 0; i < k; i++) {
+            arr[n - k + i] = temp[i];
+        }
+        return arr;
+    }
+}
 
 ```
 # **Move zeroes to end**
