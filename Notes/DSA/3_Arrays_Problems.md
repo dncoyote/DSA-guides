@@ -265,22 +265,90 @@ public class LeftRotateArrayByKPlacesOptimal {
 }
 
 ```
-# **Move zeroes to end**
+## **Move zeroes to end**
 #### Brute
->Time Complexity -
+>Time Complexity - O(N)
 
->Space Complexity -
+>Space Complexity - O(N)
 ```java
+public class MoveZeroesToEndBrute {
+    public static void main(String[] args) {
+        int[] arr = { 1, 0, 2, 3, 2, 0, 0, 4, 5, 1 };
+        int[] result = moveZeroes(arr);
+        System.out.println("After moving zeroes");
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] moveZeroes(int[] arr) {
+        int[] result = new int[arr.length];
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                result[j] = arr[i];
+                j++;
+            }
+        }
+        return result;
+    }
+}
 ```
 
 #### Optimal
->Time Complexity -
+>Time Complexity - O(N)
 
->Space Complexity -
+>Space Complexity - O(1)
+
+```java
+public class MoveZeroesToEndOptimal {
+    public static void main(String[] args) {
+        int[] arr = { 1, 0, 2, 3, 2, 0, 0, 4, 5, 1 };
+        int[] result = moveZeroes(arr);
+        System.out.println("After moving zeroes");
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] moveZeroes(int[] arr) {
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                j++;
+            }
+        }
+        return arr;
+    }
+}
+```
+
+## **Linear Seach**
+#### Brute
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal
+>Time Complexity - 
+
+>Space Complexity - 
 
 ```java
 
 ```
+#### Explanation
+
+-
 ---
 # Medium
 ## **Two Sum** 
