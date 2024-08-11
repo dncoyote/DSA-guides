@@ -84,7 +84,7 @@ public class ContainsDuplicateOptimal {
 #### Explanation
 
 -
-## **Two Sun**
+## **Two Sum**
 >
 #### Brute - 
 >Time Complexity - 
