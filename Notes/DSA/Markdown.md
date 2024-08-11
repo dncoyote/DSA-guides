@@ -103,8 +103,9 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 > [!CAUTION]
 > Negative potential consequences of an action.
 
-## **Linear Seach**
-#### Brute
+## **Two Sun**
+>
+#### Brute - 
 >Time Complexity - 
 
 >Space Complexity - 
@@ -115,7 +116,18 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 
 -
 
-#### Optimal
+#### Better - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal -
 >Time Complexity - 
 
 >Space Complexity - 

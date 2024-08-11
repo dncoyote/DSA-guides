@@ -1,6 +1,9 @@
 # **Arrays & Hashing**
 
 ## **Contains Duplicate**
+>Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+Input: nums = [1,2,3,1]
+Output: true
 #### Brute - 
 >Time Complexity - O(n^2)
 
@@ -77,6 +80,41 @@ public class ContainsDuplicateOptimal {
         return false;
     }
 }
+```
+#### Explanation
+
+-
+## **Two Sun**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Better - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+
 ```
 #### Explanation
 

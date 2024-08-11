@@ -1,4 +1,4 @@
-# **Syllabus**
+# **DSA guides**
 
 ## Blind 75
 #### Arrays and Hashing
