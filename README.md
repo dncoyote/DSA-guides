@@ -3,7 +3,7 @@
 ## Blind 75
 #### Arrays and Hashing
 [Theory](Notes/Blind75/1_Arrays_Hashing.md)  
-- [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicate.java)
+- [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicateOptimal.java)
 - [ ] Valid Anagram
 - [ ] Two Sum
 - [ ] Group Anagrams
