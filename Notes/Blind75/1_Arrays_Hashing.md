@@ -85,37 +85,73 @@ public class ContainsDuplicateOptimal {
 
 -
 ## **Two Sum**
->
+>Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 #### Brute - 
->Time Complexity - 
+>Time Complexity - O(n^2)
 
 >Space Complexity - 
 ```java
+public static void main(String[] args) {
+        int[] arr = { 2, 1, 5, 3 };
+        int target = 4;
+        int[] result = twoSumSolution(arr, target);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
 
+    private static int[] twoSumSolution(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 1; j < arr.length; j++) {
+                int sum = arr[i] + arr[j];
+                if (sum == target) {
+                    return new int[] { arr[i], arr[j] };
+                }
+            }
+        }
+        throw new IllegalArgumentException("Does not exist.");
+    }
+}
 ```
 #### Explanation
+- Use two for loops to iterate through the given integer array.
+- Find the sum of the value of the element from the first for loop and the second for loop.
+- Compare the sum with the target.
+- Return if true.
+- Else iterate the loop.
 
--
+#### Optimal - HashMap
+>Time Complexity - O(n)
 
-#### Better - 
->Time Complexity - 
+>Space Complexity - O(n)
 
->Space Complexity - 
 ```java
+public class TwoSum {
+    public static void main(String[] args) {
+        int[] arr = { 2, 1, 5, 3 };
+        int target = 4;
+        int[] result = twoSum(arr, target);
+        for(int n: result){
+            System.out.println(n);
+        }
+    }
 
+    private static int[] twoSum(int[] arr, int target) {
+       Map<Integer, Integer> mapVal = new HashMap<>();
+       for(int i=0;i<arr.length; i++){
+           int val = target-arr[i];
+           if(mapVal.containsKey(val)){
+               return new int[]{mapVal.get(val), i};
+           }
+           mapVal.put(arr[i],i);
+       }
+        throw new IllegalArgumentException("Does not exist.");
+    }
+}
 ```
 #### Explanation
-
--
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
-```java
-
-```
-#### Explanation
-
--
+- Use a for loop to iterate through the integer array.
+- Find the difference between target value and the value from the array.
+- Check if that difference exists in the Hashmap.
+- If it does not exist then add the value from array as key and its position as value in the hashmap.
+- If it exists return the   
