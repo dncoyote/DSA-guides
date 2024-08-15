@@ -4,8 +4,8 @@
 #### Arrays and Hashing
 [Theory](Notes/Blind75/1_Arrays_Hashing.md)  
 - [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicateOptimal.java)
-- [ ] Valid Anagram
-- [ ] Two Sum
+- [ ] Valid Anagram - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ValidAnagramOptimal.java)
+- [ ] Two Sum - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/TwoSumOptimal.java)
 - [ ] Group Anagrams
 - [ ] Top K frequent Elements
 - [ ] Encode and Decode Strings
