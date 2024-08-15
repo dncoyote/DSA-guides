@@ -91,7 +91,9 @@ public class ContainsDuplicateOptimal {
 
 >Space Complexity - 
 ```java
-public static void main(String[] args) {
+public class TwoSumBrute {
+
+    public static void main(String[] args) {
         int[] arr = { 2, 1, 5, 3 };
         int target = 4;
         int[] result = twoSumSolution(arr, target);
@@ -111,6 +113,7 @@ public static void main(String[] args) {
         }
         throw new IllegalArgumentException("Does not exist.");
     }
+
 }
 ```
 #### Explanation
@@ -155,3 +158,80 @@ public class TwoSum {
 - Check if that difference exists in the Hashmap.
 - If it does not exist then add the value from array as key and its position as value in the hashmap.
 - If it exists return the   
+
+## **Valid Anagram**
+>Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+#### Brute - Ordering and Sorting
+>Time Complexity - O(nlogn)
+
+>Space Complexity - O(n)
+```java
+public class ValidAnagramBrute {
+    public static void main(String[] args) {
+        String s = "anagram";
+        String t = "nagaram";
+        boolean isAnagram = validAnagram(s, t);
+        if (isAnagram) {
+            System.out.println("Anagram");
+        } else {
+            System.out.println("Not anagram");
+        }
+    }
+
+    private static boolean validAnagram(String s, String t) {
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        return Arrays.equals(a, b);
+    }
+}
+```
+#### Explanation
+
+-
+
+#### Optimal - 
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+
+```java
+public class ValidAnagramOptimal {
+    public static void main(String[] args) {
+        String s = "anagram";
+        String t = "nagaram";
+        boolean isAnagram = validAnagram(s, t);
+        if (isAnagram) {
+            System.out.println("Anagram");
+        } else {
+            System.out.println("Not anagram");
+        }
+    }
+
+    private static boolean validAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] count = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (count[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+#### Explanation
+
+-
