@@ -6,8 +6,8 @@
 - [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicateOptimal.java)
 - [ ] Valid Anagram - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ValidAnagramOptimal.java)
 - [ ] Two Sum - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/TwoSumOptimal.java)
-- [ ] Group Anagrams
-- [ ] Top K frequent Elements
+- [ ] Group Anagrams - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/GroupAnagramsOptimal.java)
+- [ ] Top K frequent Elements - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/TopKElementsOptimal.java)
 - [ ] Encode and Decode Strings
 - [ ] Product of Array Except Self
 - [ ] Longest Consecutive Sequence
