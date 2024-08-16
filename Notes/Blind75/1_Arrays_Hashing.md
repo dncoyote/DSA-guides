@@ -289,3 +289,87 @@ public class GroupAnagramsOptimal {
 ```
 #### Explanation
 - 
+
+## **Top k elements in List**
+>Given an integer array nums and an integer k, return the k most frequent elements within the array.
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+public class TopKElementsBrute {
+    public static void main(String[] args) {
+        int[] nums = { 5, 5, 5, 4, 4, 3 };
+        int k = 2;
+        int[] result = topKElements(nums, k);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] topKElements(int[] nums, int k) {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        frequencyMap.forEach((key, value) -> System.out.println(key + " - " + value));
+        System.out.println(frequencyMap.entrySet());
+
+        List<Map.Entry<Integer, Integer>> sortedList = new ArrayList<>(frequencyMap.entrySet());
+        sortedList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = sortedList.get(i).getKey();
+        }
+        return result;
+    }
+}
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class TopKElementsOptimal {
+    public static void main(String[] args) {
+        int[] nums = { 5, 5, 5, 4, 4, 3 };
+        int k = 2;
+        int[] result = topKElements(nums, k);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] topKElements(int[] nums, int k) {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int n : nums) {
+            frequencyMap.put(n, frequencyMap.getOrDefault(n, 0) + 1);
+        }
+
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>(
+                (a, b) -> a.getValue() - b.getValue());
+
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            minHeap.offer(entry);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        int[] result = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            result[i] = minHeap.poll().getKey();
+        }
+        return result;
+    }
+}
+```
+#### Explanation
+
+-
