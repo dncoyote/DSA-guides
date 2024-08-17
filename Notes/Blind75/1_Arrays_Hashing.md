@@ -373,3 +373,84 @@ public class TopKElementsOptimal {
 #### Explanation
 
 -
+
+## **Longest Consecutive Sequence**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+public class LongestConsecutiveSequenceBrute {
+    public static void main(String[] args) {
+        int[] nums = { 100, 4, 200, 1, 3, 2 };
+        int result = longestConsecutiveSequence(nums);
+        System.out.println(result);
+    }
+
+    private static int longestConsecutiveSequence(int[] nums) {
+        int longestStreak = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int currentStreak = 1;
+            int currentNumber = nums[i];
+            while (contains(nums, currentNumber + 1)) {
+                currentNumber++;
+                currentStreak++;
+            }
+            longestStreak = Math.max(longestStreak, currentStreak);
+        }
+        return longestStreak;
+    }
+
+    private static boolean contains(int[] nums, int i) {
+        for (int n : nums) {
+            if (n == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class LongestConsecutiveSequenceOptimal {
+    public static void main(String[] args) {
+        int[] nums = { 100, 4, 200, 1, 3, 2 };
+        int result = longestConsecutiveSequence(nums);
+        System.out.println(result);
+    }
+
+    private static int longestConsecutiveSequence(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for (int n : nums) {
+            numSet.add(n);
+        }
+        int longestStreak = 0;
+        for (int n : numSet) {
+            if (!numSet.contains(n - 1)) {
+                int currentStreak = 1;
+                int currentNumber = n;
+                while (numSet.contains(currentNumber + 1)) {
+                    currentStreak = currentStreak + 1;
+                    currentNumber = currentNumber + 1;
+                }
+                longestStreak = Math.max(longestStreak, currentStreak);
+            }
+        }
+        return longestStreak;
+    }
+}
+```
+#### Explanation
+
+-
