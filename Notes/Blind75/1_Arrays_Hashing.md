@@ -372,10 +372,11 @@ public class TopKElementsOptimal {
 ```
 #### Explanation
 
--
+- Revisit
 
 ## **Longest Consecutive Sequence**
->
+> Given an array of integers `nums`, return the length of the longest consecutive sequence of elements.
+A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element.
 #### Brute - 
 >Time Complexity - 
 
@@ -453,4 +454,140 @@ public class LongestConsecutiveSequenceOptimal {
 ```
 #### Explanation
 
+- Revisit
+
+## **Product of Array except self**
+> Given an integer array `nums`, return an array output where `output[i]` is the product of all the elements of `nums` except `nums[i]`.
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+public class ProductofArrayExceptSelfBrute {
+    public static void main(String[] args) {
+        int[] nums = { 1, 2, 3, 4 };
+        int[] result = productofArrayExceptSelf(nums);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] productofArrayExceptSelf(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int product = 1;
+            for (int j = 0; j < nums.length; j++) {
+                if (i != j) {
+                    product *= nums[j];
+                }
+            }
+            result[i] = product;
+        }
+        return result;
+    }
+}
+```
+#### Explanation
+
 -
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class ProductofArrayExceptSelfOptimal {
+    public static void main(String[] args) {
+        int[] nums = { 1, 2, 3, 4 };
+        int[] result = productofArrayExceptSelf(nums);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] productofArrayExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] output = new int[n];
+
+        int prefix = 1; // Initializing prefix product to 1
+        for (int i = 0; i < n; i++) {
+            output[i] = prefix; // Set the current index to the prefix product
+            prefix *= nums[i]; // Update prefix to include nums[i]
+        }
+
+        int suffix = 1; // Initializing suffix product to 1
+        for (int i = n - 1; i >= 0; i--) {
+            output[i] *= suffix; // Multiply the current value in output with suffix
+            suffix *= nums[i]; // Update suffix to include nums[i]
+        }
+
+        return output;
+    }
+}
+```
+#### Explanation
+
+- Revisit
+
+## **Encode Decode String**
+> Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class EncodeDecodeStringOptimal {
+    public static void main(String[] args) {
+        List<String> stringList = List.of("neet", "code", "love", "you");
+        String encodeString = encodeString(stringList);
+        System.out.println("Encoded String: " + encodeString);
+        List<String> decodeString = decodeString(encodeString);
+        System.out.println("Decoded String: " + decodeString);
+    }
+
+    private static String encodeString(List<String> stringList) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : stringList) {
+            stringBuilder.append(string.length()).append("#").append(string);
+        }
+        return stringBuilder.toString();
+    }
+
+    private static List<String> decodeString(String encodedString) {
+        List<String> decodedString = new ArrayList<>();
+
+        int i = 0;
+        while (i < encodedString.length()) {
+            int j = encodedString.indexOf("#", i);
+            System.out.println("j - " + j);
+            int length = Integer.parseInt(encodedString.substring(i, j));
+            System.out.println("length - " + length);
+            decodedString.add(encodedString.substring(j + 1, j + 1 + length));
+            System.out.println("decodedString - " + decodedString);
+            i = j + 1 + length;
+        }
+        return decodedString;
+    }
+}
+/**
+ * O/P
+ * Encoded String: 4#neet4#code4#love3#you
+ * Decoded String: [neet, code, love, you]
+ */
+```
+#### Explanation
+
+- Revisit
