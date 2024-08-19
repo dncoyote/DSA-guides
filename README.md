@@ -8,10 +8,15 @@
 - [ ] Two Sum - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/TwoSumOptimal.java)
 - [ ] Group Anagrams - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/GroupAnagramsOptimal.java)
 - [ ] Top K frequent Elements - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/TopKElementsOptimal.java)
-- [ ] Encode and Decode Strings
-- [ ] Product of Array Except Self
-- [ ] Longest Consecutive Sequence
+- [ ] Encode and Decode Strings - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/EncodeDecodeStringOptimal.java)
+- [ ] Product of Array Except Self - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ProductofArrayExceptSelfOptimal.java)
+- [ ] Longest Consecutive Sequence - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/LongestConsecutiveSequenceOptimal.java)
 
+#### Two Pointers
+[Theory](Notes/Blind75/2_Two_Pointers.md)
+- [ ] Valid Palindrome - [Code](src/main/java/com/dncoyote/DSA/blind75/two_pointers/ValidPalindromeOptimal.java)
+- [ ] Three Sum 
+- [ ] Container with most water 
 
 ## 1. Basics
 #### Time & Space Complexity
