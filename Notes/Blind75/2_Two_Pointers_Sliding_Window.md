@@ -165,3 +165,56 @@ public class ThreeSumOptimal {
 #### Explanation
 
 -
+
+## **Container with most water**
+> You are given an integer array `heights` where `heights[i]` represents the height of the `i`'th
+  bar. You may choose any two bars to form a container. Return the maximum amount of water a container can store.
+  Input: height = [1,7,2,5,4,7,3,6]
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class ContainerWithMostWaterOptimal {
+    public static void main(String[] args) {
+        int[] heights = { 1, 7, 2, 5, 4, 7, 3, 6 };
+        int maxArea = containerWithMaxArea(heights);
+        System.out.println(maxArea);
+    }
+
+    private static int containerWithMaxArea(int[] heights) {
+        int left = 0;
+        int right = heights.length - 1;
+        int maxArea = 0;
+
+        while (left < right) {
+            int area = Math.min(heights[left], heights[right])
+                    * (right - left);
+
+            maxArea = Math.max(maxArea, area);
+
+            if (heights[left] < heights[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return maxArea;
+    }
+}
+```
+#### Explanation
+
+-
