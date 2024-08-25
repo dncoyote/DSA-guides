@@ -13,10 +13,17 @@
 - [ ] Longest Consecutive Sequence - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/LongestConsecutiveSequenceOptimal.java)
 
 #### Two Pointers
-[Theory](Notes/Blind75/2_Two_Pointers.md)
+[Theory](Notes/Blind75/2_Two_Pointers_Sliding_Window.md)
 - [ ] Valid Palindrome - [Code](src/main/java/com/dncoyote/DSA/blind75/two_pointers/ValidPalindromeOptimal.java)
-- [ ] Three Sum 
-- [ ] Container with most water 
+- [ ] Three Sum - [Code](src/main/java/com/dncoyote/DSA/blind75/two_pointers/ThreeSumOptimal.java) 
+- [ ] Container with most water - [Code](src/main/java/com/dncoyote/DSA/blind75/two_pointers/ContainerWithMostWaterOptimal.java)
+
+#### Sliding Window
+[Theory](Notes/Blind75/2_Two_Pointers_Sliding_Window.md)
+- [ ] Best Time to Buy And Sell Stock - [Code](src/main/java/com/dncoyote/DSA/blind75/sliding_window/BuyAndSellCryptoOptimal.java)
+- [ ] Longest Substring Without Repeating Characters
+- [ ] Longest Repeating Character Replacement
+- [ ] Minimum Window Substring
 
 ## 1. Basics
 #### Time & Space Complexity
