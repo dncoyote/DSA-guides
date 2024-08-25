@@ -15,6 +15,11 @@ public class LongestConsecutiveSequenceOptimal {
         for (int n : nums) {
             numSet.add(n);
         }
+        System.out.println("--");
+        for (Integer n : numSet) {
+            System.out.println(n);
+        }
+        System.out.println("--");
         int longestStreak = 0;
         for (int n : numSet) {
             if (!numSet.contains(n - 1)) {

@@ -1,4 +1,4 @@
-# **Two Pointers & Sliding Window**
+# **Two Pointers**
 ## **Theory**
 #### Constant Window
 
@@ -214,6 +214,106 @@ public class ContainerWithMostWaterOptimal {
         return maxArea;
     }
 }
+```
+#### Explanation
+
+-
+
+# **Sliding Window**
+## **Theory**
+
+## **Buy and Sell Crypto/Stock**
+> You are given an integer array prices where `prices[i]` is the price of NeetCoin on the `i`th day.
+You may choose a single day to buy one NeetCoin and choose a different day in the future to sell it.
+Return the maximum profit you can achieve. You may choose to not make any transactions, in which case the profit would be 0.
+Input: prices = [10,1,5,6,7,1]
+Output: 6
+
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Better - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class BuyAndSellCryptoOptimal {
+    public static void main(String[] args) {
+        int[] crypto = { 10, 1, 5, 6, 7, 1 };
+        int profit = buyAndSellCrypto(crypto);
+        System.out.println(profit);
+    }
+
+    private static int buyAndSellCrypto(int[] crypto) {
+        int left = 0;
+        int right = left + 1;
+        int maxProfit = 0;
+        while (right < crypto.length) {
+            if (crypto[left] < crypto[right]) {
+                maxProfit = Math.max(maxProfit, crypto[right] - crypto[left]);
+            } else {
+                left = right;
+            }
+            right++;
+        }
+        return maxProfit;
+    }
+}
+```
+#### Explanation
+- Revisit - This is not strictly a Sliding Window problem, explore better solutions.
+
+## **Longest Substring without repeating characters**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Better - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+
 ```
 #### Explanation
 
