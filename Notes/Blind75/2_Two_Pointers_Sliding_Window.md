@@ -377,9 +377,68 @@ O/P
 ```
 #### Explanation
 
--
+- `right - left + 1` this expression is used to calculate the length of the **current size of the window**.
+- When you subtract `right` with `left`, you get the number of elements between them. But, since the indices are zero-based you need to add 1 to get the total number of elements in the window. 
 
 #### Steps
 - `int left`, `int maxCount`, `int maxLength` all set to 0.
 - `charCount` hashmap to store individual characters along with their count
 - `right` pointer in for loop.
+
+## **Longest Substring without duplicates**
+>Given a string s, find the length of the longest substring without duplicate characters.
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class LongestSubstringWithoutDuplicatesOptimal {
+    public static void main(String[] args) {
+        String s = "zxyzxyz";
+        int result = longestSubstringWithoutDuplicates(s);
+        System.out.println(result);
+    }
+
+    private static int longestSubstringWithoutDuplicates(String s) {
+        int left = 0;
+        int maxlength = 0;
+        Map<Character, Integer> charCount = new HashMap<>();
+        for (int right = 0; right < s.length(); right++) {
+            char currentChar = s.charAt(right);
+            if (charCount.containsKey(currentChar)) {
+                charCount.put(currentChar, charCount.get(currentChar) - 1);
+                left++;
+            }
+            charCount.put(currentChar, charCount.getOrDefault(currentChar, 0) + 1);
+            maxlength = Math.max(maxlength, right - left + 1);
+        }
+        return maxlength;
+    }
+}
+```
+#### Explanation
+
+-
+
+#### Steps
+
+- `int left`, `int maxLength` all set to 0.
+- `charCount` hashmap to store individual characters along with their count
+- `right` pointer in for loop.
+- if `currentChar` already exists in the map, then move left pointer.
