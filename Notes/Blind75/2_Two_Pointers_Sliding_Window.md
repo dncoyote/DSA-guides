@@ -283,42 +283,6 @@ public class BuyAndSellCryptoOptimal {
 #### Explanation
 - Revisit - This is not strictly a Sliding Window problem, explore better solutions.
 
-## **Longest Substring without repeating characters**
->
-#### Brute - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Better - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
-```java
-
-```
-#### Explanation
-
--
-
 ## **Longest Repeating Character Replacement**
 >You are given a string s consisting of only uppercase english characters and an integer k. You can choose up to k characters of the string and replace them with any other uppercase English character.
 After performing at most k replacements, return the length of the longest substring which contains only one distinct character.
@@ -442,3 +406,142 @@ public class LongestSubstringWithoutDuplicatesOptimal {
 - `charCount` hashmap to store individual characters along with their count
 - `right` pointer in for loop.
 - if `currentChar` already exists in the map, then move left pointer.
+
+## **Minimum Window substring**
+> Given two strings `s` and `t`, return the shortest substring of `s` such that every character in `t`, including duplicates, is present in the substring. If such a substring does not exist, return an empty string "".
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+public class MinimumWindowSubstringBrute {
+    public static void main(String[] args) {
+        String s = "ddaaabbca";
+        String t = "abc";
+        String result = minimumWindowSubstring(s, t);
+        System.out.println(result);
+    }
+
+    private static String minimumWindowSubstring(String s, String t) {
+        int minLength = Integer.MAX_VALUE;
+        String minWindow = "";
+        
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+                String window = s.substring(i, j + 1);
+                
+                if (containsAllChars(window, t)) {
+                    if (window.length() < minLength) {
+                        minLength = window.length();
+                        minWindow = window;
+                    }
+                }
+            }
+        }
+        
+        return minWindow;
+    }
+
+    private static boolean containsAllChars(String window, String t) {
+        Map<Character, Integer> charCount = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+        
+        for (char c : window.toCharArray()) {
+            if (charCount.containsKey(c)) {
+                charCount.put(c, charCount.get(c) - 1);
+                if (charCount.get(c) == 0) {
+                    charCount.remove(c);
+                }
+            }
+        }
+        
+        return charCount.isEmpty();
+    }
+}
+```
+#### Explanation
+
+- revisit - Brute solution
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class MinimumWindowSubstringOptimal {
+    public static void main(String[] args) {
+        String s = "ddaaabbca";
+        String t = "abc";
+        String result = minWindow(s, t);
+        System.out.println(result);
+    }
+
+    public static String minWindow(String s, String t) {
+        if (s == null || t == null || s.length() < t.length())
+            return "";
+
+        Map<Character, Integer> targetCharCount = new HashMap<>();
+        for (char c : t.toCharArray()) {
+            targetCharCount.put(c, targetCharCount.getOrDefault(c, 0) + 1);
+        }
+
+        Map<Character, Integer> windowCharCount = new HashMap<>();
+        int left = 0, right = 0;
+        int minLength = Integer.MAX_VALUE;
+        int start = 0;
+        int required = targetCharCount.size();
+        int formed = 0;
+
+        while (right < s.length()) {
+            char rightChar = s.charAt(right);
+            windowCharCount.put(rightChar, windowCharCount.getOrDefault(rightChar, 0) + 1);
+
+            if (targetCharCount.containsKey(rightChar) &&
+                    windowCharCount.get(rightChar).intValue() == targetCharCount.get(rightChar).intValue()) {
+                formed++;
+            }
+
+            while (left <= right && formed == required) {
+                char leftChar = s.charAt(left);
+
+                if (right - left + 1 < minLength) {
+                    minLength = right - left + 1;
+                    start = left;
+                }
+
+                // Reduce the frequency of the left character
+                windowCharCount.put(leftChar, windowCharCount.get(leftChar) - 1);
+                if (targetCharCount.containsKey(leftChar) &&
+                        windowCharCount.get(leftChar) < targetCharCount.get(leftChar)) {
+                    formed--;
+                }
+                left++;
+            }
+            right++;
+        }
+        return minLength == Integer.MAX_VALUE ? "" : s.substring(start, start + minLength);
+    }
+}
+```
+#### Explanation
+
+-
+
+#### Steps
+
+- Find char freq map of t string in Map<Character, Integer> targetCharCount = new HashMap<>();
+- Initialise left = 0, right = 0, minLength = Integer.MAX_VALUE, start = 0, required = targetCharCount.size(), int formed = 0 and  Map<Character, Integer> windowCharCount.
+- In right loop, add values from s string to windowCharCount. Increment formed value.
+- In left loop, only accessed when formed==required.
+    - calculate minLength by finding current window length.
+    - reduce the char count from windowCharCount.
+    - reduce formed by 1
+    - left++
+- right++
