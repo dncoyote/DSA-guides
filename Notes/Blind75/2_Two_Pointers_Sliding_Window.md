@@ -536,11 +536,11 @@ public class MinimumWindowSubstringOptimal {
 
 #### Steps
 
-- Find char freq map of t string in Map<Character, Integer> targetCharCount = new HashMap<>();
-- Initialise left = 0, right = 0, minLength = Integer.MAX_VALUE, start = 0, required = targetCharCount.size(), int formed = 0 and  Map<Character, Integer> windowCharCount.
+- Find char freq map of t string in `Map<Character, Integer> targetCharCount = new HashMap<>()`;
+- Initialise `left = 0`, `right = 0`, `minLength = Integer.MAX_VALUE`, `start = 0`, `required = targetCharCount.size()`, `int formed = 0` and  `Map<Character, Integer> windowCharCount`.
 - In right loop, add values from s string to windowCharCount. Increment formed value.
-- In left loop, only accessed when formed==required.
-    - calculate minLength by finding current window length.
+- In left loop, only accessed when `formed==required` and `left<=right`.
+    - calculate `minLength` by finding current window length.
     - reduce the char count from windowCharCount.
     - reduce formed by 1
     - left++
