@@ -1,0 +1,1 @@
+- A good developer always comes up with a brute-force solution first, a brute force solution ensures that the solution to a given problem exists.
