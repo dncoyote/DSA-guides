@@ -21,9 +21,22 @@
 #### Sliding Window
 [Theory](Notes/Blind75/2_Two_Pointers_Sliding_Window.md)
 - [ ] Best Time to Buy And Sell Stock - [Code](src/main/java/com/dncoyote/DSA/blind75/sliding_window/BuyAndSellCryptoOptimal.java)
-- [ ] Longest Substring Without Repeating Characters
-- [ ] Longest Repeating Character Replacement
-- [ ] Minimum Window Substring
+- [ ] Longest Substring Without Repeating Characters - [Code](src/main/java/com/dncoyote/DSA/blind75/sliding_window/LongestSubstringWithoutDuplicatesOptimal.java)
+- [ ] Longest Repeating Character Replacement - [Code](src/main/java/com/dncoyote/DSA/blind75/sliding_window/LongestRepeatingCharacterReplacementOptimal.java)
+- [ ] Minimum Window Substring - [Code](src/main/java/com/dncoyote/DSA/blind75/sliding_window/MinimumWindowSubstringOptimal.java)
+
+#### Stack
+[Theory](Notes/Blind75/3_Stack.md)
+- [ ] Valid Parentheses - [Code](src/main/java/com/dncoyote/DSA/blind75/stack/ValidParenthesesOptimal.java)
+
+#### Binary Search
+[Theory](Notes/Blind75/4_Binary_Search.md)
+- [ ] Find Minimum In Rotated Sorted Array - [Code](src/main/java/com/dncoyote/DSA/blind75/binary_search/FindMinimumInRotatedSortedArrayOptimal.java)
+- [ ] Find Target in Rotated Sorted Array - [Code](src/main/java/com/dncoyote/DSA/blind75/binary_search/FindTargetInRotatedSortedArrayOptimal.java)
+
+#### Linked List
+[Theory](Notes/Blind75/5_Linked_List.md)
+- [ ] Reverse Linked List - [Code](src/main/java/com/dncoyote/DSA/blind75/linked_list/ReverseLinkedListOptimal.java)
 
 ## 1. Basics
 #### Time & Space Complexity
