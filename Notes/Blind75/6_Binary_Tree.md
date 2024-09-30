@@ -42,22 +42,22 @@ void inOrderTraversal(TreeNode root) {
 ### Pre-order Traversal
 - Root, Left, Right (useful for cloning the tree).
 ```java
-void postOrderTraversal(TreeNode root) {
+public void preOrderTraversal(TreeNode root) {
         if (root != null) {
-            postOrderTraversal(root.left);
-            postOrderTraversal(root.right);
             System.out.print(root.val + " ");
+            preOrder(root.left);
+            preOrder(root.right);
         }
     }
 ```
 ### Post-order Traversal
 - Left, Right, Root (useful for deleting nodes).
 ```java
-void preOrderTraversal(TreeNode root) {
+public void postOrderTraversal(TreeNode root) {
         if (root != null) {
+            postOrder(root.left);
+            postOrder(root.right);
             System.out.print(root.val + " ");
-            preOrderTraversal(root.left);
-            preOrderTraversal(root.right);
         }
     }
 ```
