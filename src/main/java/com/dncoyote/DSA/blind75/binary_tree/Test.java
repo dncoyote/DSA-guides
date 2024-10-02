@@ -5,18 +5,20 @@ class TreeNode {
     TreeNode left;
     TreeNode right;
 
-    TreeNode(int val) {
-        this.val = val;
-    }
-
     TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;
     }
+
+    TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
 }
 
-public class BinaryTree {
+public class Test {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -26,38 +28,29 @@ public class BinaryTree {
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
 
+        // inorder(root);
         printTree(root, 0);
-        BinaryTree obj = new BinaryTree();
-        System.out.println("Inorder");
-        obj.inOrderTraversal(root);
-        System.out.println("Preorder");
-        obj.preOrderTraversal(root);
-        System.out.println("Postorder");
-        obj.postOrderTraversal(root);
-
+        System.out.println("Inverting..");
+        TreeNode result = invert(root);
+        printTree(result, 0);
+        // inorder(result);
     }
 
-    void inOrderTraversal(TreeNode root) {
-        if (root != null) {
-            inOrderTraversal(root.left);
-            System.out.print(root.val + " ");
-            inOrderTraversal(root.right);
-        }
+    private static TreeNode invert(TreeNode root) {
+        if (root == null)
+            return null;
+        TreeNode result = new TreeNode(root.val);
+        result.left = invert(root.right);
+        result.right = invert(root.left);
+
+        return result;
     }
 
-    void preOrderTraversal(TreeNode root) {
+    private static void inorder(TreeNode root) {
         if (root != null) {
+            inorder(root.left);
             System.out.print(root.val + " ");
-            preOrderTraversal(root.left);
-            preOrderTraversal(root.right);
-        }
-    }
-
-    void postOrderTraversal(TreeNode root) {
-        if (root != null) {
-            postOrderTraversal(root.left);
-            postOrderTraversal(root.right);
-            System.out.print(root.val + " ");
+            inorder(root.right);
         }
     }
 

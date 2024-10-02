@@ -39,6 +39,8 @@ void inOrderTraversal(TreeNode root) {
         }
     }
 ```
+> Output: 4, 2, 5, 1, 6, 3, 7
+
 ### Pre-order Traversal
 - Root, Left, Right (useful for cloning the tree).
 ```java
@@ -50,6 +52,8 @@ public void preOrderTraversal(TreeNode root) {
         }
     }
 ```
+> Output: 1, 2, 4, 5, 3, 6, 7
+
 ### Post-order Traversal
 - Left, Right, Root (useful for deleting nodes).
 ```java
@@ -61,6 +65,8 @@ public void postOrderTraversal(TreeNode root) {
         }
     }
 ```
+> Output: 4, 5, 2, 6, 7, 3, 1
+
 ### Level-order Traversal
 - Visits nodes level by level.
 ```java
