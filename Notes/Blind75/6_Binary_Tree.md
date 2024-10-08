@@ -28,6 +28,7 @@ public class BinaryTree {
 ```
 
 ## **Binary Tree Traversals**
+## DFS
 ### In-order Traversal
 - Left, Root, Right (sorted order for BST).
 ```java
@@ -67,7 +68,82 @@ public void postOrderTraversal(TreeNode root) {
 ```
 > Output: 4, 5, 2, 6, 7, 3, 1
 
+## BFS
 ### Level-order Traversal
 - Visits nodes level by level.
 ```java
+public static void bfs(TreeNode root) {
+        if (root == null)
+            return;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+            System.out.print(current.val + " ");
+
+            if (null != current.left) {
+                queue.add(current.left);
+            }
+            if (null != current.right) {
+                queue.add(current.right);
+            }
+        }
+    }
 ```
+
+## **Invert Binary Tree**
+>
+
+#### Better - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+private static TreeNode invertBinaryTree(TreeNode root) {
+        if (root == null)
+            return null;
+
+        TreeNode result = new TreeNode(root.val);
+
+        result.left = invertBinaryTree(root.right);
+        result.right = invertBinaryTree(root.left);
+        return result;
+    }
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public TreeNode invertBinaryTreeOptimal(TreeNode root) {
+    if (root == null) {
+        return null;
+    }
+    // Swap left and right children
+    TreeNode temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    // Recursively invert left and right subtrees
+    invertBinaryTreeOptimal(root.left);
+    invertBinaryTreeOptimal(root.right);
+    return root;
+}
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-

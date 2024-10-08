@@ -28,7 +28,7 @@ public class InvertBinaryTree {
         printTree(root, 0);
         inorderTraversal(root);
         System.out.println("---");
-        TreeNode invertedTree = invertBinaryTree(root);
+        TreeNode invertedTree = invertBinaryTreeOptimal(root);
         inorderTraversal(invertedTree);
         printTree(invertedTree, 0);
     }
@@ -41,16 +41,33 @@ public class InvertBinaryTree {
         }
     }
 
-    private static TreeNode invertBinaryTree(TreeNode root) {
+    private static TreeNode invertBinaryTreeBetter(TreeNode root) {
         if (root == null)
             return null;
 
         TreeNode result = new TreeNode(root.val);
 
-        result.left = invertBinaryTree(root.right);
-        result.right = invertBinaryTree(root.left);
+        result.left = invertBinaryTreeBetter(root.right);
+        result.right = invertBinaryTreeBetter(root.left);
 
         return result;
+    }
+
+    public static TreeNode invertBinaryTreeOptimal(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        // Swap left and right children
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        // Recursively invert left and right subtrees
+        invertBinaryTreeOptimal(root.left);
+        invertBinaryTreeOptimal(root.right);
+
+        return root;
     }
 
     public static void printTree(TreeNode root, int space) {

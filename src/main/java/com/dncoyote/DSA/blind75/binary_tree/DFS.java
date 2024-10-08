@@ -16,7 +16,7 @@ class TreeNode {
     }
 }
 
-public class BinaryTree {
+public class DFS {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -27,7 +27,7 @@ public class BinaryTree {
         root.right.right = new TreeNode(7);
 
         printTree(root, 0);
-        BinaryTree obj = new BinaryTree();
+        DFS obj = new DFS();
         System.out.println("Inorder");
         obj.inOrderTraversal(root);
         System.out.println("Preorder");
