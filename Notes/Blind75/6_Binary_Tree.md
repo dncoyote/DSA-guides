@@ -147,3 +147,110 @@ public TreeNode invertBinaryTreeOptimal(TreeNode root) {
 #### Steps
 
 -
+
+## **Maximum Depth of Binary Tree**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+
+```java
+static int maximumDepthOfBinaryTreeOptimal(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int numberOfLevels = -1;
+
+        while (true) {
+            int nodeCount = queue.size();
+            if (nodeCount == 0)
+                return numberOfLevels;
+
+            while (nodeCount > 0) {
+                TreeNode current = queue.poll();
+                if (null != current.left)
+                    queue.add(current.left);
+                if (null != current.right)
+                    queue.add(current.right);
+                nodeCount--;
+            }
+            numberOfLevels++;
+        }
+    }
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+## **Same Tree**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+- Level Order Traversal for both Trees and compare result.
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+
+```java
+static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root1);
+        queue.add(root2);
+
+        while (!queue.isEmpty()) {
+            TreeNode first = queue.poll();
+            TreeNode second = queue.poll();
+
+            if (null == first && null == second)
+                continue;
+            else if (null == first || null == second || first.val != second.val)
+                return false;
+
+            queue.add(first.left);
+            queue.add(second.left);
+            queue.add(first.right);
+            queue.add(second.right);
+        }
+        return true;
+    }
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
