@@ -254,3 +254,50 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
 #### Steps
 
 -
+
+## **Subtree of Another Tree**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+
+```java
+    private static boolean isSubtree(TreeNode root1, TreeNode root2) {
+        String tree1 = traversal(root1);
+        String tree2 = traversal(root2);
+        return tree1.contains(tree2);
+    }
+
+    private static String traversal(TreeNode root) {
+        if (root == null)
+            return null;
+        StringBuilder sb = new StringBuilder("-");
+        sb.append(root.val);
+        sb.append(traversal(root.left));
+        sb.append(traversal(root.right));
+        return sb.toString();
+    }
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-

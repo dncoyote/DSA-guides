@@ -28,8 +28,12 @@ public class SameTree {
         root1.left.left = new TreeNode(3);
 
         TreeNode root2 = new TreeNode(1);
-        root2.right = new TreeNode(2);
-        root2.right.left = new TreeNode(3);
+        root2.left = new TreeNode(2);
+        root2.left.left = new TreeNode(3);
+
+        // TreeNode root2 = new TreeNode(1);
+        // root2.right = new TreeNode(2);
+        // root2.right.left = new TreeNode(3);
 
         System.out.println(sameTreeOptimal(root1, root2));
     }
