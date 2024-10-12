@@ -301,3 +301,51 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
 #### Steps
 
 -
+
+## **Lowest Common Ancestor**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+
+```java
+static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+
+        // Recursively search in left and right subtrees
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+        // If both left and right are not null, return root as LCA
+        if (left != null && right != null) {
+            return root;
+        }
+
+        return left != null ? left : right;
+    }
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
