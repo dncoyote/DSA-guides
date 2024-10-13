@@ -349,3 +349,59 @@ static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
 #### Steps
 
 -
+
+## **Validate BST**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+- Level Order Traversal and compare the values.
+- Doesn't handle edge case
+
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+
+```java
+private static boolean validateBST(TreeNode root) {
+        List<Integer> inOrderList = new ArrayList<>();
+        inOrder(root, inOrderList);
+        boolean isBST = true;
+
+        int prev = inOrderList.get(0);
+        for (int i = 1; i < inOrderList.size(); i++) {
+            if (inOrderList.get(i) <= prev) {
+                return isBST;
+            }
+            prev = inOrderList.get(i);
+        }
+        return isBST;
+    }
+
+    private static void inOrder(TreeNode root, List<Integer> inOrderList) {
+        if (root == null)
+            return;
+        inOrder(root.left, inOrderList);
+        inOrderList.add(root.val);
+        inOrder(root.right, inOrderList);
+    }
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
