@@ -383,7 +383,7 @@ private static boolean validateBST(TreeNode root) {
         int prev = inOrderList.get(0);
         for (int i = 1; i < inOrderList.size(); i++) {
             if (inOrderList.get(i) <= prev) {
-                return isBST;
+                return false;
             }
             prev = inOrderList.get(i);
         }
@@ -401,6 +401,146 @@ private static boolean validateBST(TreeNode root) {
 #### Explanation
 
 -
+
+#### Steps
+
+-
+
+## **Kth Smallest Element in BST**
+>
+#### Brute - 
+>Time Complexity - O(n) + O(nlogn)
+
+>Space Complexity - O(n)
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+- Do DFS
+- store values in list
+- sort list and return the kth smallest element.
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - 
+
+```java
+private static int kthSmallest(TreeNode root, int k) {
+        int[] count = { 0 };
+        int[] result = { -1 };
+
+        inOrder(root, count, result, k);
+
+        return result[0];
+    }
+
+    private static void inOrder(TreeNode root, int[] count, int[] result, int k) {
+        if (root == null)
+            return;
+
+        inOrder(root.left, count, result, k);
+        count[0]++;
+        if (count[0] == k) {
+            result[0] = root.val;
+            return;
+        }
+        inOrder(root.right, count, result, k);
+    }
+```
+#### Explanation
+
+- Inorder traversal always returns sorted value if the tree is BST.
+- In Java, primitive types (like int, double, etc.) are passed by value to methods. This means that if we simply passed int count and int result as parameters, changes to their values inside the recursive calls wouldn't be reflected outside those calls. To modify these values across recursive calls (and have the changes persist), we need to pass a reference to an object.
+- Alternatively we can also use a Counter class instead
+```java
+
+class Counter {
+    int count = 0;
+    int result = -1;
+}
+private static int kthSmallest(TreeNode root, int k) {
+        Counter counter = new Counter();
+
+        inOrder(root, counter, k);
+
+        return result[0];
+    }
+
+    private static void inOrder(TreeNode root, Counter counter, int k) {
+        if (root == null)
+            return;
+
+        inOrder(root.left, counter, k);
+        counter.count++;
+        if (counter.count == k) {
+            counter.result = root.val;
+            return;
+        }
+        inOrder(root.right, counter, k);
+    }
+```
+
+#### Steps
+
+-
+
+## **Kth Largest Element in BST**
+>
+#### Brute - 
+>Time Complexity - O(n) + O(nlogn)
+
+>Space Complexity - O(n)
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+- Do DFS
+- store values in list
+- sort list and return the kth smallest element.
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - 
+
+```java
+private static int kthSmallest(TreeNode root, int k) {
+        int[] count = { 0 };
+        int[] result = { -1 };
+
+        inOrder(root, count, result, k);
+
+        return result[0];
+    }
+
+    private static void reverseInOrder(TreeNode root, int[] count, int[] result, int k) {
+        if (root == null)
+            return;
+
+        inOrder(root.right, count, result, k);
+        count[0]++;
+        if (count[0] == k) {
+            result[0] = root.val;
+            return;
+        }
+        inOrder(root.left, count, result, k);
+    }
+```
+#### Explanation
+
+- Reverse Inorder traversal always returns sorted value if the tree is BST.
+- Alternatively we can also use a Counter class instead
 
 #### Steps
 

@@ -40,7 +40,7 @@ public class ValidateBinarySearchTree {
         int prev = inOrderList.get(0);
         for (int i = 1; i < inOrderList.size(); i++) {
             if (inOrderList.get(i) <= prev) {
-                return isBST;
+                return false;
             }
             prev = inOrderList.get(i);
         }
