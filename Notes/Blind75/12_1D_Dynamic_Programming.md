@@ -1,6 +1,14 @@
 # **1D Dynamic Programming**
+## **Theory**
+### Tabulation
+- Bottoms up Dynamic Programming 
+### Memoization
+- Top down Dynamic Programming
+- We tend to store the value of sub problems in some map/table.
+
 ## **Climbing Stairs**
 >
+
 #### Brute - 
 >Time Complexity - 
 

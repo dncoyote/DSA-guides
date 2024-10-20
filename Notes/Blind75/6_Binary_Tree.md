@@ -369,7 +369,7 @@ static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
 - Doesn't handle edge case
 
 
-#### Optimal -
+#### Better -
 >Time Complexity - O(n)
 
 >Space Complexity - O(n)
@@ -401,6 +401,22 @@ private static boolean validateBST(TreeNode root) {
 #### Explanation
 
 -
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+
+```
+#### Explanation
+
+- there is an optimal solution that works when null is in the list. Above solution cannot be submitted to Leetcode.
 
 #### Steps
 
