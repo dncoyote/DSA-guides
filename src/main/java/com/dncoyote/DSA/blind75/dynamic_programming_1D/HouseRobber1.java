@@ -1,6 +1,6 @@
 package com.dncoyote.DSA.blind75.dynamic_programming_1D;
 
-public class HouseRobber {
+public class HouseRobber1 {
     public static void main(String[] args) {
         int[] nums = { 2, 7, 3, 1, 4, 2, 1, 8 };
         int maxLoot = houseRobber(nums);
