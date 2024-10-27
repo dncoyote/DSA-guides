@@ -367,3 +367,119 @@ public class PalindromicSubstring {
 #### Steps
 
 -
+
+## **Coin Change**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - 
+
+>Space Complexity - 
+
+```java
+public class CoinChange {
+    public static void main(String[] args) {
+        int[] coins = { 1, 5, 6, 9 };
+        int amount = 11;
+        System.out.println(coinChange(coins, amount));
+    }
+
+    private static int coinChange(int[] coins, int amount) {
+        if (amount < 1)
+            return 0;
+
+        int[] minCoinsDp = new int[amount + 1];
+
+        for (int i = 1; i <= amount; i++) {
+            minCoinsDp[i] = Integer.MAX_VALUE;
+            for (int coin : coins) {
+                // helps us avoid invalid updates to minCoinsDp[i]. Without it, we might
+                // incorrectly assume an unreachable amount is reachable, leading to incorrect
+                // results.
+                if (coin <= i && minCoinsDp[i - coin] != Integer.MAX_VALUE) {
+                    minCoinsDp[i] = Math.min(minCoinsDp[i], 1 + minCoinsDp[i - coin]);
+                }
+            }
+        }
+        if (minCoinsDp[amount] == Integer.MAX_VALUE)
+            return -1;
+
+        return minCoinsDp[amount];
+    }
+}
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+## **Maximum Product Sub-array**
+>
+#### Brute - 
+>Time Complexity - 
+
+>Space Complexity - 
+```java
+
+```
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal -
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+
+```java
+public class MaximumProductSubarray {
+    public static void main(String[] args) {
+        int[] nums = { 2, 3, -2, -5, 6, -1, 4 };
+        System.out.println(maximumProductSubarray(nums));
+    }
+
+    private static int maximumProductSubarray(int[] nums) {
+        int leftProduct = 1;
+        int rightProduct = 1;
+        int ans = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            leftProduct = leftProduct == 0 ? 1 : leftProduct;
+            leftProduct *= nums[i];
+            rightProduct = rightProduct == 0 ? 1 : rightProduct;
+            rightProduct *= nums[nums.length - 1 - i];
+
+            ans = Math.max(ans, Math.max(leftProduct, rightProduct));
+        }
+        return ans;
+    }
+}
+```
+#### Explanation
+
+- Kadane's algorithm
+
+#### Steps
+
+-
