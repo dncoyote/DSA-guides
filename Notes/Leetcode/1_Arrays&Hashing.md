@@ -514,7 +514,10 @@ public class LongestConsecutiveSequenceOptimal {
 - Revisit
 
 ## **Product of Array except self**
-> Given an integer array `nums`, return an array output where `output[i]` is the product of all the elements of `nums` except `nums[i]`.
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-21 155609.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
@@ -548,11 +551,7 @@ public class ProductofArrayExceptSelfBrute {
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal 
 ```java
 public class ProductofArrayExceptSelfOptimal {
     public static void main(String[] args) {
@@ -583,28 +582,28 @@ public class ProductofArrayExceptSelfOptimal {
     }
 }
 ```
-#### Explanation
+>Time Complexity - O(n)
+- for loops
 
-- Revisit
+>Space Complexity - O(1)
+- no extra space -  The result array is not counted as extra space
+
+#### Explanation
+- Find prefix sums first
+    - set prefix to 1.
+    - set result as prefix.
+    - update prefix by multiplying to the number
+    - iterate until end of loop
+- Find suffix sums next - (by iterating from back)
+    - set suffix to 1.
+    - multiply result to suffix.
+    - update suffix by multiplying to the number
+    - iterate until beginning of loop
 
 ## **Encode Decode String**
 > Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
-#### Brute - 
->Time Complexity - 
 
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal
 ```java
 public class EncodeDecodeStringOptimal {
     public static void main(String[] args) {
@@ -645,6 +644,7 @@ public class EncodeDecodeStringOptimal {
  * Decoded String: [neet, code, love, you]
  */
 ```
-#### Explanation
-
-- Revisit
+>Time Complexity - O(n)
+- for encoding O(n)
+- for decoding O(n)
+>Space Complexity - O(1)
