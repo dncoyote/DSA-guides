@@ -1,9 +1,10 @@
 # **Arrays & Hashing**
 
 ## **Contains Duplicate**
->Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
-Input: nums = [1,2,3,1]
-Output: true
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-21 095447.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - O(n^2)
 
