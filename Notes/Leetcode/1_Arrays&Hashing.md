@@ -115,7 +115,7 @@ public class TwoSumBrute {
                 }
             }
         }
-        throw new IllegalArgumentException("Does not exist.");
+         return new int[0];
     }
 
 }
@@ -154,7 +154,7 @@ public class TwoSum {
            }
            mapVal.put(arr[i],i);
        }
-        throw new IllegalArgumentException("Does not exist.");
+         return new int[0];
     }
 }
 ```

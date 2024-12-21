@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class TwoSum {
     public static void main(String[] args) {
-        int[] arr = {3,2,3};
+        int[] arr = { 3, 2, 3 };
         int target = 6;
         int[] result = twoSum(arr, target);
-        //result.forEach(n->System.out.println(n));
-        for(int n: result){
+        // result.forEach(n->System.out.println(n));
+        for (int n : result) {
             System.out.println(n);
         }
     }
@@ -23,6 +23,6 @@ public class TwoSum {
            }
            mapVal.put(arr[i],i);
        }
-        throw new IllegalArgumentException("Does not exist.");
+        return new int[0];
     }
 }
