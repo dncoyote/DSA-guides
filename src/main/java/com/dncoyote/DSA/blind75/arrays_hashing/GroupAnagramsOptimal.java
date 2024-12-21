@@ -1,36 +1,46 @@
 package com.dncoyote.DSA.blind75.arrays_hashing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class GroupAnagramsOptimal {
     public static void main(String[] args) {
         String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
-        List<List<String>> result = groupAnagrams(val);
+        List<List<String>> result = groupAnagrams1(val);
         for (List<String> s : result)
             System.out.println(s);
     }
 
-    private static List<List<String>> groupAnagrams(String[] val) {
-        HashMap<String, List<String>> result = new HashMap<>();
-        for (String s : val) {
+    private static List<List<String>> groupAnagrams1(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+
+        for (String s : strs) {
             int[] count = new int[26];
             for (char c : s.toCharArray()) {
                 count[c - 'a']++;
             }
-            StringBuilder key = new StringBuilder();
-            for (int i = 0; i < 26; i++) {
-                key.append("#");
-                key.append(count[i]);
-            }
-            String keyString = key.toString();
-            if (!result.containsKey(keyString)) {
-                result.put(keyString, new ArrayList<>());
-            }
-            result.get(keyString).add(s);
-
+            String key = Arrays.toString(count);
+            map.putIfAbsent(key, new ArrayList<>());
+            map.get(key).add(s);
         }
-        return new ArrayList<>(result.values());
+        return new ArrayList<>(map.values());
+    }
+
+    private static List<List<String>> groupAnagrams2(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+
+        for (String word : strs) {
+            char[] ch = word.toCharArray();
+            Arrays.sort(ch);
+            String anagram = new String(ch);
+
+            if (!map.containsKey(anagram)) {
+                map.put(anagram, new ArrayList<>());
+            }
+            map.get(anagram).add(word);
+        }
+        return new ArrayList<>(map.values());
     }
 }

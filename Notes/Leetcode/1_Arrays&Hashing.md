@@ -5,10 +5,7 @@
   <img alt="image" src="assets/Screenshot 2024-12-21 095447.png" />
 </div>
 
-#### Brute - 
->Time Complexity - O(n^2)
-
->Space Complexity - O(1)
+#### Brute - Nested for loops
 ```java
 public class ContainsDuplicateBrute {
     public static void main(String[] args) {
@@ -28,14 +25,15 @@ public class ContainsDuplicateBrute {
     }
 }
 ```
+>Time Complexity - O(n^2)
+- nested for loops
+>Space Complexity - O(1)
+- array is used
 #### Explanation
 
--
+- Use nested for loops to identify if a number from first loop exists in the second loop.
 
 #### Better - Sorting
->Time Complexity - O(nlogn)
-
->Space Complexity - O(1)
 ```java
 public class ContainsDuplicateBetter {
     public static void main(String[] args) {
@@ -54,15 +52,14 @@ public class ContainsDuplicateBetter {
     }
 }
 ```
+>Time Complexity - O(nlogn)
+
+>Space Complexity - O(1)
 #### Explanation
 
--
+- Sort the array using inbuilt sort function and  compare if adjacent values are equal.
 
-#### Optimal - Hashset
->Time Complexity - O(n)
-
->Space Complexity - O(n)
-
+#### Optimal - HashSet
 ```java
 public class ContainsDuplicateOptimal {
     public static void main(String[] args) {
@@ -82,15 +79,21 @@ public class ContainsDuplicateOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+- due to loop
+
+>Space Complexity - O(n)
+- due to HashSet usage
 #### Explanation
 
--
-## **Two Sum**
->Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-#### Brute - 
->Time Complexity - O(n^2)
+- Use a HashSet.
 
->Space Complexity - 
+## **Two Sum**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-21 111837.png" />
+</div>
+
+#### Brute - 
 ```java
 public class TwoSumBrute {
 
@@ -117,6 +120,12 @@ public class TwoSumBrute {
 
 }
 ```
+>Time Complexity - O(n^2)
+- due to nested for loops
+
+>Space Complexity - O(1)
+- no extra space used
+
 #### Explanation
 - Use two for loops to iterate through the given integer array.
 - Find the sum of the value of the element from the first for loop and the second for loop.
@@ -125,10 +134,6 @@ public class TwoSumBrute {
 - Else iterate the loop.
 
 #### Optimal - HashMap
->Time Complexity - O(n)
-
->Space Complexity - O(n)
-
 ```java
 public class TwoSum {
     public static void main(String[] args) {
@@ -153,6 +158,12 @@ public class TwoSum {
     }
 }
 ```
+>Time Complexity - O(n)
+- Single traversal of loop
+
+>Space Complexity - O(n)
+- Space for HashMap
+
 #### Explanation
 - Use a for loop to iterate through the integer array.
 - Find the difference between target value and the value from the array.
@@ -161,12 +172,11 @@ public class TwoSum {
 - If it exists return the   
 
 ## **Valid Anagram**
->Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-21 104236.png" />
+</div>
 
 #### Brute - Ordering and Sorting
->Time Complexity - O(nlogn)
-
->Space Complexity - O(n)
 ```java
 public class ValidAnagramBrute {
     public static void main(String[] args) {
@@ -190,15 +200,18 @@ public class ValidAnagramBrute {
     }
 }
 ```
+>Time Complexity - O(nlogn)
+- Sorting operation takes O(nlogn)
+
+>Space Complexity - O(n)
+- char array `a` and `b` are copies of input string taking O(n) 
 #### Explanation
 
--
+- Convert String to char arrays.
+- Sort char arrays
+- Compare the char arrays.
 
 #### Optimal - 
->Time Complexity - O(n)
-
->Space Complexity - O(1)
-
 ```java
 public class ValidAnagramOptimal {
     public static void main(String[] args) {
@@ -233,29 +246,28 @@ public class ValidAnagramOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+- Length check `(s.length() != t.length())` takes O(1)
+- Char counting takes O(n)
+- Count check takes O(1) as its 26 characters.
+         
+>Space Complexity - O(1)
+- The count array is always of size 26 so its O(1), no other auxilliary space taken.
+
 #### Explanation
 
--
+- Create a char count array.
+- Increment the count for each char in first String by 1.
+- Decrement the count for each char in second String by 1.
+- If the char count for each char remains zero, then both String are equal.
+- If the char count for any char is not ero, then both String are not equal.
 
 ## **Group Anagrams**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-21 122024.png" />
+</div>
 
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal - HashMap
 ```java
 public class GroupAnagramsOptimal {
     public static void main(String[] args) {
@@ -265,34 +277,76 @@ public class GroupAnagramsOptimal {
             System.out.println(s);
     }
 
-    private static List<List<String>> groupAnagrams(String[] val) {
-        HashMap<String, List<String>> result = new HashMap<>();
-        for (String s : val) {
+    private static List<List<String>> groupAnagrams1(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+
+        for (String s : strs) {
             int[] count = new int[26];
             for (char c : s.toCharArray()) {
                 count[c - 'a']++;
             }
-            StringBuilder key = new StringBuilder();
-            for (int i = 0; i < 26; i++) {
-                key.append("#");
-                key.append(count[i]);
-            }
-            String keyString = key.toString();
-            if (!result.containsKey(keyString)) {
-                result.put(keyString, new ArrayList<>());
-            }
-            result.get(keyString).add(s);
-
+            String key = Arrays.toString(count);
+            map.putIfAbsent(key, new ArrayList<>());
+            map.get(key).add(s);
         }
-        return new ArrayList<>(result.values());
+        return new ArrayList<>(map.values());
     }
 }
 ```
+>Time Complexity - O(m*n)
+- Where `m` is number of strings and `n` is the length of the longest String.
+
+>Space Complexity - O(m)
+- Where `m` is number of strings added to the HashMap.
+
 #### Explanation
-- 
+- If we used a simple `map.put(key, value)` instead of `putIfAbsent()`, we would overwrite the value every time we encounter a key that already exists.
+
+#### Steps
+- Get a string from the String array.
+- Create its character count array.
+- Add the character count array as the key to the result map.
+- Add the String to the result map against the key.
+- Repeat for all Strings.
+- Return the value of the result map.
+
+#### Optimal - Sorting
+```java
+public class GroupAnagramsOptimal {
+    public static void main(String[] args) {
+        String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
+        List<List<String>> result = groupAnagrams(val);
+        for (List<String> s : result)
+            System.out.println(s);
+    }
+
+    private static List<List<String>> groupAnagrams2(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+
+        for (String word : strs) {
+            char[] ch = word.toCharArray();
+            Arrays.sort(ch);
+            String anagram = new String(ch);
+
+            if (!map.containsKey(anagram)) {
+                map.put(anagram, new ArrayList<>());
+            }
+            map.get(anagram).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
+```
+>Time Complexity - O(m*nlogn)
+- Where `m` is number of strings and `n` is the length of the longest String.
+
+>Space Complexity - O(m*n)
 
 ## **Top k elements in List**
->Given an integer array nums and an integer k, return the k most frequent elements within the array.
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-21 131930.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
@@ -331,11 +385,7 @@ public class TopKElementsBrute {
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal - Heap
 ```java
 public class TopKElementsOptimal {
     public static void main(String[] args) {
@@ -371,9 +421,15 @@ public class TopKElementsOptimal {
     }
 }
 ```
-#### Explanation
+>Time Complexity - O(nlogk)
+- n is the length of the array
+- k is the number of top frequent elements.
 
-- Revisit
+>Space Complexity - O(n+k)
+
+#### Explanation
+- `PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a,b)->a.getValue()-b.getValue())` creates a min-heap that orders the entries based on the values of the `Map.Entry<Integer, Integer> elements`
+- A min-heap is a specialized binary tree-based data structure that satisfies the heap property. Specifically, for a min-heap, the value of each parent node is less than or equal to the values of its children, ensuring that the smallest element is always at the root of the tree. That is why we have added this `for (int i = k - 1; i >= 0; i--)`.
 
 ## **Longest Consecutive Sequence**
 > Given an array of integers `nums`, return the length of the longest consecutive sequence of elements.
