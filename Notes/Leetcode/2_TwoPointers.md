@@ -234,3 +234,132 @@ public class ContainerWithMostWaterOptimal {
 #### Explanation
 
 -
+
+## **Two Sum II - Input array is sorted**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 152356.png" />
+</div>
+
+#### Brute - 
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class TwoSumII {
+    public static void main(String[] args) {
+        int[] nums = { 2, 7, 11, 15 };
+        int target = 9;
+        int[] res = twoSumII(nums, target);
+        for (int n : res)
+            System.out.println(n);
+    }
+
+    private static int[] twoSumII(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            // sum is less than the target val, move pointer to the right increasing value
+            if (sum < target) {
+                left++;
+                // sum is greater than the target val, move pointer to left decreasing value
+            } else if (sum > target) {
+                right--;
+                // sum is equal to target
+            } else {
+                // Convert to 1-indexed, to return the correct index
+                return new int[] { left + 1, right + 1 };
+            }
+        }
+        return new int[0];
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+
+## **Trapping Rain Water**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 155240.png" />
+</div>
+
+#### Brute - 
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class TrappingRainWater {
+    public static void main(String[] args) {
+        int heights[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+        int result = trap(heights);
+        System.out.println(result);
+    }
+
+    private static int trap(int[] heights) {
+        int left = 0;
+        int right = heights.length - 1;
+
+        int leftMax = heights[left];
+        int rightMax = heights[right];
+
+        int waterTrapped = 0;
+
+        while (left < right) {
+            // to determine which side of the array (left or right) to process next, if left is smaller then process left, else process right
+            if (leftMax < rightMax) {
+                left++;
+                // Update the left maximum
+                leftMax = Math.max(leftMax, heights[left]);
+
+                waterTrapped += leftMax - heights[left];
+            } else {
+                right--;
+                // Update the right maximum
+                rightMax = Math.max(rightMax, heights[right]);
+
+                waterTrapped += rightMax - heights[right];
+            }
+        }
+        return waterTrapped;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+
+#### Explanation
+
+- `if (leftMax < rightMax)` - If leftMax is smaller than rightMax, the amount of water trapped at the current position depends only on leftMax, since rightMax is taller and will not limit the water at this position.
