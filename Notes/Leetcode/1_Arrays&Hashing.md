@@ -432,12 +432,11 @@ public class TopKElementsOptimal {
 - A min-heap is a specialized binary tree-based data structure that satisfies the heap property. Specifically, for a min-heap, the value of each parent node is less than or equal to the values of its children, ensuring that the smallest element is always at the root of the tree. That is why we have added this `for (int i = k - 1; i >= 0; i--)`.
 
 ## **Longest Consecutive Sequence**
-> Given an array of integers `nums`, return the length of the longest consecutive sequence of elements.
-A consecutive sequence is a sequence of elements in which each element is exactly 1 greater than the previous element.
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 102541.png" />
+</div>
 
->Space Complexity - 
+#### Brute  
 ```java
 public class LongestConsecutiveSequenceBrute {
     public static void main(String[] args) {
@@ -471,15 +470,16 @@ public class LongestConsecutiveSequenceBrute {
     }
 }
 ```
+>Time Complexity - O(n^2)
+- while loop and contains method
+
+>Space Complexity - O(1)
+
 #### Explanation
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal - HashSet
 ```java
 public class LongestConsecutiveSequenceOptimal {
     public static void main(String[] args) {
@@ -495,9 +495,11 @@ public class LongestConsecutiveSequenceOptimal {
         }
         int longestStreak = 0;
         for (int n : numSet) {
+            // Check if this is the start of a sequence
             if (!numSet.contains(n - 1)) {
                 int currentStreak = 1;
                 int currentNumber = n;
+                // Check the next numbers in the sequence
                 while (numSet.contains(currentNumber + 1)) {
                     currentStreak = currentStreak + 1;
                     currentNumber = currentNumber + 1;
@@ -509,9 +511,14 @@ public class LongestConsecutiveSequenceOptimal {
     }
 }
 ```
-#### Explanation
+>Time Complexity - O(n)
+- For Loop and lookup in HashSet
 
-- Revisit
+>Space Complexity - O(n)
+- HashSet
+
+#### Explanation
+- 
 
 ## **Product of Array except self**
 <div align="center">
@@ -648,3 +655,69 @@ public class EncodeDecodeStringOptimal {
 - for encoding O(n)
 - for decoding O(n)
 >Space Complexity - O(1)
+
+
+## **Valid Sudoku**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 110358.png" />
+</div>
+
+#### Optimal - HashSet
+
+```java
+public class ValidSudoku {
+    public static void main(String[] args) {
+        char[][] board = { { '1', '2', '.', '.', '3', '.', '.', '.', '.' },
+                { '4', '.', '.', '5', '.', '.', '.', '.', '.' },
+                { '.', '9', '8', '.', '.', '.', '.', '.', '3' },
+                { '5', '.', '.', '.', '6', '.', '.', '.', '4' },
+                { '.', '.', '.', '8', '.', '3', '.', '.', '5' },
+                { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
+                { '.', '.', '.', '.', '.', '.', '2', '.', '.' },
+                { '.', '.', '.', '4', '1', '9', '.', '.', '8' },
+                { '.', '.', '.', '.', '8', '.', '.', '7', '9' } };
+        boolean result = validSudoku(board);
+        System.out.println(result);
+    }
+
+    private static boolean validSudoku(char[][] board) {
+        HashSet<Character>[] rows = new HashSet[9];
+        HashSet<Character>[] cols = new HashSet[9];
+        HashSet<Character>[] boxes = new HashSet[9];
+
+        for (int i = 0; i < 9; i++) {
+            rows[i] = new HashSet<>();
+            cols[i] = new HashSet<>();
+            boxes[i] = new HashSet<>();
+        }
+
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                char num = board[r][c];
+                // Ignore empty cells
+                if (num == '.')
+                    continue;
+
+                // Calculate box index
+                int boxIndex = (r / 3) * 3 + (c / 3);
+
+                // Invalid if duplicate found
+                if (rows[r].contains(num) || cols[r].contains(num) || boxes[boxIndex].contains(num)) {
+                    return false;
+                }
+                rows[r].add(num);
+                cols[r].add(num);
+                boxes[boxIndex].add(num);
+            }
+        }
+        return true;
+    }
+}
+```
+>Time Complexity - O(1)
+- Eventhough there is multiple times and there is a nested for loop, traversing happens for only O(9*9) or O(81) which is O(1).
+
+>Space Complexity - O(1)
+#### Explanation
+
+-

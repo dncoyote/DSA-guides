@@ -13,8 +13,9 @@ public class ContainerWithMostWaterOptimal {
         int maxArea = 0;
 
         while (left < right) {
+            int width = right - left;
             int area = Math.min(heights[left], heights[right])
-                    * (right - left);
+                    * width;
             System.out.println("Area - " + area + "=" + Math.min(heights[left], heights[right]) + "*" + (right - left));
 
             maxArea = Math.max(maxArea, area);

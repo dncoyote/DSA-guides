@@ -104,14 +104,18 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 > Negative potential consequences of an action.
 
 ## **Two Sun**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 102541.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
 
->Space Complexity - 
 ```java
 
 ```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -
@@ -120,29 +124,15 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 
 -
 
-#### Better - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 
 ```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -

@@ -6,7 +6,10 @@
 
 
 ## **Valid Palindrome**
-> Given a string `s`, return `true` if it is a palindrome, otherwise return `false`.
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 112512.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
@@ -42,9 +45,6 @@ public class ValidPalindromeBrute {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 public class ValidPalindromeOptimal {
@@ -74,16 +74,21 @@ public class ValidPalindromeOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+- n is length of String
+
+>Space Complexity - O(1)
+
 #### Explanation
 
 -
 
 ## **Three Sum**
-> Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` where `nums[i] + nums[j] + nums[k] == 0`, and the indices `i`, `j` and `k` are all distinct.
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 123440.png" />
+</div>
 
->Space Complexity - 
+#### Brute - 
 ```java
 public class ThreeSumBrute {
     public static void main(String[] args) {
@@ -109,15 +114,14 @@ public class ThreeSumBrute {
     }
 }
 ```
+>Time Complexity - O(n^3)
+
+>Space Complexity - O(1)
 #### Explanation
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal 
 ```java
 public class ThreeSumOptimal {
     public static void main(String[] args) {
@@ -130,7 +134,7 @@ public class ThreeSumOptimal {
     private static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums); // Step 1: Sort the array
-        System.out.println(nums.length - 2);
+        //we need to leave room for two additional elements to form a triplet
         for (int i = 0; i < nums.length - 2; i++) {
             if (i > 0 && nums[i] == nums[i - 1])
                 continue; // Skip duplicates
@@ -162,30 +166,35 @@ public class ThreeSumOptimal {
     }
 }
 ```
+>Time Complexity - O(n^2)
+- Sorting - O(n log n)
+- two pointer traversal O(n)
+- Total - O(n^2)
+
+>Space Complexity - O(1)
+
+
 #### Explanation
 
 -
 
 ## **Container with most water**
-> You are given an integer array `heights` where `heights[i]` represents the height of the `i`'th
-  bar. You may choose any two bars to form a container. Return the maximum amount of water a container can store.
-  Input: height = [1,7,2,5,4,7,3,6]
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 131159.png" />
+</div>
 
->Space Complexity - 
+#### Brute - 
 ```java
 
 ```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class ContainerWithMostWaterOptimal {
     public static void main(String[] args) {
@@ -200,11 +209,14 @@ public class ContainerWithMostWaterOptimal {
         int maxArea = 0;
 
         while (left < right) {
+            int width = right - left
+            // We use Math.min to ensure that the water height is determined by the shorter line, water will overflow if we use longer line
             int area = Math.min(heights[left], heights[right])
-                    * (right - left);
+                    * (width);
 
             maxArea = Math.max(maxArea, area);
 
+            // Move the shorter pointer
             if (heights[left] < heights[right]) {
                 left++;
             } else {
@@ -215,6 +227,10 @@ public class ContainerWithMostWaterOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+
 #### Explanation
 
 -
