@@ -10,6 +10,33 @@ public class LongestRepeatingCharacterReplacementOptimal {
         System.out.println(result);
     }
 
+    private static int longestRepeatingCharacterReplacementBrute(String s, int k) {
+        int maxLength = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+                int[] charCount = new int[26];
+                for (int x = i; x < j; x++) {
+                    charCount[s.charAt(x) - 'A']++;
+                }
+
+                int maxFreq = 0;
+                for (int count : charCount) {
+                    maxFreq = Math.max(maxFreq, count);
+                }
+
+                int windowSize = j - i + 1;
+                int replacementNeeded = windowSize - maxFreq;
+
+                if (replacementNeeded <= k) {
+                    maxLength = Math.max(maxLength, windowSize);
+                }
+
+            }
+        }
+        return maxLength;
+    }
+
     private static int longestRepeatingCharacterReplacement(String s, int k) {
         int left = 0;
         int maxCount = 0; // to store the count of the most frequent character in the current window
@@ -28,7 +55,7 @@ public class LongestRepeatingCharacterReplacementOptimal {
                 char leftChar = s.charAt(left);
                 charCount.put(leftChar, charCount.get(leftChar) - 1);
                 left++;
-            }   
+            }
             maxLength = Math.max(maxLength, right - left + 1);
         }
         return maxLength;

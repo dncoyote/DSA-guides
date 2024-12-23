@@ -12,17 +12,22 @@ public class LongestSubstringWithoutDuplicatesOptimal {
 
     private static int longestSubstringWithoutDuplicates(String s) {
         int left = 0;
-        int maxlength = 0;
+        int maxLength = 0;
         Map<Character, Integer> charCount = new HashMap<>();
+
         for (int right = 0; right < s.length(); right++) {
             char currentChar = s.charAt(right);
+
+            // If character is already present, move `left` pointer
             if (charCount.containsKey(currentChar)) {
-                charCount.put(currentChar, charCount.get(currentChar) - 1);
-                left++;
+                // Move `left` to the max of its current value or the position after the last
+                // occurrence
+                left = Math.max(left, charCount.get(currentChar) + 1);
             }
-            charCount.put(currentChar, charCount.getOrDefault(currentChar, 0) + 1);
-            maxlength = Math.max(maxlength, right - left + 1);
+            charCount.put(currentChar, right);
+            // Calculate the maximum length of substring
+            maxLength = Math.max(maxLength, right - left + 1);
         }
-        return maxlength;
+        return maxLength;
     }
 }

@@ -2,3 +2,4 @@
 - base case
 - Always write explanations/steps.
 - DFS is not only applicable for binary trees.
+- The brute force solution is computationally expensive and impractical for large strings due to its O(n^3) time complexity.

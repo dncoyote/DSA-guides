@@ -2,11 +2,9 @@
 ## **Theory**
 
 ## **Buy and Sell Crypto/Stock**
-> You are given an integer array prices where `prices[i]` is the price of NeetCoin on the `i`th day.
-You may choose a single day to buy one NeetCoin and choose a different day in the future to sell it.
-Return the maximum profit you can achieve. You may choose to not make any transactions, in which case the profit would be 0.
-Input: prices = [10,1,5,6,7,1]
-Output: 6
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 100302.png" />
+</div>
 
 #### Brute - 
 >Time Complexity - 
@@ -19,21 +17,7 @@ Output: 6
 
 -
 
-#### Better - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 public class BuyAndSellCryptoOptimal {
@@ -59,27 +43,201 @@ public class BuyAndSellCryptoOptimal {
     }
 }
 ```
-#### Explanation
-- Revisit - This is not strictly a Sliding Window problem, explore better solutions.
+>Time Complexity - O(n)
 
-## **Longest Repeating Character Replacement**
->You are given a string s consisting of only uppercase english characters and an integer k. You can choose up to k characters of the string and replace them with any other uppercase English character.
-After performing at most k replacements, return the length of the longest substring which contains only one distinct character.
+>Space Complexity - O(1)
+
+## **Longest Substring without repeating characters**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 105426.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
+public static void main(String[] args) {
+        String s = "abcabcbb";
+        int result = longestSubstringWithoutDuplicates(s);
+        System.out.println(result);
+    }
 
+    private static int longestSubstringWithoutDuplicates(String s) {
+        int left = 0;
+        int right = left + 1;
+        int length = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = 1; j < s.length(); j++) {
+                if (allunique(s, i, j)) {
+                    length = Math.max(length, j - i + 1);
+                }
+            }
+        }
+        return length;
+    }
+
+    private static boolean allunique(String s, int start, int end) {
+        Set<Character> hashSet = new HashSet<>();
+        for (int i = start; i <= end; i++) {
+            if (hashSet.contains(s.charAt(i))) {
+                return false;
+            }
+            hashSet.add(s.charAt(i));
+        }
+        return true;
+    }
 ```
+>Time Complexity - O(n^3)
+
+>Space Complexity - O(n)
 #### Explanation
 
 -
 
-#### Optimal -
->Time Complexity - 
+#### Steps
 
->Space Complexity - 
+-
+
+#### Optimal -
+```java
+public class LongestSubstringWithoutDuplicatesOptimal {
+    public static void main(String[] args) {
+        String s = "abcabcbb";
+        int result = longestSubstringWithoutDuplicatesOpt(s);
+        System.out.println(result);
+    }
+
+    private static int longestSubstringWithoutDuplicatesOpt(String s) {
+        int left = 0;
+        int maxLength = 0;
+        Map<Character, Integer> charCount = new HashMap<>();
+
+        for (int right = 0; right < s.length(); right++) {
+            char currentChar = s.charAt(right);
+
+            // If character is already present, move `left` pointer
+            if (charCount.containsKey(currentChar)) {
+                // Move `left` to the max of its current value or the position after the last
+                // occurrence
+                left = Math.max(left, charCount.get(currentChar) + 1);
+            }
+            charCount.put(currentChar, right);
+            // Calculate the maximum length of substring
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+        return maxLength;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(k)
+- k is the size of the character set (26 alphabets)
+
+#### Steps
+- `int left`, `int maxLength` all set to 0.
+- `charCount` hashmap to store individual characters along with their count
+- `right` pointer in for loop.
+- if `currentChar` already exists in the map, then move left pointer.
+
+
+## **Longest Repeating Character Replacement**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 121510.png" />
+</div>
+
+#### Brute - 
+```java
+public class LongestRepeatingCharacterReplacementOptimal {
+    public static void main(String[] args) {
+        String s = "AABABBA";
+        int k = 2;
+        int result = longestRepeatingCharacterReplacement(s, k);
+        System.out.println(result);
+    }
+
+    private static int longestRepeatingCharacterReplacementBrute(String s, int k) {
+        int maxLength = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+
+                // Find freq count array
+                int[] charCount = new int[26];
+                for (int x = i; x < j; x++) {
+                    charCount[s.charAt(x) - 'A']++;
+                }
+
+                // Find the most frequent character in the substring
+                int maxFreq = 0;
+                for (int count : charCount) {
+                    maxFreq = Math.max(maxFreq, count);
+                }
+
+                // Calculate the number of replacements needed
+                int windowSize = j - i + 1;
+                int replacementNeeded = windowSize - maxFreq;
+
+                if (replacementNeeded <= k) {
+                    maxLength = Math.max(maxLength, windowSize);
+                }
+
+            }
+        }
+        return maxLength;
+    }
+}
+```
+>Time Complexity - O(n^3)
+
+>Space Complexity - O(k) - O(26) - O(1)
+#### Explanation
+
+-
+
+#### Optimal 
+```java
+public class LongestRepeatingCharacterReplacementOptimal {
+    public static void main(String[] args) {
+        String s = "AABABBA";
+        int k = 2;
+        int result = longestRepeatingCharacterReplacement(s, k);
+        System.out.println(result);
+    }
+
+    private static int longestRepeatingCharacterReplacement(String s, int k) {
+          int left = 0;
+        int maxFreq = 0;
+        int result = 0;
+        int[] charCount = new int[26];
+
+        for (int right = 0; right < s.length(); right++) {
+            char currentChar = s.charAt(right);
+            charCount[currentChar - 'A']++;
+            // Update the max frequency in the window
+            maxFreq = Math.max(maxFreq, charCount[currentChar - 'A']);
+
+            // If the current window size minus the max frequency is greater than k, shrink the window
+            while ((right - left + 1) - maxFreq > k) {
+                // Decrement the frequency of the character at `left`
+                charCount[s.charAt(left) - 'A']--;
+                left++;
+            }
+
+            // Update the result with the maximum window size
+            result = Math.max(result, right - left + 1);
+        }
+        return result;
+    }
+}
+O/P
+---
+5
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(k) - O(26) - O(1)
+
+#### Optimal -
 
 ```java
 public class LongestRepeatingCharacterReplacementOptimal {
@@ -118,6 +276,10 @@ O/P
 ---
 5
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(k) - O(26) - O(1)
+
 #### Explanation
 
 - `right - left + 1` this expression is used to calculate the length of the **current size of the window**.
@@ -128,70 +290,12 @@ O/P
 - `charCount` hashmap to store individual characters along with their count
 - `right` pointer in for loop.
 
-## **Longest Substring without duplicates**
->Given a string s, find the length of the longest substring without duplicate characters.
-#### Brute - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
-```java
-public class LongestSubstringWithoutDuplicatesOptimal {
-    public static void main(String[] args) {
-        String s = "zxyzxyz";
-        int result = longestSubstringWithoutDuplicates(s);
-        System.out.println(result);
-    }
-
-    private static int longestSubstringWithoutDuplicates(String s) {
-        int left = 0;
-        int maxlength = 0;
-        Map<Character, Integer> charCount = new HashMap<>();
-        for (int right = 0; right < s.length(); right++) {
-            char currentChar = s.charAt(right);
-            if (charCount.containsKey(currentChar)) {
-                charCount.put(currentChar, charCount.get(currentChar) - 1);
-                left++;
-            }
-            charCount.put(currentChar, charCount.getOrDefault(currentChar, 0) + 1);
-            maxlength = Math.max(maxlength, right - left + 1);
-        }
-        return maxlength;
-    }
-}
-```
-#### Explanation
-
--
-
-#### Steps
-
-- `int left`, `int maxLength` all set to 0.
-- `charCount` hashmap to store individual characters along with their count
-- `right` pointer in for loop.
-- if `currentChar` already exists in the map, then move left pointer.
-
 ## **Minimum Window substring**
-> Given two strings `s` and `t`, return the shortest substring of `s` such that every character in `t`, including duplicates, is present in the substring. If such a substring does not exist, return an empty string "".
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 124451.png" />
+</div>
 
->Space Complexity - 
+#### Brute - 
 ```java
 public class MinimumWindowSubstringBrute {
     public static void main(String[] args) {
@@ -240,19 +344,15 @@ public class MinimumWindowSubstringBrute {
     }
 }
 ```
-#### Explanation
-
-- revisit - Brute solution
-
-#### Steps
-
--
-
-#### Optimal -
 >Time Complexity - 
 
 >Space Complexity - 
 
+#### Explanation
+
+- revisit - Brute solution
+
+#### Optimal -
 ```java
 public class MinimumWindowSubstringOptimal {
     public static void main(String[] args) {
@@ -309,6 +409,12 @@ public class MinimumWindowSubstringOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+- n is length of s
+
+>Space Complexity - O(n + m) - O(1)
+- n and m is length of s and t respectively.
+
 #### Explanation
 
 -
@@ -324,3 +430,119 @@ public class MinimumWindowSubstringOptimal {
     - reduce formed by 1
     - left++
 - right++
+
+## **Permutation in String**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 133459.png" />
+</div>
+
+#### Brute - 
+
+```java
+public class PermutationInString {
+    public static void main(String[] args) {
+        String s1 = "ab";
+        String s2 = "eidbaooo";
+
+        System.out.println(permutationsInStringOptimal(s1, s2));
+    }
+
+    private static boolean permutationsInStringBrute(String s1, String s2) {
+
+        // Sort the characters of s1
+        char[] charArrayS1 = s1.toCharArray();
+        Arrays.sort(charArrayS1);
+        String sortedS1 = new String(charArrayS1);
+
+        // Iterate through every possible substring of s2 with length equal to s1
+        for (int i = 0; i <= s2.length() - s1.length(); i++) {
+            String substring = s2.substring(i, i + s1.length());
+
+            // Sort the current substring and compare with sorted s1
+            char[] charArrayS2 = substring.toCharArray();
+            Arrays.sort(charArrayS2);
+            String sortedS2 = new String(charArrayS2);
+
+            if (sortedS1.equals(sortedS2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+>Time Complexity - O(n . m log m)
+- n is length of s2 and m is length of s1
+
+>Space Complexity - O(m)
+- m is length of s1
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class PermutationInString {
+    public static void main(String[] args) {
+        String s1 = "ab";
+        String s2 = "eidbaooo";
+
+        System.out.println(permutationsInStringOptimal(s1, s2));
+    }
+
+    private static boolean permutationsInStringOptimal(String s1, String s2) {
+        // Return false if s1 is longer that s2
+        if (s2.length() < s1.length())
+            return false;
+        int[] counts1 = new int[26];
+        int[] counts2 = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            counts1[s1.charAt(i) - 'a']++;
+            counts2[s2.charAt(i) - 'a']++;
+        }
+
+        for (int i = s1.length(); i < s2.length(); i++) {
+            if (matches(counts1, counts2)) {
+                return true;
+            }
+            // Add the new character to the window
+            counts2[s2.charAt(i) - 'a']++;
+            // Remove the character that is no longer in the window
+            counts2[s2.charAt(i - s1.length()) - 'a']--;
+        }
+
+        return matches(counts1, counts2);
+    }
+
+    private static boolean matches(int[] counts1, int[] counts2) {
+        for (int i = 0; i < 26; i++) {
+            if (counts1[i] != counts2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+>Time Complexity - O(n)
+- n is the length of s2
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
