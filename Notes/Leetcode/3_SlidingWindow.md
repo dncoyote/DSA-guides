@@ -546,3 +546,102 @@ public class PermutationInString {
 #### Follow up 
 
 -
+
+## **Sliding Window Maximum**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 155757.png" />
+</div>
+
+#### Brute - 
+
+```java
+public class SlidingWindowMaximum {
+    public static void main(String[] args) {
+        int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        int k = 3;
+        int[] result = slidingWindowMaximumBrute(nums, k);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] slidingWindowMaximumBrute(int[] nums, int k) {
+        int[] result = new int[nums.length - k + 1];
+        // Iterate through all windows of size k
+        for (int i = 0; i <= nums.length - k; i++) {
+            int max = Integer.MIN_VALUE;
+            for (int j = i; j < i + k; j++) {
+                max = Math.max(max, nums[j]);
+            }
+            result[i] = max;
+        }
+        return result;
+    }
+}
+```
+>Time Complexity - O(n . k)
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class SlidingWindowMaximum {
+    public static void main(String[] args) {
+        int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        int k = 3;
+        int[] result = slidingWindowMaximumOptimal(nums, k);
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] slidingWindowMaximumOptimal(int[] nums, int k) {
+        List<Integer> result = new ArrayList<>();
+        Deque<Integer> deque = new LinkedList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
+                deque.pollFirst();
+            }
+
+            // Remove indices of smaller elements
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.pollLast();
+            }
+
+            deque.add(i);
+            if (i >= k - 1) {
+                result.add(nums[deque.peekFirst()]);
+            }
+        }
+        return result.stream().mapToInt(x -> x).toArray();
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(k)
+- k is the size of the sliding window
+#### Explanation
+
+- A **deque** (short for double-ended queue) is a data structure that allows insertion and removal of elements from both ends — front and back. It is implemented as a doubly linked list or a dynamic array in most programming languages.
+- We use a deque to efficiently maintain the indices of elements in the array for each sliding window. The deque will always have the index of the maximum element for the current window at its front, which allows us to retrieve the maximum value in O(1).
+
+#### Steps
+
+- `if (!deque.isEmpty() && deque.peekFirst() < i - k + 1)` - Check if the index at the front of the deque is outside the current window. If yes, remove the front index with `deque.pollFirst()`.
+- `while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i])` - Check the elements at the back of the deque. If the current element `nums[i]` is greater than or equal to the element at those indices:
+Remove the indices at the back `(deque.pollLast())`, as those elements can never be the maximum in the current or future windows.
+
+#### Follow up 
+
+-

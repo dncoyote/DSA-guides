@@ -6,11 +6,11 @@
 - Function call management (e.g., recursive function calls are managed using the call stack).
 
 ## **Valid Parentheses**
->
-#### Better - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-23 161641.png" />
+</div>
 
->Space Complexity - 
+#### Better - 
 ```java
 public class ValidParenthesesBetter {
     public static void main(String[] args) {
@@ -40,6 +40,9 @@ public class ValidParenthesesBetter {
     }
 }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
 #### Explanation
 
 -
@@ -50,10 +53,6 @@ public class ValidParenthesesBetter {
 
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class ValidParenthesesOptimal {
     public static void main(String[] args) {
@@ -78,6 +77,9 @@ public class ValidParenthesesOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
 #### Explanation
 
 - Check Neetcode solution that uses a map along with the stack
