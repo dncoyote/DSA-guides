@@ -2,9 +2,10 @@
 ## **Theory**
 > If the question is regarding a sorted array and search is involved, binary search is mostly the answer.
 ## **Binary Search - Iterative**
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-24 155639.png" />
+</div>
 
->Space Complexity - 
 ```java
 public class BinarySearchIterative {
     public static void main(String[] args) {
@@ -32,6 +33,10 @@ public class BinarySearchIterative {
     }
 }
 ```
+>Time Complexity - O(log n)
+- The search space (range of indices) is halved at each iteration.
+
+>Space Complexity - O(1)
 #### Explanation
 
 - Returns index of the value or -1 if value is not present.
