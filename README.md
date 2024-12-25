@@ -1,7 +1,25 @@
 # **DSA guides**
 
-## Blind 75
+## Leetcode
 #### Arrays and Hashing
+[Theory](Notes/Leetcode/1_Arrays&Hashing.md)  
+
+#### Two Pointers
+[Theory](Notes/Leetcode/2_TwoPointers.md)
+
+#### Sliding Window
+[Theory](Notes/Leetcode/3_SlidingWindow.md)
+
+#### Stack
+[Theory](Notes/Leetcode/4_Stack.md)
+
+#### Binary Search
+[Theory](Notes/Leetcode/5_BinarySearch.md)
+
+#### Linked List
+[Theory](Notes/Leetcode/6_LinkedList.md)
+
+<!-- #### Arrays and Hashing
 [Theory](Notes/Blind75/1_Arrays_Hashing.md)  
 - [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicateOptimal.java)
 - [ ] Valid Anagram - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ValidAnagramOptimal.java)
@@ -198,4 +216,4 @@
 ## 17. Tries
 #### Theory
 
-#### Problems
+#### Problems -->
