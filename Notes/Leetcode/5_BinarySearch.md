@@ -83,14 +83,25 @@ public class BinarySearchRecursive {
 -
 
 ## **Find Minimum in Rotated Sorted Array**
-> You are given an array of length `n` which was originally sorted in ascending order. It has now been rotated between 1 and `n` times. Find the Minimum value.
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-25 103307.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
-
+private static int findMinimumInRotatedSortedArrayBrute(int[] arr) {
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i <= arr.length - 1; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return min;
+    }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
 #### Explanation
 
 -
@@ -100,10 +111,6 @@ public class BinarySearchRecursive {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class FindMinimumInRotatedSortedArrayOptimal {
     public static void main(String[] args) {
@@ -117,9 +124,12 @@ public class FindMinimumInRotatedSortedArrayOptimal {
 
         while (low < high) {
             int mid = (high + low) / 2;
+            // Compare mid element with the rightmost element
             if (arr[mid] > arr[high])
+            // Minimum is in the right half
                 low = mid + 1;
             else
+            // Minimum is in the left half
                 high = mid;
         }
         return arr[low];
@@ -127,23 +137,39 @@ public class FindMinimumInRotatedSortedArrayOptimal {
     }
 }
 ```
+>Time Complexity - O(log n)
+
+>Space Complexity - O(1)
+
 #### Explanation
 
--
+- `arr[mid] > arr[high]` - If the middle element `(arr[mid])` is greater than the last element `(arr[high])`, this means the minimum element lies in the right half of the array because a rotated array ensures that the minimum element is smaller than the elements before it. So we move `low` to `mid + 1` to search the right half.
+- `else` -  the minimum element could be the middle element or lies in the left half of the array because if `arr[mid]` is less than or equal to `arr[high]`, it means that `mid` is part of the smaller (or sorted) half, and the minimum could be in this half.
 
 #### Steps
 
 -
 
 ## **Find Target in Rotated Sorted Array**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-25 110311.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
+ 
 ```java
-
+private static int findTargetInRotatedSortedArrayBrute(int[] arr, int target) {
+        int index = 0;
+        for (int i = 0; i <= arr.length - 1; i++) {
+            if (arr[i] == target)
+                index = i;
+        }
+        return index;
+    }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
 #### Explanation
 
 - method 1
@@ -157,9 +183,6 @@ public class FindMinimumInRotatedSortedArrayOptimal {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 public class FindTargetInRotatedSortedArrayOptimal {
@@ -180,19 +203,19 @@ public class FindTargetInRotatedSortedArrayOptimal {
                 return mid;
             // if Left half is sorted
             if (arr[low] <= arr[mid]) {
-                // checks if the target value lies within the range of the sorted left half
+                // checks if the target value is in the range of the sorted left half
                 if (target <= arr[mid] && arr[low] <= target) {
-                    high = mid - 1;// Move right
+                    high = mid - 1;// narrow the search range to the left half
                 } else {
-                    low = mid + 1;// Move left
+                    low = mid + 1;// narrow the search range to the right half
                 }
                 // if Right half is sorted
             } else {
-                // checks if the target value lies within the range of the sorted right half
+                // checks if the target value is in the range of the sorted right half
                 if (target >= arr[mid] && arr[high] >= target) {
-                    low = mid + 1;// Move right
+                    low = mid + 1;// narrow the search range to the right half
                 } else {
-                    high = mid - 1;// Move left
+                    high = mid - 1;// narrow the search range to the left half
                 }
             }
         }
@@ -200,10 +223,98 @@ public class FindTargetInRotatedSortedArrayOptimal {
     }
 }
 ```
+>Time Complexity - O(log n)
+
+>Space Complexity - O(1)
 #### Explanation
 
 -
 
 #### Steps
+
+-
+
+## **Search a 2D Matrix**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-25 113758.png" />
+</div>
+
+#### Brute - 
+
+```java
+private static boolean search2DMatrixBrute(int[][] matrix, int target) {
+        for (int[] row : matrix) {
+            for (int n : row) {
+                if (n == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+```
+>Time Complexity - O(m * n)
+- m is number of rows.
+- n is number of columns
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class Search2DMatrix {
+    public static void main(String[] args) {
+        int[][] matrix = { { 1, 3, 5, 7 }, { 10, 11, 16, 20 }, { 23, 30, 34, 60 } };
+        int target = 3;
+        System.out.println(search2DMatrixOptimal(matrix, target));
+    }
+
+    private static boolean search2DMatrixOptimal(int[][] matrix, int target) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        int low = 0;
+        int high = row * col - 1;
+
+        while (low <= high) {
+            int mid = (high + low) / 2;
+            int midValue = matrix[mid / col][mid % col];
+
+            if (target == midValue) {
+                return true;
+            } else if (target > midValue) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+}
+```
+>Time Complexity - O(log (m * n)) - O(log(m+n))
+- m is number of rows.
+- n is number of columns
+
+>Space Complexity - O(1)
+#### Explanation 
+
+- `int midValue = matrix[mid / col][mid % col]` - A 2D matrix can be conceptually flattened into a single 1D array.
+    - `mid / col`: Dividing the index mid by the number of columns col gives the row because every col elements correspond to a new row in the matrix.
+    - `mid % col`: The remainder when mid is divided by col gives the column within that row. This is because the column index resets every col elements.
+
+#### Steps
+
+-
+
+#### Follow up 
 
 -
