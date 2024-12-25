@@ -26,26 +26,11 @@ cout<<y;
 - Stores the memory location of `x` in `y`.
 
 ## **Reverse Linked List**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-25 164550.png" />
+</div>
 
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
+#### Optimal 
 
 ```java
 class ListNode {
@@ -103,6 +88,10 @@ public class ReverseLinkedListOptimal {
     }
 }
 ```
+>Time Complexity - O(n)
+- n is number of nodes in the LinkedList.
+
+>Space Complexity - O(1)
 #### Explanation
 
 -
