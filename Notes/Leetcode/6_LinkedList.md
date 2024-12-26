@@ -101,35 +101,52 @@ public class ReverseLinkedListOptimal {
 -
 
 ## **Merge Two sorted Linked List**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 105529.png" />
+</div>
+
 #### Brute - 
->Time Complexity - O(N1)+O(N2)+O(Nlog N)+O(N)
 
-O(N1) - 1st Linked List
-O(N2) - 2nd Linked List
-O(N log N) - sort function
-O(N) - create merge Linked List
-
->Space Complexity - O(N1)+O(N2)
 ```java
+public static ListNode mergeTwoSortedLinkedListBrute(ListNode l1, ListNode l2) {
+        List<Integer> values = new ArrayList<>();
 
+        while (l1 != null) {
+            values.add(l1.val);
+            l1 = l1.next;
+        }
+
+        while (l2 != null) {
+            values.add(l2.val);
+            l2 = l2.next;
+        }
+
+        Collections.sort(values);
+        ListNode resultNode = new ListNode(Integer.MIN_VALUE);
+        ListNode headNode = resultNode;
+        for (int val : values) {
+            resultNode.next = new ListNode(val);
+            resultNode = resultNode.next;
+        }
+        return headNode.next; // skips the dummy node
+    }
 ```
-#### Explanation
-
-- 
+>Time Complexity -O(m + n + (m + n) * log(m + n)) - O((m + n) * log(m + n))
+- O(m + n) - Collecting and adding values to list.
+- O(m + n) * log(m + n) - Sorting
+- m is size of l1.
+- n is size of l2. 
+>Space Complexity - O(m)+O(n)
+- m is size of l1.
+- n is size of l2. 
 
 #### Steps
-
 - Take 1st Linked list and store to array using while loop
 - Take 2nd Linked List and store to same array using while loop.
 - call Array.sort to sort.
 - Convert array to Linked List
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public static ListNode mergeTwoSortedLinkedList(ListNode l1, ListNode l2) {
         ListNode resultNode = new ListNode(Integer.MIN_VALUE);
@@ -142,34 +159,49 @@ public static ListNode mergeTwoSortedLinkedList(ListNode l1, ListNode l2) {
                 resultNode.next = l2;
                 l2 = l2.next;
             }
-            resultNode = resultNode.next;
+            resultNode = resultNode.next; // Move resultNode forward to continue building the merged list.
         }
 
         if (l1 == null) {
-            resultNode.next = l2;
+            resultNode.next = l2; // Attach remaining l2 nodes
         } else if (l2 == null) {
-            resultNode.next = l1;
+            resultNode.next = l1; // Attach remaining l1 nodes
         }
-        return headNode.next;
+        return headNode.next; // skips the dummy node
     }
 ```
+>Time Complexity - O(m+n)
+- m is size of l1.
+- n is size of l2. 
+
+>Space Complexity - O(1)
+
 #### Explanation
-
--
-
-#### Steps
-
--
+- `ListNode resultNode = new ListNode(Integer.MIN_VALUE);` - This is the dummy node. Using a dummy node simplifies the merging process because it eliminates the need for special handling of the head node. Without it, you'd need additional checks to initialize the head separately, which makes the code more complex.
+- `resultNode` 
+    - It is for Initialization of the linked list.
+    - A dummy node (resultNode) is created to act as the starting point of the merged list.
+    - Integer.MIN_VALUE is used as a placeholder value since the dummy node's value doesn't matter; it's just a temporary marker to make merging easier.
+- `headNode`
+    - It is for Keeping track of the head.
+    - headNode is assigned the reference of resultNode.
+    - As the merging progresses, resultNode keeps moving forward (i.e., pointing to new nodes).
+    - However, headNode always points to the dummy node, which ensures we can later return the head of the actual merged list.
+- `resultNode = resultNode.next` - If we don’t update `resultNode` to `resultNode.next`, the pointer will remain stuck on the same node. This will overwrite the next field of the same node repeatedly, and the list will not grow correctly.
 
 ## **Reorder Linked List**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 112821.png" />
+</div>
 
->Space Complexity - 
+#### Brute - 
+
 ```java
 
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
 #### Explanation
 
 - Convert Linked List to array.
@@ -180,16 +212,15 @@ public static ListNode mergeTwoSortedLinkedList(ListNode l1, ListNode l2) {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 ListNode reorderList(ListNode head) {
         // Find the middle of the List
         ListNode slow = head;
         ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {
+        // Tortoise and Hare Algorithm
+        // Floyd's Cycle Detection Algorithm
+         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -220,6 +251,9 @@ ListNode reorderList(ListNode head) {
         return head;
     }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
 #### Explanation
 
 -
@@ -229,27 +263,44 @@ ListNode reorderList(ListNode head) {
 -
 
 ## **Remove nth Node from End of Linked List**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 123723.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
 
->Space Complexity - 
 ```java
+private ListNode removeNthNodeBrute(ListNode head, int n) {
+        List<Integer> values = new ArrayList<>();
+        ListNode current = head;
+        while (current != null) {
+            values.add(current.val);
+            current = current.next;
+        }
+        int position = values.size() - n;
+        values.remove(position);
 
+        ListNode resultNode = new ListNode(Integer.MIN_VALUE);
+        ListNode headNode = resultNode;
+        for (int val : values) {
+            resultNode.next = new ListNode(val);
+            resultNode = resultNode.next;
+        }
+        return headNode.next;
+
+    }
 ```
+>Time Complexity - O(n)+O(n)+O(n) - O(3n) - O(n)
+- O(n) for adding to list
+- O(n) for removing nth position from end.
+- O(n) for creating a new LinkedList.
+
+>Space Complexity - O(n)
 #### Explanation
 
 -
 
-#### Steps
-
--
-
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class RemoveNthNodeFromEndOfLinkedList {
     public static void main(String[] args) {
@@ -265,27 +316,34 @@ public class RemoveNthNodeFromEndOfLinkedList {
         obj.printList(resultNode);
     }
 
-    ListNode removeNthNodeOptimal(ListNode head, int n) {
+   ListNode removeNthNodeOptimal(ListNode head, int n) {
         ListNode dummy = new ListNode(Integer.MIN_VALUE);
         dummy.next = head;
 
         ListNode ptr1 = dummy;
         ListNode ptr2 = dummy;
 
+        // Advance the second pointer by n + 1 steps
         for (int i = 0; i <= n; i++) {
             ptr2 = ptr2.next;
         }
 
+        // Move both pointers until second pointer reaches the end
         while (ptr2 != null) {
             ptr1 = ptr1.next;
             ptr2 = ptr2.next;
         }
 
+        // Remove the nth node
         ptr1.next = ptr1.next.next;
         return dummy.next;
     }
 }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+
 #### Explanation
 
 -
@@ -295,26 +353,34 @@ public class RemoveNthNodeFromEndOfLinkedList {
 -
 
 ## **Linked List Cycle**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 125708.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
 
->Space Complexity - 
 ```java
-
+boolean hasLinkedListCycleBrute(ListNode head) {
+        HashSet<ListNode> set = new HashSet<>();
+        ListNode current = head;
+        while (current != null) {
+            if (set.contains(current))
+                return true;
+            set.add(current);
+            current = current.next;
+        }
+        return false;
+    }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
 #### Explanation
 
-- Using hash table.
+- Using hash set.
 
-#### Steps
-
--
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 public class LinkedListCycle {
@@ -350,10 +416,113 @@ public class LinkedListCycle {
     }
 }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+## **Merge K Sorted Lists**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 135453.png" />
+</div>
+
+#### Brute - 
+
+```java
+public class MergeKSortedLists {
+    public static void main(String[] args) {
+        int[][] inputLists = { { 1, 4, 5 }, { 1, 3, 4 }, { 2, 6 } };
+        ListNode[] lists = new ListNode[inputLists.length];
+
+        // Convert the array of arrays to an array of linked lists
+        for (int i = 0; i < inputLists.length; i++) {
+            lists[i] = arrayToLinkedList(inputLists[i]);
+        }
+
+        ListNode mergedList = mergeKSortedListsOptimal(lists);
+        printList(mergedList);
+    }
+
+    private static ListNode mergeKSortedListsOptimal(ListNode[] lists) {
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
+
+        // add the first node of each linked list into the min-heap
+        for (ListNode list : lists) {
+            if (list != null)
+                minHeap.add(list);
+        }
+
+        ListNode resultNode = new ListNode(Integer.MIN_VALUE);
+        ListNode current = resultNode;
+        while (!minHeap.isEmpty()) {
+            ListNode node = minHeap.poll();
+            current.next = node;
+            current = current.next;
+
+            if (node.next != null) {
+                minHeap.add(node.next);
+            }
+        }
+        return resultNode.next;
+    }
+
+    private static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + "-");
+            current = current.next;
+        }
+        System.out.print("null");
+    }
+
+    public static ListNode arrayToLinkedList(int[] arr) {
+        ListNode head = new ListNode(0);
+        ListNode current = head;
+        for (int num : arr) {
+            current.next = new ListNode(num);
+            current = current.next;
+        }
+        return head.next; // Return the next node to skip the dummy node
+    }
+}
+```
+>Time Complexity - O(n log k)
+- n is the total number of elements across all lists
+- k is the numbder of lists.
+
+>Space Complexity - O(k)
+- k is the number of lists, because we are storing up to k nodes in the heap at any point in time
+#### Explanation
+
+- `for (ListNode list : lists)`
+    - we need to add the first node of each linked list into the min-heap so we can start comparing them to figure out which one has the smallest node.
+    - After this loop, the min-heap will contain [`1`(from list1),`1`(from list2),`2`(from list3)]
+- `if (node.next != null) { minHeap.add(node.next);`
+    - At this point in the loop, `minHeap.poll()` has removed the smallest node from the min-heap (the node with the smallest value among all the current nodes in the heap). This node is assigned to `node` and is added to the Linked List.
+    - Now we need to check whether node itself has a next node. If `node.next != null`, it means node isn't the last node in its original linked list. Therefore, it still has another node that we need to process.
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -
 
 #### Steps
+
+-
+
+#### Follow up 
 
 -

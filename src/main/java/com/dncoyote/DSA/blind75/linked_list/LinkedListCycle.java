@@ -1,5 +1,7 @@
 package com.dncoyote.DSA.blind75.linked_list;
 
+import java.util.HashSet;
+
 class ListNode {
 
     int val;
@@ -44,6 +46,18 @@ public class LinkedListCycle {
 
             if (fast == slow)
                 return true;
+        }
+        return false;
+    }
+
+    boolean hasLinkedListCycleBrute(ListNode head) {
+        HashSet<ListNode> set = new HashSet<>();
+        ListNode current = head;
+        while (current != null) {
+            if (set.contains(current))
+                return true;
+            set.add(current);
+            current = current.next;
         }
         return false;
     }

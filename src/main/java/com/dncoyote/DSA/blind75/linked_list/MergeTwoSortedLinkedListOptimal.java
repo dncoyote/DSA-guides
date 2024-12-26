@@ -1,5 +1,9 @@
 package com.dncoyote.DSA.blind75.linked_list;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 class ListNode {
 
     int val;
@@ -27,7 +31,7 @@ public class MergeTwoSortedLinkedListOptimal {
         l2.next = new ListNode(7);
         l2.next.next = new ListNode(9);
 
-        ListNode mergedList = mergeTwoSortedLinkedList(l1, l2);
+        ListNode mergedList = mergeTwoSortedLinkedListBrute(l1, l2);
         printLinkedList(mergedList);
     }
 
@@ -42,15 +46,38 @@ public class MergeTwoSortedLinkedListOptimal {
                 resultNode.next = l2;
                 l2 = l2.next;
             }
-            resultNode = resultNode.next;
+            resultNode = resultNode.next; // Move resultNode forward to continue building the merged list.
         }
 
         if (l1 == null) {
-            resultNode.next = l2;
+            resultNode.next = l2; // Attach remaining l2 nodes
         } else if (l2 == null) {
-            resultNode.next = l1;
+            resultNode.next = l1; // Attach remaining l1 nodes
         }
-        return headNode.next;
+        return headNode.next; // skips the dummy node
+    }
+
+    public static ListNode mergeTwoSortedLinkedListBrute(ListNode l1, ListNode l2) {
+        List<Integer> values = new ArrayList<>();
+
+        while (l1 != null) {
+            values.add(l1.val);
+            l1 = l1.next;
+        }
+
+        while (l2 != null) {
+            values.add(l2.val);
+            l2 = l2.next;
+        }
+
+        Collections.sort(values);
+        ListNode resultNode = new ListNode(Integer.MIN_VALUE);
+        ListNode headNode = resultNode;
+        for (int val : values) {
+            resultNode.next = new ListNode(val);
+            resultNode = resultNode.next;
+        }
+        return headNode.next; // skips the dummy node
     }
 
     public static void printLinkedList(ListNode head) {
