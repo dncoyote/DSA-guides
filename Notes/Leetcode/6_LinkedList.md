@@ -428,7 +428,42 @@ public class LinkedListCycle {
   <img alt="image" src="assets/Screenshot 2024-12-26 135453.png" />
 </div>
 
-#### Brute - 
+#### Brute -
+
+```java
+private static ListNode mergeKSortedListsBrute(ListNode[] lists) {
+        List<Integer> values = new ArrayList<>();
+        for (ListNode list : lists) {
+            while (list != null) {
+                values.add(list.val);
+                list = list.next;
+            }
+        }
+
+        Collections.sort(values);
+
+        ListNode result = new ListNode(0);
+        ListNode current = result;
+        for (int value : values) {
+            current.next = new ListNode(value);
+            current = current.next;
+        }
+
+        return result.next;
+    }
+```
+>Time Complexity - O(n log n)
+- n is the total number of nodes across all lists
+>Space Complexity - O(n)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal - 
 
 ```java
 public class MergeKSortedLists {
@@ -506,11 +541,235 @@ public class MergeKSortedLists {
 
 -
 
+#### Follow up 
+
+-
+
+## **Copy List with Random Pointer**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 160254.png" />
+</div>
+
+#### Brute - 
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
 
 #### Optimal -
 
 ```java
+class Node {
+    int val;
+    Node next;
+    Node random;
 
+    Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+
+public class CopyListWithRandomPointer {
+    public static void main(String[] args) {
+        int[][] input = {
+                { 7, -1 },
+                { 13, 0 },
+                { 11, 4 },
+                { 10, 2 },
+                { 1, 0 }
+        };
+
+        Node head = createLinkedList(input);
+        System.out.println("OriginalList - ");
+        printList(head);
+        Node copy = copyRandomList(head);
+        System.out.println("CopyList - ");
+        printList(copy);
+    }
+
+    public static Node copyRandomList(Node head) {
+        if(head==null)
+            return null;
+
+        // Interleave the original list with its copy
+        Node current = head;
+        while (current != null) {
+            Node copy = new Node(current.val);
+            copy.next = current.next;
+            current.next = copy;
+            current = copy.next;
+        }
+
+        // Assign random pointers for the copies
+        current = head;
+        while (current != null) {
+            if (current.random != null) {
+                current.next.random = current.random.next;
+            }
+            current = current.next.next;
+        }
+
+        // Restore the original list and separate the copied list
+        Node original = head;
+        Node copyHead = head.next;
+        Node copy = copyHead;
+        while (original != null) {
+            original.next = original.next.next;
+            if (copy.next != null) {
+                copy.next = copy.next.next;
+            }
+            original = original.next;
+            copy = copy.next;
+        }
+        return copyHead;
+    }
+
+    public static Node createLinkedList(int[][] data) {
+        if (data == null || data.length == 0)
+            return null;
+
+        // Step 1: Create all nodes and store them in a list for random pointer access
+        ArrayList<Node> nodes = new ArrayList<>();
+        for (int[] pair : data) {
+            nodes.add(new Node(pair[0]));
+        }
+
+        // Step 2: Set next pointers
+        for (int i = 0; i < nodes.size() - 1; i++) {
+            nodes.get(i).next = nodes.get(i + 1);
+        }
+
+        // Step 3: Set random pointers
+        for (int i = 0; i < data.length; i++) {
+            int randomIndex = data[i][1];
+            nodes.get(i).random = randomIndex != -1 ? nodes.get(randomIndex) : null;
+        }
+
+        // Return the head of the list
+        return nodes.get(0);
+    }
+
+    public static void printList(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.print("[" + current.val + ", ");
+            System.out.print(current.random != null ? current.random.val : "null");
+            System.out.print("] -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+}
+```
+>Time Complexity - O(n)
+- n is number of nodes.
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
+## **Add Two Numbers**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-26 162331.png" />
+</div>
+
+#### Brute - 
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class AddTwoNumbers {
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);
+
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+
+        ListNode sum = addTwoNumbersOptimal(l1, l2);
+        printList(sum);
+    }
+
+    // private static ListNode addTwoNumbersBrute(ListNode l1, ListNode l2) {
+
+    // }
+
+    private static ListNode addTwoNumbersOptimal(ListNode l1, ListNode l2) {
+        ListNode resultNode = new ListNode(Integer.MIN_VALUE);
+        ListNode current = resultNode;
+        int carry = 0;
+
+        // Traverse both lists until both are exhausted
+        while (l1 != null || l2 != null || carry != 0) {
+            int sum = carry; // Initialize sum with the carry value
+
+            // Add values from l1 and l2 if available
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            // Calculate new carry and the value of the current digit
+            carry = sum / 10;
+            current.next = new ListNode(sum % 10);
+            current = current.next;
+        }
+
+        return resultNode.next; // Return the list starting from the dummy node's next
+    }
+
+    private static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + "-");
+            current = current.next;
+        }
+        System.out.print("null");
+    }
+}
 ```
 >Time Complexity - 
 

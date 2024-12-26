@@ -1,5 +1,8 @@
 package com.dncoyote.DSA.blind75.linked_list;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 
 class ListNode {
@@ -27,7 +30,7 @@ public class MergeKSortedLists {
             lists[i] = arrayToLinkedList(inputLists[i]);
         }
 
-        ListNode mergedList = mergeKSortedListsOptimal(lists);
+        ListNode mergedList = mergeKSortedListsBrute(lists);
         printList(mergedList);
     }
 
@@ -51,6 +54,27 @@ public class MergeKSortedLists {
             }
         }
         return resultNode.next;
+    }
+
+    private static ListNode mergeKSortedListsBrute(ListNode[] lists) {
+        List<Integer> values = new ArrayList<>();
+        for (ListNode list : lists) {
+            while (list != null) {
+                values.add(list.val);
+                list = list.next;
+            }
+        }
+
+        Collections.sort(values);
+
+        ListNode result = new ListNode(0);
+        ListNode current = result;
+        for (int value : values) {
+            current.next = new ListNode(value);
+            current = current.next;
+        }
+
+        return result.next;
     }
 
     private static void printList(ListNode head) {
