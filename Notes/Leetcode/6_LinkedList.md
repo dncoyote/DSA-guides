@@ -785,3 +785,82 @@ public class AddTwoNumbers {
 #### Follow up 
 
 -
+
+## **Find the Duplicate Number**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-27 115743.png" />
+</div>
+
+#### Brute - 
+
+```java
+public class FindDuplicateInteger {
+    public static void main(String[] args) {
+        int[] nums = { 1, 3, 4, 2, 2 };
+        System.out.println(findDuplicateIntegerBrute(nums));
+    }
+
+    private static int findDuplicateIntegerBrute(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    return nums[i];
+                }
+            }
+        }
+        return 0;
+    }
+}
+```
+>Time Complexity - O(n^2)
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+
+#### Optimal -
+
+```java
+public class FindDuplicateInteger {
+    public static void main(String[] args) {
+        int[] nums = { 1, 3, 4, 2, 2 };
+        System.out.println(findDuplicateIntegerOptimal(nums));
+    }
+
+    private static int findDuplicateIntegerOptimal(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+
+        // Detect Cycle
+         do {
+            slow = nums[slow];       // Move slow pointer by 1 step
+            fast = nums[nums[fast]]; // Move fast pointer by 2 steps
+        } while (slow != fast);
+
+        // Find duplicate
+        int slow2 = nums[0];
+        slow = nums[0]; // Reset slow to the start
+        while (slow != fast) {
+            slow = nums[slow]; // Move both pointers one step
+            fast = nums[fast];
+        }
+        return slow;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+- Floyds cycle detection algorithm
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
