@@ -24,6 +24,28 @@ public class BinaryTree {
         root.right = new TreeNode(3);
         root.right.left = new TreeNode(4);
     }
+
+    public static void printTree(TreeNode root, int space) {
+        // Base case
+        if (root == null)
+            return;
+
+        // Increase distance between levels
+        space += 5;
+
+        // Print right child first
+        printTree(root.right, space);
+
+        // Print current node after space count
+        System.out.println();
+        for (int i = 5; i < space; i++) {
+            System.out.print(" ");
+        }
+        System.out.println(root.val);
+
+        // Print left child
+        printTree(root.left, space);
+    }
 }
 ```
 
@@ -93,12 +115,11 @@ public static void bfs(TreeNode root) {
 ```
 
 ## **Invert Binary Tree**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-30 102236.png" />
+</div>
 
 #### Better - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
 private static TreeNode invertBinaryTree(TreeNode root) {
         if (root == null)
@@ -111,6 +132,12 @@ private static TreeNode invertBinaryTree(TreeNode root) {
         return result;
     }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
+- The space complexity is determined by the maximum depth of the recursion stack, which is equal to the height of the tree which is h.
+- In the worst case (a skewed tree), the height is O(n).
+- In the best case (a balanced tree), the height is O(logn).
 #### Explanation
 
 -
@@ -120,9 +147,6 @@ private static TreeNode invertBinaryTree(TreeNode root) {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 public TreeNode invertBinaryTreeOptimal(TreeNode root) {
@@ -140,6 +164,12 @@ public TreeNode invertBinaryTreeOptimal(TreeNode root) {
     return root;
 }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
+- The space complexity is determined by the maximum depth of the recursion stack, which is equal to the height of the tree which is h.
+- In the worst case (a skewed tree), the height is O(n).
+- In the best case (a balanced tree), the height is O(logn).
 #### Explanation
 
 -
@@ -149,7 +179,10 @@ public TreeNode invertBinaryTreeOptimal(TreeNode root) {
 -
 
 ## **Maximum Depth of Binary Tree**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-30 105158.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
@@ -159,7 +192,7 @@ public TreeNode invertBinaryTreeOptimal(TreeNode root) {
 ```
 #### Explanation
 
--
+- 
 
 #### Steps
 
@@ -167,15 +200,11 @@ public TreeNode invertBinaryTreeOptimal(TreeNode root) {
 
 
 #### Optimal -
->Time Complexity - O(n)
-
->Space Complexity - O(n)
-
 ```java
 static int maximumDepthOfBinaryTreeOptimal(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int numberOfLevels = -1;
+        int numberOfLevels = 0;
 
         while (true) {
             int nodeCount = queue.size();
@@ -194,23 +223,48 @@ static int maximumDepthOfBinaryTreeOptimal(TreeNode root) {
         }
     }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(w)
+- w is the maximum width of the tree.
 #### Explanation
 
--
+- This solution computes the maximum depth of a binary tree using a Breadth-First Search (BFS) approach.
 
 #### Steps
 
 -
 
 ## **Same Tree**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-30 111231.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
+private static List<Integer> maximumDepthOfBinaryTreeBrute(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
 
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+            if (current == null) {
+                list.add(null);
+            } else {
+                list.add(current.val);
+                queue.add(current.left);
+                queue.add(current.right);
+            }
+        }
+        return list;
+
+    }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
 #### Explanation
 
 -
@@ -220,9 +274,6 @@ static int maximumDepthOfBinaryTreeOptimal(TreeNode root) {
 - Level Order Traversal for both Trees and compare result.
 
 #### Optimal -
->Time Complexity - O(n)
-
->Space Complexity - O(n)
 
 ```java
 static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
@@ -247,6 +298,9 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
         return true;
     }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
 #### Explanation
 
 -
@@ -256,7 +310,10 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
 -
 
 ## **Subtree of Another Tree**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-30 115408.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
