@@ -300,16 +300,32 @@ public class Search2DMatrix {
     }
 }
 ```
->Time Complexity - O(log (m * n)) - O(log(m+n))
+>Time Complexity - O(log (m * n))
 - m is number of rows.
 - n is number of columns
+- Normal Binary Search runs with O(log n), here its O(log (m * n))
 
 >Space Complexity - O(1)
 #### Explanation 
+-  Concept of Flattening a 2D Matrix
+- [
+  [1,  3,  5],
+  [7,  9, 11],
+  [13, 15, 17]
+] 
+- [1, 3, 5, 7, 9, 11, 13, 15, 17]
 
 - `int midValue = matrix[mid / col][mid % col]` - A 2D matrix can be conceptually flattened into a single 1D array.
-    - `mid / col`: Dividing the index mid by the number of columns col gives the row because every col elements correspond to a new row in the matrix.
-    - `mid % col`: The remainder when mid is divided by col gives the column within that row. This is because the column index resets every col elements.
+    - `row = mid / col`: Dividing the index mid by the number of columns col gives the row because every col elements correspond to a new row in the matrix.
+    - `col = mid % col`: The remainder when mid is divided by col gives the column within that row. This is because the column index resets every col elements.
+- if `mid = 7` for `1   3   5   7   9  11  13  15  17`. 
+    - `row = mid / col` -> `7/3 = 2`
+    - `col = mid % col` -> `7%3 = 1`
+    - so `matrix[2][1] = 15`
+- if `mid = 4` for `1   3   5   7   9  11  13  15  17`. 
+    - `row = mid / col` -> `4/3 = 1`
+    - `col = mid % col` -> `4%3 = 1`
+    - so `matrix[1][1] = 9`
 
 #### Steps
 
