@@ -307,7 +307,7 @@ public class Search2DMatrix {
 
 >Space Complexity - O(1)
 #### Explanation 
--  Concept of Flattening a 2D Matrix
+###### Concept of Flattening a 2D Matrix
 - [
   [1,  3,  5],
   [7,  9, 11],
