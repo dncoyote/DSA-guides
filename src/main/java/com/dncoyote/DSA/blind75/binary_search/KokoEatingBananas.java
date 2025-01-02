@@ -4,7 +4,7 @@ public class KokoEatingBananas {
     public static void main(String[] args) {
         int[] piles = { 3, 6, 7, 11 };
         int h = 8;
-        int minEatingSpeed = kokoEatingBananasBrute(piles, h);
+        int minEatingSpeed = kokoEatingBananasOptimal(piles, h);
         System.out.println(minEatingSpeed);
     }
 
@@ -34,7 +34,10 @@ public class KokoEatingBananas {
         }
 
         while (low < high) {
-            int mid = low + (high - low) / 2;
+            // to avoid int overflow by exceeding int limit, if low and high are large
+            // values
+            // int mid = low + (high - low) / 2;
+            int mid = (high + low) / 2;
             if (canFinish(piles, h, mid)) {
                 high = mid;
             } else {
