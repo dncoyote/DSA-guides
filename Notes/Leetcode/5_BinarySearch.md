@@ -234,6 +234,70 @@ public class FindTargetInRotatedSortedArrayOptimal {
 
 -
 
+## **First Bad Version**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-10 203422.png" />
+</div>
+
+#### Brute - 
+
+```java
+public int firstBadVersionBrute(int n) {
+        for (int i = 1; i <= n; i++) {
+            if (isBadVersion(i)) {
+                return i; 
+            }
+        }
+        return -1; 
+    }
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int low =1;
+        int high = n;
+
+        while(low<high){
+            int mid = low + (high - low) / 2;
+            if(isBadVersion(mid)){
+                high = mid;
+            }else{
+                low = mid+1;
+            }
+        }
+        return low;
+    }
+}
+```
+>Time Complexity - O(log n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+- Using `low + (high - low) / 2` instead of `(low + high) / 2` is a safeguard against integer overflow
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
 ## **Search a 2D Matrix**
 <div align="center">
   <img alt="image" src="assets/Screenshot 2024-12-25 113758.png" />

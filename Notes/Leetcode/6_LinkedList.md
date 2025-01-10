@@ -553,11 +553,35 @@ public class MergeKSortedLists {
 #### Brute - 
 
 ```java
+private static Node copyRandomListBrute(Node head) {
+        if (head == null)
+            return null;
 
+        Node current = head;
+        Map<Node, Node> map = new HashMap<>();
+        // Create a mapping of original nodes to their copies
+        while (current != null) {
+            map.put(current, new Node(current.val));
+            current = current.next;
+        }
+
+        current = head;
+        // Assign next and random pointers for the copied nodes
+        while (current != null) {
+            Node copy = map.get(current);
+            copy.next = map.get(current.next);
+            copy.random = map.get(current.random);
+            current = current.next;
+        }
+
+        return map.get(head);
+    }
 ```
->Time Complexity - 
+>Time Complexity - O(n+n) - O(2n) - O(n)
+- O(n) for first traversal
+- O(n) for second traversal
 
->Space Complexity - 
+>Space Complexity - O(n)
 #### Explanation
 
 -
@@ -678,6 +702,8 @@ public class CopyListWithRandomPointer {
 - n is number of nodes.
 
 >Space Complexity - O(1)
+- We create n new nodes for the copy list.
+- But if we consider the output space (copy list) as part of the solution requirement, then the space complexity could be considered O(1) since we're not using any extra space beyond what's required for the output
 #### Explanation
 
 -
@@ -771,9 +797,10 @@ public class AddTwoNumbers {
     }
 }
 ```
->Time Complexity - 
+>Time Complexity - O(max(m,n))
 
->Space Complexity - 
+>Space Complexity - O(max(m,n))
+- Due to new Linked List creation.
 #### Explanation
 
 -

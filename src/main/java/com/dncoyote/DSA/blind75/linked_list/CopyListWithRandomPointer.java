@@ -1,6 +1,8 @@
 package com.dncoyote.DSA.blind75.linked_list;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 class Node {
     int val;
@@ -27,9 +29,33 @@ public class CopyListWithRandomPointer {
         Node head = createLinkedList(input);
         System.out.println("OriginalList - ");
         printList(head);
-        Node copy = copyRandomList(head);
+        Node copy = copyRandomListBrute(head);
         System.out.println("CopyList - ");
         printList(copy);
+    }
+
+    private static Node copyRandomListBrute(Node head) {
+        if (head == null)
+            return null;
+
+        Node current = head;
+        Map<Node, Node> map = new HashMap<>();
+        // Create a mapping of original nodes to their copies
+        while (current != null) {
+            map.put(current, new Node(current.val));
+            current = current.next;
+        }
+
+        current = head;
+        // Assign next and random pointers for the copied nodes
+        while (current != null) {
+            Node copy = map.get(current);
+            copy.next = map.get(current.next);
+            copy.random = map.get(current.random);
+            current = current.next;
+        }
+
+        return map.get(head);
     }
 
     public static Node copyRandomList(Node head) {
