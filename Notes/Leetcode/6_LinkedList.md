@@ -864,3 +864,51 @@ public class FindDuplicateInteger {
 #### Follow up 
 
 -
+
+#### Optimal -
+
+```java
+public class FindDuplicateInteger {
+    public static void main(String[] args) {
+        int[] nums = { 1, 3, 4, 2, 2 };
+        System.out.println(findDuplicateIntegerOptimal(nums));
+    }
+
+    private static int findDuplicateIntegerOptimal(int[] nums) {
+        int slow =0;
+        int fast = 0;
+
+        while(true){
+            slow = nums[slow]; // Move slow pointer by 1 step
+            fast = nums[nums[fast]]; // Move fast pointer by 2 steps
+            if(fast==slow)
+            break;
+        }
+           
+
+        // Find duplicate
+        int slow2 = 0;
+        while (true) {
+            slow = nums[slow]; // Move both pointers one step
+            slow2 = nums[slow2];
+            if(slow==slow2){
+                return slow;
+            }
+        }
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+- Floyds cycle detection algorithm
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-

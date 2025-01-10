@@ -3,7 +3,26 @@ package com.dncoyote.DSA.blind75.linked_list;
 public class FindDuplicateInteger {
     public static void main(String[] args) {
         int[] nums = { 1, 3, 4, 2, 2 };
-        System.out.println(findDuplicateIntegerOptimal(nums));
+        System.out.println(findDuplicateIntegerOptimal1(nums));
+    }
+
+    private static int findDuplicateIntegerOptimal1(int[] nums) {
+        int fast = 0, slow = 0;
+
+        while (true) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if (slow == fast)
+                break;
+        }
+
+        int slow2 = 0;
+        while (true) {
+            slow = nums[slow];
+            slow2 = nums[slow2];
+            if (slow == slow2)
+                return slow;
+        }
     }
 
     private static int findDuplicateIntegerOptimal(int[] nums) {
