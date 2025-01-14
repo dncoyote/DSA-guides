@@ -2,22 +2,25 @@
 
 ## Leetcode
 #### Arrays and Hashing
-[Theory](Notes/Leetcode/1_Arrays&Hashing.md)  
+[Notes](Notes/Leetcode/1_Arrays&Hashing.md)  
 
 #### Two Pointers
-[Theory](Notes/Leetcode/2_TwoPointers.md)
+[Notes](Notes/Leetcode/2_TwoPointers.md)
 
 #### Sliding Window
-[Theory](Notes/Leetcode/3_SlidingWindow.md)
+[Notes](Notes/Leetcode/3_SlidingWindow.md)
 
 #### Stack
-[Theory](Notes/Leetcode/4_Stack.md)
+[Notes](Notes/Leetcode/4_Stack.md)
 
 #### Binary Search
-[Theory](Notes/Leetcode/5_BinarySearch.md)
+[Notes](Notes/Leetcode/5_BinarySearch.md)
 
 #### Linked List
-[Theory](Notes/Leetcode/6_LinkedList.md)
+[Notes](Notes/Leetcode/6_LinkedList.md)
+
+#### Binary Tree
+[Notes](Notes/Leetcode/7_BinaryTree.md)
 
 <!-- #### Arrays and Hashing
 [Theory](Notes/Blind75/1_Arrays_Hashing.md)  
