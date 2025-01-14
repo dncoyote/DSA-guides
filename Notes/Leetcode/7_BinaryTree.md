@@ -50,6 +50,10 @@ public class BinaryTree {
 ```
 
 ## **Binary Tree Traversals**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-14 095608.png" />
+</div>
+
 ## DFS
 ### In-order Traversal
 - Left, Root, Right (sorted order for BST).
@@ -184,12 +188,22 @@ public TreeNode invertBinaryTreeOptimal(TreeNode root) {
 </div>
 
 #### Brute - 
->Time Complexity - 
 
->Space Complexity - 
 ```java
+ private static int maximumDepthOfBinaryTreeBrute(TreeNode root) {
+        if (root == null)
+            return 0;
 
+        int leftDepth = maximumDepthOfBinaryTreeBrute(root.left);
+        int rightDepth = maximumDepthOfBinaryTreeBrute(root.right);
+
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
+- h is the maximum height of the tree.
 #### Explanation
 
 - 
@@ -242,24 +256,22 @@ static int maximumDepthOfBinaryTreeOptimal(TreeNode root) {
 
 #### Brute - 
 ```java
-private static List<Integer> maximumDepthOfBinaryTreeBrute(TreeNode root) {
+private static List<Integer> sameTreeBrute(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-
         while (!queue.isEmpty()) {
             TreeNode current = queue.poll();
-            if (current == null) {
-                list.add(null);
-            } else {
-                list.add(current.val);
+            list.add(current.val);
+            if (null != current.left) {
                 queue.add(current.left);
+            }
+            if (null != current.right) {
                 queue.add(current.right);
             }
         }
+        System.out.println(list);
         return list;
-
     }
 ```
 >Time Complexity - O(n)
@@ -330,10 +342,6 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
 -
 
 #### Optimal -
->Time Complexity - O(n)
-
->Space Complexity - O(n)
-
 ```java
     private static boolean isSubtree(TreeNode root1, TreeNode root2) {
         String tree1 = traversal(root1);
@@ -351,6 +359,11 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
         return sb.toString();
     }
 ```
+>Time Complexity - O(m+n)
+- n is number of nodes in root.
+- m is number of nodes in sub root.
+
+>Space Complexity - O(m+n)
 #### Explanation
 
 -
@@ -360,7 +373,10 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
 -
 
 ## **Lowest Common Ancestor**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-14 150152.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
@@ -377,10 +393,6 @@ static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
 -
 
 #### Optimal -
->Time Complexity - O(n)
-
->Space Complexity - O(n)
-
 ```java
 static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
@@ -399,6 +411,11 @@ static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         return left != null ? left : right;
     }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
+- h is height of tree.
+
 #### Explanation
 
 -
@@ -408,7 +425,10 @@ static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
 -
 
 ## **Validate BST**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-14 123458.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - 
 
@@ -426,10 +446,7 @@ static TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
 - Doesn't handle edge case
 
 
-#### Better -
->Time Complexity - O(n)
-
->Space Complexity - O(n)
+#### Optimal -
 
 ```java
 private static boolean validateBST(TreeNode root) {
@@ -455,25 +472,14 @@ private static boolean validateBST(TreeNode root) {
         inOrder(root.right, inOrderList);
     }
 ```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+
 #### Explanation
 
--
-
-#### Steps
-
--
-
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
-```java
-
-```
-#### Explanation
-
-- there is an optimal solution that works when null is in the list. Above solution cannot be submitted to Leetcode.
+- We use inorder traversal for validating a binary search tree (BST) because, in a BST, inorder traversal produces elements in sorted (ascending) order.
+- It leverages the sorted order property of BST(Left, Root, Right (sorted order for BST)).
 
 #### Steps
 

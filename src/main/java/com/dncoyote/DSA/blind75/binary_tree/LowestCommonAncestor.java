@@ -30,7 +30,7 @@ public class LowestCommonAncestor {
         root.right.left = new TreeNode(0);
         root.right.right = new TreeNode(8);
 
-        TreeNode result = lowestCommonAncestor(root, root.left, root.right);
+        TreeNode result = lowestCommonAncestor1(root, root.left, root.right);
         // printTree(result, 0);
         System.out.println("LCA- " + result.val);
     }

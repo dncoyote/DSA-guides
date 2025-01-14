@@ -1,8 +1,6 @@
 package com.dncoyote.DSA.blind75.binary_tree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 class TreeNode {
@@ -30,7 +28,7 @@ public class MaximumDepthOfBinaryTree {
         root.right = new TreeNode(2);
         root.right.right = new TreeNode(4);
 
-        int depth = maximumDepthOfBinaryTreeOptimal(root);
+        int depth = maximumDepthOfBinaryTreeBrute(root);
         System.out.println(depth);
     }
 
@@ -56,23 +54,13 @@ public class MaximumDepthOfBinaryTree {
         }
     }
 
-    private static List<Integer> maximumDepthOfBinaryTreeBrute(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
+    private static int maximumDepthOfBinaryTreeBrute(TreeNode root) {
+        if (root == null)
+            return 0;
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        int leftDepth = maximumDepthOfBinaryTreeBrute(root.left);
+        int rightDepth = maximumDepthOfBinaryTreeBrute(root.right);
 
-        while (!queue.isEmpty()) {
-            TreeNode current = queue.poll();
-            if (current == null) {
-                list.add(null);
-            } else {
-                list.add(current.val);
-                queue.add(current.left);
-                queue.add(current.right);
-            }
-        }
-        return list;
-
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 }

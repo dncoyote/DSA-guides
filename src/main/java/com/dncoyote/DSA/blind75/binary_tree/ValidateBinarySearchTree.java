@@ -30,6 +30,30 @@ public class ValidateBinarySearchTree {
         root.left.left.right = new TreeNode(5);
 
         System.out.println(validateBST(root));
+        printTree(root, 0);
+
+    }
+
+    public static void printTree(TreeNode root, int space) {
+        // Base case
+        if (root == null)
+            return;
+
+        // Increase distance between levels
+        space += 5;
+
+        // Print right child first
+        printTree(root.right, space);
+
+        // Print current node after space count
+        System.out.println();
+        for (int i = 5; i < space; i++) {
+            System.out.print(" ");
+        }
+        System.out.println(root.val);
+
+        // Print left child
+        printTree(root.left, space);
     }
 
     private static boolean validateBST(TreeNode root) {

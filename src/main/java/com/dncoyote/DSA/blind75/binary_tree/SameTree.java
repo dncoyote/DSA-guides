@@ -1,6 +1,8 @@
 package com.dncoyote.DSA.blind75.binary_tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 class TreeNode {
@@ -36,6 +38,30 @@ public class SameTree {
         // root2.right.left = new TreeNode(3);
 
         System.out.println(sameTreeOptimal(root1, root2));
+
+        List<Integer> list1 = sameTreeBrute(root1);
+        List<Integer> list2 = sameTreeBrute(root2);
+
+        System.out.println(list1.equals(list2));
+
+    }
+
+    private static List<Integer> sameTreeBrute(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+            list.add(current.val);
+            if (null != current.left) {
+                queue.add(current.left);
+            }
+            if (null != current.right) {
+                queue.add(current.right);
+            }
+        }
+        System.out.println(list);
+        return list;
     }
 
     static boolean sameTreeOptimal(TreeNode root1, TreeNode root2) {
