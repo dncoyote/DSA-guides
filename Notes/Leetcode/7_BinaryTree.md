@@ -486,7 +486,10 @@ private static boolean validateBST(TreeNode root) {
 -
 
 ## **Kth Smallest Element in BST**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-18 143111.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - O(n) + O(nlogn)
 
@@ -570,7 +573,10 @@ private static int kthSmallest(TreeNode root, int k) {
 -
 
 ## **Kth Largest Element in BST**
->
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-18 143111.png" />
+</div>
+
 #### Brute - 
 >Time Complexity - O(n) + O(nlogn)
 
@@ -622,5 +628,124 @@ private static int kthSmallest(TreeNode root, int k) {
 - Alternatively we can also use a Counter class instead
 
 #### Steps
+
+-
+
+## **Diameter of Binary Tree**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-18 142723.png" />
+</div>
+
+#### Brute - 
+
+```java
+private static int diameterOfBinaryTreeBrute(TreeNode root) {
+        int maxDiameter = 0;
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+
+        maxDiameter = Math.max(maxDiameter, rightHeight + leftHeight);
+
+        diameterOfBinaryTreeBrute(root.left);
+        diameterOfBinaryTreeBrute(root.right);
+
+        return maxDiameter;
+    }
+
+    private static int height(TreeNode node) {
+        if (node == null)
+            return 0;
+
+        return Math.max(height(node.left), height(node.right)) + 1;
+    }
+```
+>Time Complexity - O(n^2)
+- Calculating the height at each node is - O(n)
+- Computing the diameter involves traversing all nodes and recalculating heights at each node - O(n)
+
+>Space Complexity - O(h)
+- h is height of tree
+#### Explanation
+
+- `Math.max(height(node.left), height(node.right)) + 1` 
+    - `height(node.left)` calculates the height of the left subtree.
+    - `height(node.right)` calculates the height of the right subtree.
+    - `Math.max(height(node.left), height(node.right))` finds larger of the two heights
+    - Adding `1` accounts for the current node itself.
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class DiameterOfBinaryTree {
+    static int maxDiameter = 0;
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        System.out.println("Diameter of Binary Tree: " + diameterOfBinaryTreeOptimal(root));
+    }
+
+    private static int diameterOfBinaryTreeOptimal(TreeNode root) {
+        maxDiameter = 0;
+        calculateHeight(root);
+        return maxDiameter;
+    }
+
+    private static int calculateHeight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+
+        maxDiameter = Math.max(maxDiameter, rightHeight + leftHeight);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
+- h is height of tree.
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
 
 -
