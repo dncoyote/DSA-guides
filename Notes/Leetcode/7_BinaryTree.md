@@ -749,3 +749,170 @@ public class DiameterOfBinaryTree {
 #### Follow up 
 
 -
+
+## **Balanced Binary Tree**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-18 172309.png" />
+</div>
+
+#### Brute - 
+
+```java
+private static boolean isBalancedBrute(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+
+        if (Math.abs(rightHeight - leftHeight) > 1) {
+            return false;
+        }
+
+        return isBalancedBrute(root.left) && isBalancedBrute(root.right);
+    }
+
+    private static int height(TreeNode node) {
+        if (node == null)
+            return 0;
+
+        return Math.max(height(node.left), height(node.right)) + 1;
+    }
+```
+>Time Complexity - O(n^2)
+
+>Space Complexity - O(h)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class BalancedBinaryTree {
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.left = new TreeNode(7);
+        root.right.left.left = new TreeNode(6);
+
+        System.out.println(isBalancedOptimal(root));
+    }
+
+    private static boolean isBalancedOptimal(TreeNode root) {
+        return checkBalance(root) != -1;
+    }
+
+    private static int checkBalance(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = checkBalance(root.left);
+        if (leftHeight == -1)
+            return -1;
+
+        int rightHeight = checkBalance(root.right);
+        if (rightHeight == -1)
+            return -1;
+
+        if (Math.abs(rightHeight - leftHeight) > 1)
+            return -1;
+
+        return Math.max(height(root.left), height(root.right)) + 1;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
+## **Binary Tree Level Order Traversal**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-18 180910.png" />
+</div>
+
+#### Optimal -
+
+```java
+public class BalancedBinaryTree {
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.left = new TreeNode(7);
+        root.right.left.left = new TreeNode(6);
+
+        System.out.println(isBalancedOptimal(root));
+    }
+
+    private static boolean isBalancedOptimal(TreeNode root) {
+        return checkBalance(root) != -1;
+    }
+
+    private static int checkBalance(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = checkBalance(root.left);
+        if (leftHeight == -1)
+            return -1;
+
+        int rightHeight = checkBalance(root.right);
+        if (rightHeight == -1)
+            return -1;
+
+        if (Math.abs(rightHeight - leftHeight) > 1)
+            return -1;
+
+        return Math.max(height(root.left), height(root.right)) + 1;
+    }
+
+    private static boolean isBalancedBrute(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+
+        if (Math.abs(rightHeight - leftHeight) > 1) {
+            return false;
+        }
+
+        return isBalancedBrute(root.left) && isBalancedBrute(root.right);
+    }
+
+    private static int height(TreeNode node) {
+        if (node == null)
+            return 0;
+
+        return Math.max(height(node.left), height(node.right)) + 1;
+    }
+}
+
+```
+>Time Complexity - O(n)
+- Each node is processed once
+>Space Complexity - O(n)

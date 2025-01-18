@@ -1041,7 +1041,7 @@ public class LRUCacheBrute {
 #### Brute - 
 
 ```java
-ublic class ReverseNodesInKGroups {
+public class ReverseNodesInKGroups {
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
