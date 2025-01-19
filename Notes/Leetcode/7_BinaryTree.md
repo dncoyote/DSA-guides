@@ -905,7 +905,7 @@ public class BinaryTreeLevelOrderTraversal {
   <img alt="image" src="assets/Screenshot 2025-01-19 130239.png" />
 </div>
 
-#### Optimal -
+#### Optimal - BFS
 
 ```java
 public class BinaryTreeRightSideView {
@@ -952,6 +952,62 @@ public class BinaryTreeRightSideView {
 
 >Space Complexity - O(w)
 - w is the maximum width of the tree.
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
+## **Count Good Nodes in Binary Tree**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-19 174558.png" />
+</div>
+
+#### Optimal - DFS
+
+```java
+public class CountGoodNodesInBinaryTree {
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(4);
+        root.right.left = new TreeNode(1);
+        root.right.right = new TreeNode(5);
+
+        System.out.println(goodNodes(root));
+    }
+
+    private static int goodNodes(TreeNode root) {
+        return dfs(root, Integer.MIN_VALUE);
+    }
+
+    private static int dfs(TreeNode root, int max) {
+        if (root == null)
+            return 0;
+
+        int count = 0;
+        if (root.val >= max) {
+            count = 1;
+        }
+
+        max = Math.max(max, root.val);
+
+        count += dfs(root.left, max);
+        count += dfs(root.right, max);
+
+        return count;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(h)
 #### Explanation
 
 -
