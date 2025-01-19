@@ -854,61 +854,43 @@ public class BalancedBinaryTree {
 #### Optimal -
 
 ```java
-public class BalancedBinaryTree {
+public class BinaryTreeLevelOrderTraversal {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
         root.left = new TreeNode(9);
         root.right = new TreeNode(20);
         root.right.left = new TreeNode(15);
-        root.right.left = new TreeNode(7);
-        root.right.left.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
 
-        System.out.println(isBalancedOptimal(root));
+        System.out.println(binaryTreeLevelOrderTraversal(root));
     }
 
-    private static boolean isBalancedOptimal(TreeNode root) {
-        return checkBalance(root) != -1;
-    }
+    private static List<List<Integer>> binaryTreeLevelOrderTraversal(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null)
+            return result;
 
-    private static int checkBalance(TreeNode root) {
-        if (root == null) {
-            return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            List<Integer> currentLevel = new ArrayList<>();
+
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode current = queue.poll();
+                currentLevel.add(current.val);
+
+                if (current.left != null) {
+                    queue.add(current.left);
+                }
+                if (current.right != null) {
+                    queue.add(current.right);
+                }
+            }
+            result.add(currentLevel);
         }
-
-        int leftHeight = checkBalance(root.left);
-        if (leftHeight == -1)
-            return -1;
-
-        int rightHeight = checkBalance(root.right);
-        if (rightHeight == -1)
-            return -1;
-
-        if (Math.abs(rightHeight - leftHeight) > 1)
-            return -1;
-
-        return Math.max(height(root.left), height(root.right)) + 1;
-    }
-
-    private static boolean isBalancedBrute(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
-
-        if (Math.abs(rightHeight - leftHeight) > 1) {
-            return false;
-        }
-
-        return isBalancedBrute(root.left) && isBalancedBrute(root.right);
-    }
-
-    private static int height(TreeNode node) {
-        if (node == null)
-            return 0;
-
-        return Math.max(height(node.left), height(node.right)) + 1;
+        return result;
     }
 }
 
@@ -916,3 +898,68 @@ public class BalancedBinaryTree {
 >Time Complexity - O(n)
 - Each node is processed once
 >Space Complexity - O(n)
+
+
+## **Binary Tree Right Side View**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-19 130239.png" />
+</div>
+
+#### Optimal -
+
+```java
+public class BinaryTreeRightSideView {
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(4);
+
+        System.out.println(binaryTreeRightSideView(root));
+    }
+
+    private static List<Integer> binaryTreeRightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null)
+            return result;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode current = queue.poll();
+
+                if (i == levelSize - 1)
+                    result.add(current.val);
+
+                if (current.left != null) {
+                    queue.add(current.left);
+                }
+                if (current.right != null) {
+                    queue.add(current.right);
+                }
+            }
+        }
+        return result;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(w)
+- w is the maximum width of the tree.
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
