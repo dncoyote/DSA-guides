@@ -1019,3 +1019,85 @@ public class CountGoodNodesInBinaryTree {
 #### Follow up 
 
 -
+
+## **Construct Binary Tree from Preorder and Inorder Traversal**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-20 231405.png" />
+</div>
+
+#### Optimal -
+
+```java
+public class ConstructBinaryTreeFromPreAndIn {
+    int preOrderIndex;
+    HashMap<Integer, Integer> inOrderMap;
+
+    public static void main(String[] args) {
+        // int[] preorder = { -1 };
+        // int[] inorder = { -1 };
+
+        int[] preorder = { 3, 9, 20, 15, 7 };
+        int[] inorder = { 9, 3, 15, 20, 7 };
+
+        ConstructBinaryTreeFromPreAndIn obj = new ConstructBinaryTreeFromPreAndIn();
+
+        TreeNode root = obj.buildTree(preorder, inorder);
+        printInOrder(root);
+        printTree(root, 0);
+    }
+
+    private TreeNode buildTree(int[] preorder, int[] inorder) {
+        inOrderMap = new HashMap<>();
+
+        for (int i = 0; i < inorder.length; i++) {
+            inOrderMap.put(inorder[i], i);
+        }
+
+        return construct(preorder, 0, inorder.length - 1);
+    }
+
+    private TreeNode construct(int[] preorder, int inorderStart, int inorderEnd) {
+        if (inorderStart > inorderEnd) {
+            return null;
+        }
+        int rootValue = preorder[preOrderIndex];
+        preOrderIndex++;
+        TreeNode root = new TreeNode(rootValue);
+
+        int rootIndex = inOrderMap.get(rootValue);
+
+        root.left = construct(preorder, inorderStart, rootIndex - 1);
+        root.right = construct(preorder, rootIndex + 1, inorderEnd);
+
+        return root;
+    }
+
+    private static void printInOrder(TreeNode root) {
+        if (root != null) {
+            printInOrder(root.left);
+            System.out.print(root.val + "-");
+            printInOrder(root.right);
+        }
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(n)
+#### Explanation
+
+- Preorder array
+    - The first element is always the root of the tree/subtree.
+    - Subsequent elements represent the left and right subtrees.
+- Inorder Traversal
+    - The elements before the root (in inorder) belong to the left subtree.
+    - The elements after the root belong to the right subtree.
+- Use the root identified in preorder to split the inorder array into left and right subtrees.
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
