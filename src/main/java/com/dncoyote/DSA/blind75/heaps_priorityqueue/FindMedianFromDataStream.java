@@ -4,7 +4,11 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 class MedianFinder {
+    // Stores the smaller half of the numbers, top element is largest number in the
+    // half
     PriorityQueue<Integer> maxHeap;
+    // Stores the larger half of the numbers, top element is smallest number in the
+    // half
     PriorityQueue<Integer> minHeap;
 
     MedianFinder() {

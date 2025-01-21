@@ -423,6 +423,55 @@ public class LinkedListCycle {
 
 -
 
+## **Middle of Linked List**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-21 223325.png" />
+</div>
+
+
+#### Optimal -
+
+```java
+public class MiddleOfLinkedList {
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+        head.next.next.next.next.next = new ListNode(6);
+
+        ListNode middle = middleOfLinkedList(head);
+        printList(middle);
+    }
+
+    private static ListNode middleOfLinkedList(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+}
+```
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
 ## **Merge K Sorted Lists**
 <div align="center">
   <img alt="image" src="assets/Screenshot 2024-12-26 135453.png" />
