@@ -114,6 +114,88 @@ public class KthLargestElementInStream {
 
 -
 
+## **Last Stone Weight**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-23 230912.png" />
+</div>
+
+#### Brute - 
+
+```java
+private static int lastStoneWeightBrute(int[] stones) {
+        int n = stones.length;
+
+        while (n > 1) {
+            // only the first n elements (valid stones) are considered for sorting
+            Arrays.sort(stones, 0, n);
+            int stone1 = stones[n - 1];
+            int stone2 = stones[n - 2];
+
+            if (stone1 == stone2) {
+                n -= 2;
+            } else {
+                stones[n - 2] = stone1 - stone2;
+                n -= 1;
+            }
+        }
+        return n == 0 ? 0 : stones[0];
+    }
+```
+>Time Complexity - 
+- Sorting the array takes O(n log n) for each iteration.
+- in the worst case takes n-1 iterations
+- O(n^2 log n) 
+
+>Space Complexity - O(n)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class LastStoneWeight {
+    public static void main(String[] args) {
+        int[] stones = { 2, 7, 4, 1, 8, 1 };
+        System.out.println(lastStoneWeightOptimal(stones)); // Output: 1
+    }
+
+    private static int lastStoneWeightOptimal(int[] stones) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        for (int stone : stones) {
+            maxHeap.add(stone);
+        }
+        while (maxHeap.size() > 1) {
+            int stone1 = maxHeap.poll();
+            int stone2 = maxHeap.poll();
+            if (stone1 != stone2) {
+                maxHeap.add(stone1 - stone2);
+            }
+        }
+        return maxHeap.isEmpty() ? 0 : maxHeap.poll();
+    }
+}
+```
+>Time Complexity - O(n log n)
+
+>Space Complexity - O(n)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
 ## **Find Median From Data Stream**
 <div align="center">
   <img alt="image" src="assets/Screenshot 2025-01-21 230314.png" />
