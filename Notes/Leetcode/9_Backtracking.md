@@ -1,14 +1,18 @@
 # **Backtracking**
 
 ## **Combination Sum**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-01-27 223003.png" />
+</div>
 
->Space Complexity - 
+#### Brute - 
+
 ```java
 
 ```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -
@@ -18,9 +22,7 @@
 -
 
 #### Optimal -
->Time Complexity - 
 
->Space Complexity - 
 
 ```java
 public class CombinationSum {
@@ -48,12 +50,17 @@ public class CombinationSum {
             if (num > target)
                 continue;
             current.add(num);
+            // Recurse with reduced target
             backtrack(nums, target - num, current, result, i);
+            // Undo the choice (backtrack)
             current.remove(current.size() - 1);
         }
     }
 }
 ```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -
