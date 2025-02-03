@@ -196,6 +196,78 @@ public class LastStoneWeight {
 
 -
 
+## **Kth Largest Element in an Array**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-02-02 122846.png" />
+</div>
+
+#### Brute - 
+
+```java
+private static int kthLargestElementInArrayBrute(int[] nums, int k) {
+        Arrays.sort(nums);
+        return nums[nums.length - k];
+
+    }
+```
+>Time Complexity - O(n log n)
+
+>Space Complexity - O(1)
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class KthLargestElementInArray {
+    public static void main(String[] args) {
+        int[] nums = { 3, 2, 1, 5, 6, 4 };
+        int k = 2;
+        System.out.println(kthLargestElementInArray(nums, k));
+    }
+
+    private static int kthLargestElementInArray(int[] nums, int k) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        for (int i = 0; i < k; i++) {
+            minHeap.offer(nums[i]);
+        }
+
+        for (int i = k; i < nums.length; i++) {
+            if (nums[i] > minHeap.peek()) {
+                minHeap.poll();
+                minHeap.add(nums[i]);
+            }
+        }
+        return minHeap.peek();
+    }
+}
+```
+>Time Complexity - O(n log k)
+- sorting and deleting operation will take O(log k)
+- since there are n values in array -> O(n log k)
+
+>Space Complexity - O(k)
+- Since we are only storing k elements in heap
+
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
+
 ## **Find Median From Data Stream**
 <div align="center">
   <img alt="image" src="assets/Screenshot 2025-01-21 230314.png" />
