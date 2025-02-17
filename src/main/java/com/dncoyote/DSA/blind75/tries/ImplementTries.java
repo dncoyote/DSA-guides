@@ -1,14 +1,14 @@
 package com.dncoyote.DSA.blind75.tries;
 
-class TrieNode {
-    TrieNode[] children;
-    boolean isEndOfWord;
+// class TrieNode {
+//     TrieNode[] children;
+//     boolean isEndOfWord;
 
-    TrieNode() {
-        children = new TrieNode[26];
-        isEndOfWord = false;
-    }
-}
+//     TrieNode() {
+//         children = new TrieNode[26];
+//         isEndOfWord = false;
+//     }
+// }
 
 class Trie {
     private final TrieNode root;
