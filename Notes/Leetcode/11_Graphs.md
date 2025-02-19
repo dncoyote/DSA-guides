@@ -54,14 +54,18 @@ public class Graph {
 }
 ```
 ## **Number of Islands**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-02-19 075512.png" />
+</div>
 
->Space Complexity - 
+#### Brute - 
+
 ```java
 
 ```
+>Time Complexity - 
+
+>Space Complexity - 
 #### Explanation
 
 -
@@ -71,9 +75,6 @@ public class Graph {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
 
 ```java
 public class NumberOfIslands {
@@ -118,6 +119,10 @@ public class NumberOfIslands {
     }
 }
 ```
+>Time Complexity - 
+
+>Space Complexity - 
+
 #### Explanation
 
 -

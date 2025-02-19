@@ -10,20 +10,25 @@ public class NumberOfIslands {
                 { '1', '0', '1', '0', '1' }
         };
         char[][] grid1 = {
-            {'0', '1', '1', '1', '0'},
-            {'0', '1', '0', '1', '0'},
-            {'1', '1', '0', '0', '0'},
-            {'0', '0', '0', '0', '0'}
+                { '0', '1', '1', '1', '0' },
+                { '0', '1', '0', '1', '0' },
+                { '1', '1', '0', '0', '0' },
+                { '0', '0', '0', '0', '0' }
         };
         char[][] grid2 = {
-            {'1', '1', '0', '0', '1'},
-            {'1', '1', '0', '0', '1'},
-            {'0', '0', '1', '0', '0'},
-            {'0', '0', '0', '1', '1'}
+                { '1', '1', '0', '0', '1' },
+                { '1', '1', '0', '0', '1' },
+                { '0', '0', '1', '0', '0' },
+                { '0', '0', '0', '1', '1' }
+        };
+        char[][] grid3 = {
+                { '1', '1', '1', '1', '0' },
+                { '1', '1', '0', '1', '0' },
+                { '1', '1', '0', '0', '0' },
+                { '0', '0', '0', '0', '0' }
         };
 
-
-        System.out.println("Number of islands: " + numberOfislands(grid2));
+        System.out.println("Number of islands: " + numberOfislands(grid3));
     }
 
     private static int numberOfislands(char[][] grid) {
@@ -46,6 +51,7 @@ public class NumberOfIslands {
         if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == '0') {
             return;
         }
+
         grid[row][col] = '0';
 
         dfs(grid, row - 1, col);
