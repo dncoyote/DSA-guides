@@ -42,7 +42,7 @@ class WordDictionary {
 
         if (c == '.') {
             for (TrieNode child : node.children) {
-                if (node != null && dfs(word, index + 1, child)) {
+                if (child != null && dfs(word, index + 1, child)) {
                     return true;
                 }
             }

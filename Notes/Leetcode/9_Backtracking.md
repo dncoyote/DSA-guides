@@ -428,3 +428,75 @@ public class WordSearch {
 #### Follow up 
 
 -
+
+## **Letter Combinations of a Phone Number**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2025-02-20 212257.png" />
+</div>
+
+#### Brute - 
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+public class LetterCombinationsPhoneNumber {
+    private static String[] mappings = {
+            "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+    };
+
+    public static void main(String[] args) {
+        System.out.println(letterCombinations("23"));
+    }
+
+    private static List<String> letterCombinations(String digits) {
+        List<String> result = new ArrayList<>();
+        if (digits.isEmpty()) {
+            return result;
+        }
+        backtrack(digits, 0, new StringBuilder(), result);
+        return result;
+    }
+
+    private static void backtrack(String digits, int index, StringBuilder current, List<String> result) {
+        if (index == digits.length()) {
+            result.add(current.toString());
+            return;
+        }
+        String letters = mappings[digits.charAt(index) - '0'];
+        for (char c : letters.toCharArray()) {
+            current.append(c);
+            backtrack(digits, index + 1, current, result);
+            current.deleteCharAt(current.length() - 1);
+        }
+    }
+}
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-
