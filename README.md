@@ -22,6 +22,21 @@
 #### Binary Tree
 [Notes](Notes/Leetcode/7_BinaryTree.md)
 
+#### Heap and Priority Queue
+[Notes](Notes/Leetcode/8_Heap&PriorityQueue)
+
+#### Backtracking
+[Notes](Notes/Leetcode/9_Backtracking.md)
+
+#### Trie
+[Notes](Notes/Leetcode/10_Tries.md)
+
+#### Graphs
+[Notes](Notes/Leetcode/11_Graphs.md)
+
+#### 1D Dynamic Programming
+[Notes](Notes/Leetcode/12_1DDynamicProgramming.md)
+
 <!-- #### Arrays and Hashing
 [Theory](Notes/Blind75/1_Arrays_Hashing.md)  
 - [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicateOptimal.java)

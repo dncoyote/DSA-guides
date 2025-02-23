@@ -477,6 +477,9 @@ public class LetterCombinationsPhoneNumber {
             result.add(current.toString());
             return;
         }
+        // convert the character to an integer with extra parsing
+        // String letters = mappings[Integer.parseInt(String.valueOf(digits.charAt(index)))];
+        // convert the character to an integer without extra parsing
         String letters = mappings[digits.charAt(index) - '0'];
         for (char c : letters.toCharArray()) {
             current.append(c);
@@ -495,8 +498,9 @@ public class LetterCombinationsPhoneNumber {
 
 #### Steps
 
--
-
+- convert the character to an integer without extra parsing
+    - mappings[digits.charAt(0) - '0'] -> mappings['2' - '0'] -> mappings[2] -> "abc"
+    - '2' - '0' = 50 - 48 = 2
 #### Follow up 
 
 -

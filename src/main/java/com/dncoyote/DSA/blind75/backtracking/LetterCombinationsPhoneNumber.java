@@ -26,7 +26,9 @@ public class LetterCombinationsPhoneNumber {
             result.add(current.toString());
             return;
         }
-        String letters = mappings[digits.charAt(index) - '0'];
+        // convert the character to an integer without extra parsing
+        String letters = mappings[Integer.parseInt(String.valueOf(digits.charAt(index)))];
+        // String letters = mappings[digits.charAt(index) - '0'];
         for (char c : letters.toCharArray()) {
             current.append(c);
             backtrack(digits, index + 1, current, result);
