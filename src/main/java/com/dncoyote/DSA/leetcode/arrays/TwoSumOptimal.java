@@ -1,4 +1,4 @@
-package com.dncoyote.DSA.blind75.arrays_hashing;
+package com.dncoyote.DSA.leetcode.arrays;
 
 import java.util.HashMap;
 

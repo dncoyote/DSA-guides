@@ -51,3 +51,7 @@ build/
 ### Logs ###
 *.log
 *.gz
+
+### nvim ###
+*.DS_Store
+
