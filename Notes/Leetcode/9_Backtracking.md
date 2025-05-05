@@ -1,4 +1,8 @@
 # **Backtracking**
+- This strategy uses brute-force approach.
+- Backtracking is not for optimization, Dynamic Programming is for optimization.
+- State space Tree.
+- The condition is called Bounding condition.
 
 ## **Subsets**
 <div align="center">
