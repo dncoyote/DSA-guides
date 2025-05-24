@@ -11,6 +11,9 @@ mvnw.cmd
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Class files #
+*.class
+
 # Package Files #
 *.jar
 *.war
