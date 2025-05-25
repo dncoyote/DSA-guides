@@ -1,0 +1,6 @@
+- A good developer always comes up with a brute-force solution first, a brute force solution ensures that the solution to a given problem exists.
+- base case
+- Always write explanations/steps.
+- DFS is not only applicable for binary trees.
+- The brute force solution is computationally expensive and impractical for large strings due to its O(n^3) time complexity.
+- Use this `result.stream().mapToInt(x -> x).toArray()` to convert `List<Integer>` to `int[]`.
