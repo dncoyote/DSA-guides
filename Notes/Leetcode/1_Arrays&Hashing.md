@@ -25,6 +25,12 @@ public class ContainsDuplicateBrute {
     }
 }
 ```
+> [Time Complexity]  
+> Highlights information that users should take into account, even when skimming.
+> [Space Complexity]  
+> Highlights information that users should take into account, even when skimming.
+
+
 >Time Complexity - O(n^2)
 - nested for loops
 >Space Complexity - O(1)
