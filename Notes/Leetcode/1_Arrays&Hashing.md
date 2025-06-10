@@ -25,12 +25,6 @@ public class ContainsDuplicateBrute {
     }
 }
 ```
-> [Time Complexity]  
-> Highlights information that users should take into account, even when skimming.
-> [Space Complexity]  
-> Highlights information that users should take into account, even when skimming.
-
-
 >Time Complexity - O(n^2)
 - nested for loops
 >Space Complexity - O(1)
@@ -117,7 +111,7 @@ public class TwoSumBrute {
             for (int j = 1; j < arr.length; j++) {
                 int sum = arr[i] + arr[j];
                 if (sum == target) {
-                    return new int[] { arr[i], arr[j] };
+                    return new int[] { i, j };
                 }
             }
         }
@@ -207,7 +201,7 @@ public class ValidAnagramBrute {
 }
 ```
 >Time Complexity - O(nlogn)
-- Sorting operation takes O(nlogn)
+- Sorting operation takes O(n log n)
 
 >Space Complexity - O(n)
 - char array `a` and `b` are copies of input string taking O(n) 
@@ -273,37 +267,91 @@ public class ValidAnagramOptimal {
   <img alt="image" src="assets/Screenshot 2024-12-21 122024.png" />
 </div>
 
-#### Optimal - HashMap
+#### Brute
 ```java
-public class GroupAnagramsOptimal {
-    public static void main(String[] args) {
-        String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
-        List<List<String>> result = groupAnagrams(val);
-        for (List<String> s : result)
-            System.out.println(s);
-    }
+public class GroupAnagrams {
+  public static void main(String[] args) {
+    String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
+    List<List<String>> result = groupAnagramsBrute(val);
+    for (List<String> s : result)
+      System.out.println(s);
+  }
 
-    private static List<List<String>> groupAnagrams1(String[] strs) {
-        HashMap<String, List<String>> map = new HashMap<>();
+  private static List<List<String>> groupAnagramsBrute(String[] val) {
+    List<List<String>> groups = new ArrayList<>();
 
-        for (String s : strs) {
-            int[] count = new int[26];
-            for (char c : s.toCharArray()) {
-                count[c - 'a']++;
-            }
-            String key = Arrays.toString(count);
-            map.putIfAbsent(key, new ArrayList<>());
-            map.get(key).add(s);
+    for (String str : val) {
+      boolean foundGroup = false;
+      for (List<String> group : groups) {
+        if (isAnagram(str, group.get(0))) {
+          foundGroup = true;
+          group.add(str);
+          break;
         }
-        return new ArrayList<>(map.values());
+      }
+      if (!foundGroup) {
+        List<String> newGroup = new ArrayList<>();
+        newGroup.add(str);
+        groups.add(newGroup);
+      }
     }
+    return groups;
+  }
+
+  private static boolean isAnagram(String str1, String str2) {
+    if (str1.length() != str2.length())
+      return false;
+
+    char[] a = str1.toCharArray();
+    char[] b = str2.toCharArray();
+
+    Arrays.sort(a);
+    Arrays.sort(b);
+
+    return Arrays.equals(a, b);
+  }
 }
 ```
->Time Complexity - O(m*n)
-- Where `m` is number of strings and `n` is the length of the longest String.
+>Time Complexity - O(n^2 k log k)
+- n is number of string in input array, k is maximum length of string in the input.
+- Checking if two strings are anagrams takes O(k log k) (sorting each string).
+- You do this comparison pairwise for almost every string pair → O(n²) comparisons.
 
->Space Complexity - O(m)
-- Where `m` is number of strings added to the HashMap.
+>Space Complexity - O(nk)
+- Storing groups of strings: O(nk) (all strings stored).
+
+#### Optimal
+```java
+public class GroupAnagrams {
+  public static void main(String[] args) {
+    String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
+    List<List<String>> result = groupAnagramsOptimal(val);
+    for (List<String> s : result)
+      System.out.println(s);
+  }
+
+  private static List<List<String>> groupAnagramsOptimal(String[] val) {
+    HashMap<String, List<String>> map = new HashMap<>();
+
+    for (String str : val) {
+      int[] count = new int[26];
+      for (int i = 0; i < str.length(); i++) {
+        count[str.charAt(i) - 'a']++;
+      }
+      String key = Arrays.toString(count);
+      map.putIfAbsent(key, new ArrayList<>());
+      map.get(key).add(str);
+    }
+    return new ArrayList<>(map.values());
+  }
+
+}
+```
+>Time Complexity - O(nk)
+- Where `n` is number of strings and `k` is the length of the longest String.
+
+>Space Complexity - O(nk)
+- Storing groups of strings: O(nk) (all strings stored).
 
 #### Explanation
 - If we used a simple `map.put(key, value)` instead of `putIfAbsent()`, we would overwrite the value every time we encounter a key that already exists.
