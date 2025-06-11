@@ -34,7 +34,7 @@ public class TopKFrequentElements {
     }
 
     int[] result = new int[k];
-    for(int i=0;i<k;i++){
+    for (int i = 0; i < k; i++) {
       result[i] = minHeap.poll().getKey();
     }
 

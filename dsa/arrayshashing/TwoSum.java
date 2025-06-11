@@ -13,11 +13,11 @@ public class TwoSum {
   }
 
   private static int[] twoSumBrute(int[] arr, int target) {
-    for(int i=0;i<arr.length;i++){
-      for(int j=1;j<arr.length;j++){
-        int val  = arr[i]+arr[j];
-        if(target==val)
-        return new int[]{i,j};
+    for (int i = 0; i < arr.length; i++) {
+      for (int j = 1; j < arr.length; j++) {
+        int val = arr[i] + arr[j];
+        if (target == val)
+          return new int[] { i, j };
       }
     }
     return new int[0];
