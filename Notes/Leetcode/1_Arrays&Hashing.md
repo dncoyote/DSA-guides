@@ -312,7 +312,7 @@ public class GroupAnagrams {
   }
 }
 ```
->Time Complexity - O(n^2 k log k)
+>Time Complexity - O(n<sup>2</sup> k log k)
 - n is number of string in input array, k is maximum length of string in the input.
 - Checking if two strings are anagrams takes O(k log k) (sorting each string).
 - You do this comparison pairwise for almost every string pair → O(n²) comparisons.
@@ -396,94 +396,99 @@ public class GroupAnagramsOptimal {
 
 >Space Complexity - O(m*n)
 
-## **Top k elements in List**
+## **Top K Frequent Elements**
 <div align="center">
   <img alt="image" src="assets/Screenshot 2024-12-21 131930.png" />
 </div>
 
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
-public class TopKElementsBrute {
-    public static void main(String[] args) {
-        int[] nums = { 5, 5, 5, 4, 4, 3 };
-        int k = 2;
-        int[] result = topKElements(nums, k);
-        for (int n : result) {
-            System.out.println(n);
-        }
+public class TopKFrequentElements {
+  public static void main(String[] args) {
+    int[] nums = { 5, 5, 5, 4, 4, 3 };
+    int k = 2;
+    int[] result = topKFrequentElementsBrute(nums, k);
+    for (int n : result) {
+      System.out.println(n);
+    }
+  }
+
+  private static int[] topKFrequentElementsBrute(int[] nums, int k) {
+    HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+
+    for (int num : nums) {
+      frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
     }
 
-    private static int[] topKElements(int[] nums, int k) {
-        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
-        for (int num : nums) {
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
-        }
-        frequencyMap.forEach((key, value) -> System.out.println(key + " - " + value));
-        System.out.println(frequencyMap.entrySet());
+    List<Integer> list = new ArrayList<>(frequencyMap.keySet());
 
-        List<Map.Entry<Integer, Integer>> sortedList = new ArrayList<>(frequencyMap.entrySet());
-        sortedList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+    Collections.sort(list, (a, b) -> frequencyMap.get(b) - frequencyMap.get(a));
 
-        int[] result = new int[k];
-        for (int i = 0; i < k; i++) {
-            result[i] = sortedList.get(i).getKey();
-        }
-        return result;
+    int[] result = new int[k];
+    for (int i = 0; i < k; i++) {
+      result[i] = list.get(i);
     }
+    return result;
+  }
 }
 ```
+>Time Complexity - O(n + m log m)
+ - `n` is number of elements, `m` is number of unique elements
+ - Count frequencies of all elements - O(n)
+ - Sort all unique elements - O(m log m)
+>Space Complexity - O(n)
+ - Worst case complexity is O(n)
+
 #### Explanation
 
 -
 
-#### Optimal - Heap
+#### Optimal - Min Heap
 ```java
-public class TopKElementsOptimal {
-    public static void main(String[] args) {
-        int[] nums = { 5, 5, 5, 4, 4, 3 };
-        int k = 2;
-        int[] result = topKElements(nums, k);
-        for (int n : result) {
-            System.out.println(n);
-        }
+public class TopKFrequentElements {
+  public static void main(String[] args) {
+    int[] nums = { 5, 5, 5, 4, 4, 3 };
+    int k = 2;
+    int[] result = topKFrequentElementsOptimal(nums, k);
+    for (int n : result) {
+      System.out.println(n);
+    }
+  }
+
+  private static int[] topKFrequentElementsOptimal(int[] nums, int k) {
+    HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+
+    for (int num : nums) {
+      frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
     }
 
-    private static int[] topKElements(int[] nums, int k) {
-        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
-        for (int n : nums) {
-            frequencyMap.put(n, frequencyMap.getOrDefault(n, 0) + 1);
-        }
+    PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
 
-        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>(
-                (a, b) -> a.getValue() - b.getValue());
-
-        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
-            minHeap.offer(entry);
-            if (minHeap.size() > k) {
-                minHeap.poll();
-            }
-        }
-
-        int[] result = new int[k];
-        for (int i = k - 1; i >= 0; i--) {
-            result[i] = minHeap.poll().getKey();
-        }
-        return result;
+    for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+      minHeap.offer(entry);
+      if (minHeap.size() > k) {
+        minHeap.poll();
+      }
     }
-}
-```
->Time Complexity - O(nlogk)
+
+    int[] result = new int[k];
+    for (int i = 0; i < k; i++) {
+      result[i] = minHeap.poll().getKey();
+    }
+
+    return result;
+  }
+
+
+>Time Complexity - O(n log k)
 - n is the length of the array
 - k is the number of top frequent elements.
 
->Space Complexity - O(n+k)
+>Space Complexity - O(n)
 
 #### Explanation
 - `PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a,b)->a.getValue()-b.getValue())` creates a min-heap that orders the entries based on the values of the `Map.Entry<Integer, Integer> elements`
-- A min-heap is a specialized binary tree-based data structure that satisfies the heap property. Specifically, for a min-heap, the value of each parent node is less than or equal to the values of its children, ensuring that the smallest element is always at the root of the tree. That is why we have added this `for (int i = k - 1; i >= 0; i--)`.
+- A min-heap is a specialized binary tree-based data structure that satisfies the heap property. Specifically, for a min-heap, the value of each parent node is less than or equal to the values of its children, ensuring that the smallest element is always at the root of the tree.
 
 ## **Longest Consecutive Sequence**
 <div align="center">
