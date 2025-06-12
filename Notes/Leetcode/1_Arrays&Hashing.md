@@ -466,8 +466,8 @@ public class TopKFrequentElements {
 
     for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
       minHeap.offer(entry);
-      if (minHeap.size() > k) {
-        minHeap.poll();
+      if (minHeap.size() > k) {//ensures the heap never grows beyond size k, and only the top k frequent entries remain.
+        minHeap.poll();//removes the smallest frequency entry
       }
     }
 
@@ -668,53 +668,86 @@ public class ProductofArrayExceptSelfOptimal {
 
 ## **Encode Decode String**
 > Design an algorithm to encode a list of strings to a single string. The encoded string is then decoded back to the original list of strings.
-
-#### Optimal
+#### Brute
 ```java
-public class EncodeDecodeStringOptimal {
-    public static void main(String[] args) {
-        List<String> stringList = List.of("neet", "code", "love", "you");
-        String encodeString = encodeString(stringList);
-        System.out.println("Encoded String: " + encodeString);
-        List<String> decodeString = decodeString(encodeString);
-        System.out.println("Decoded String: " + decodeString);
-    }
+public class EncodeAndDecodeStrings {
+  public static void main(String[] args) {
+    List<String> stringList = List.of("neet", "code", "love", "you");
+    String encodeString = encodeStringBrute(stringList);
+    System.out.println("Encoded String: " + encodeString);
+    List<String> decodeString = decodeStringBrute(encodeString);
+    System.out.println("Decoded String: " + decodeString);
+  }
 
-    private static String encodeString(List<String> stringList) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String string : stringList) {
-            stringBuilder.append(string.length()).append("#").append(string);
-        }
-        return stringBuilder.toString();
-    }
+  private static String encodeStringBrute(List<String> stringList) {
+    return String.join("#", stringList);
+  }
 
-    private static List<String> decodeString(String encodedString) {
-        List<String> decodedString = new ArrayList<>();
-
-        int i = 0;
-        while (i < encodedString.length()) {
-            int j = encodedString.indexOf("#", i);
-            System.out.println("j - " + j);
-            int length = Integer.parseInt(encodedString.substring(i, j));
-            System.out.println("length - " + length);
-            decodedString.add(encodedString.substring(j + 1, j + 1 + length));
-            System.out.println("decodedString - " + decodedString);
-            i = j + 1 + length;
-        }
-        return decodedString;
+  private static List<String> decodeStringBrute(String encodeString) {
+    if (encodeString.isEmpty()) {
+      return new ArrayList<>();
     }
+    return Arrays.asList(encodeString.split("#"));
+  }
 }
-/**
+```
+>Time Complexity - O(L)
+- L is sum of lengths of all strings combined.
+- for encoding O(L)
+- for decoding O(L)
+>Space Complexity - O(L)
+
+#### Explanation
+- This approach works correctly only if none of the strings contain the delimiter #.
+- If a string contains #, decoding will split it incorrectly, breaking the original data.
+
+#### Optimal-Length Prefix Encoding
+```java
+public class EncodeAndDecodeStrings {
+  public static void main(String[] args) {
+    List<String> stringList = List.of("neet", "code", "love", "you");
+    String encodeString = encodeStringBrute(stringList);
+    System.out.println("Encoded String: " + encodeString);
+    List<String> decodeString = decodeStringBrute(encodeString);
+    System.out.println("Decoded String: " + decodeString);
+  }
+
+  private static String encodeStringOptimal(List<String> stringList) {
+    StringBuilder stringBuilder = new StringBuilder();
+    for (String string : stringList) {
+      stringBuilder.append(string.length()).append("#").append(string);
+    }
+    return stringBuilder.toString();
+  }
+
+  private static List<String> decodeStringOptimal(String encodeString) {
+    List<String> decodeString = new ArrayList<>();
+    int i = 0;
+    while (i < encodeString.length()) {
+      int j = encodeString.indexOf("#", i);
+      int length = Integer.parseInt(encodeString.substring(i, j));
+      decodeString.add(encodeString.substring(j + 1, j + 1 + length));
+      i = j + 1 + length;
+    }
+    return decodeString;
+  }
+
+}/**
  * O/P
  * Encoded String: 4#neet4#code4#love3#you
  * Decoded String: [neet, code, love, you]
  */
 ```
->Time Complexity - O(n)
-- for encoding O(n)
-- for decoding O(n)
->Space Complexity - O(1)
+>Time Complexity - O(L)
+- L is sum of lengths of all strings combined.
+- for encoding O(L)
+- for decoding O(L)
+>Space Complexity - O(L)
 
+#### Explanation
+- For each string, prepend its length and a delimiter (e.g., #) before the string. `"hello" → "5#hello"`
+- Concatenate all encoded strings.
+- When decoding, read the length, then read that many characters for the string, repeat.
 
 ## **Valid Sudoku**
 <div align="center">

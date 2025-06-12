@@ -8,7 +8,7 @@ import java.util.List;
 public class GroupAnagrams {
   public static void main(String[] args) {
     String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
-    List<List<String>> result = groupAnagramsBrute(val);
+    List<List<String>> result = groupAnagramsOptimal(val);
     for (List<String> s : result)
       System.out.println(s);
   }
