@@ -585,9 +585,6 @@ public class LongestConsecutiveSequenceOptimal {
 </div>
 
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
 public class ProductofArrayExceptSelfBrute {
     public static void main(String[] args) {
@@ -613,6 +610,10 @@ public class ProductofArrayExceptSelfBrute {
     }
 }
 ```
+>Time Complexity - O(n<sup>2</sup>) 
+
+>Space Complexity - O(n) 
+
 #### Explanation
 
 -
