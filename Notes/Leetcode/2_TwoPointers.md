@@ -11,9 +11,6 @@
 </div>
 
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
 public class ValidPalindromeBrute {
     public static void main(String[] args) {
@@ -29,17 +26,11 @@ public class ValidPalindromeBrute {
     }
 }
 ```
-#### Explanation
+>Time Complexity - O(n)
 
--
+>Space Complexity - O(n)
+- Additional space for filtered string and reversed string.
 
-#### Better - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
 #### Explanation
 
 -

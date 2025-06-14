@@ -9,9 +9,14 @@
 | [Group Anagrams](/dsa/arrayshashing/GroupAnagrams.java)|  &rarr;| O(n<sup>2</sup> k log k) |O(nk)|Create a HashMap that store char[26] count String as key and `List<String>` of that count as value&rarr;Return the values |O(nk)|O(nk)|
 | [Top K Frequent Elements](/dsa/arrayshashing/TopKFrequentElements.java)| Count Frequencies using frequencyMap&rarr;Create List of unique elements&rarr;Sort elements by frequency in descending order&rarr;Pick top k using loop | O(n + m log m) | O(n)| Similar as brute, but instead of List use a min-heap to sort the frequencyMap |O(n log k) |O(n) |
 | [Encode And Decode Strings](/dsa/arrayshashing/EncodeAndDecodeStrings.java)| | O(L) | O(L)| For each string, prepend its length and a delimiter (e.g., #) before the string. `"hello" → "5#hello"`&rarr;Concatenate all encoded strings&rarr;When decoding, read the length, then read that many characters for the string, repeat(find i, j, length)| O(L) |O(L) |
-| [Product Of Array Except Self](/dsa/arrayshashing/ProductOfArrayExceptSelf.java)| | O(n<sup>2</n>) | O(n)| | O(n) |O(1) |
-| [Longest Consecutive Sequence](/dsa/arrayshashing/LongestConsecutiveSequence.java)| | O(n<sup>2</n>) | O(n)| | O(n) |O(n) |
+| [Product Of Array Except Self](/dsa/arrayshashing/ProductOfArrayExceptSelf.java)| | O(n<sup>2</sup>) | O(n)| | O(n) |O(1) |
+| [Longest Consecutive Sequence](/dsa/arrayshashing/LongestConsecutiveSequence.java)| | O(n<sup>2</sup>) | O(n)| | O(n) |O(n) |
 
 
+## Two Pointers
 
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Valid Palindrome](/dsa/twopointers/ValidPalindrome.java)|Filter String for special characters and spaces&rarr;Reverse the filtered String&rarr;Compare both Strings | O(n) |O(n)| |O(n)|O(1)|
+|
 
