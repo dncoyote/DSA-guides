@@ -81,31 +81,34 @@ public class ValidPalindromeOptimal {
 
 #### Brute - 
 ```java
-public class ThreeSumBrute {
-    public static void main(String[] args) {
-        int[] arr = { -1, 0, 1, 2, -1, -4 };
-        List<List<Integer>> result = threeSum(arr);
 
-        System.out.println(result);
-    }
+public class ThreeSum {
+  public static void main(String[] args) {
+    int[] arr = { -1, 0, 1, 2, -1, -4 };
+    List<List<Integer>> result = threeSumOptimal(arr);
 
-    private static List<List<Integer>> threeSum(int[] arr) {
-        List<List<Integer>> result = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                for (int k = j + 1; k < arr.length; k++) {
-                    int sum = arr[i] + arr[j] + arr[k];
-                    if (sum == 0) {
-                        result.add(Arrays.asList(arr[i], arr[j], arr[k]));
-                    }
-                }
-            }
+    System.out.println(result);
+  }
+
+  private static List<List<Integer>> threeSumBrute(int[] arr) {
+    HashSet<List<Integer>> set = new HashSet<>();
+    for (int i = 0; i < arr.length; i++) {
+      for (int j = i + 1; j < arr.length; j++) {
+        for (int k = j + 1; k < arr.length; k++) {
+          int sum = arr[i] + arr[j] + arr[k];
+          if (sum == 0) {
+            List<Integer> list = Arrays.asList(arr[i], arr[j], arr[k]);
+            Collections.sort(list);
+            set.add(list);
+          }
         }
-        return result;
+      }
     }
+    return new ArrayList<>(set);
+  }
 }
 ```
->Time Complexity - O(n^3)
+>Time Complexity - O(n<sup>3</sup>)
 
 >Space Complexity - O(1)
 #### Explanation
@@ -157,10 +160,10 @@ public class ThreeSumOptimal {
     }
 }
 ```
->Time Complexity - O(n^2)
+>Time Complexity - O(n<sup>2</sup>)
 - Sorting - O(n log n)
 - two pointer traversal O(n)
-- Total - O(n^2)
+- Total - O(n<sup>2</sup>)
 
 >Space Complexity - O(1)
 
@@ -176,47 +179,68 @@ public class ThreeSumOptimal {
 
 #### Brute - 
 ```java
+public class ContainerWithMostWater {
+  public static void main(String[] args) {
+    int[] heights = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+    int maxArea = containerWithMaxAreaOptimal(heights);
+    System.out.println(maxArea);
+  }
 
+  private static int containerWithMaxAreaBrute(int[] heights) {
+    int maxArea = 0;
+    for (int i = 0; i < heights.length; i++) {
+      for (int j = i + 1; j < heights.length; j++) {
+        // width
+        int w = j - i;
+        // heights
+        int h = Math.min(heights[i], heights[j]);
+        int area = w * h;
+        maxArea = Math.max(maxArea, area);
+      }
+    }
+    return maxArea;
+  }
+}
 ```
->Time Complexity - 
+>Time Complexity - O(n<sup>2</sup>) 
 
->Space Complexity - 
+>Space Complexity - O(1)
+- Constant space is used
 #### Explanation
 
 -
 
 #### Optimal -
 ```java
-public class ContainerWithMostWaterOptimal {
-    public static void main(String[] args) {
-        int[] heights = { 1, 7, 2, 5, 4, 7, 3, 6 };
-        int maxArea = containerWithMaxArea(heights);
-        System.out.println(maxArea);
+
+public class ContainerWithMostWater {
+  public static void main(String[] args) {
+    int[] heights = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+    int maxArea = containerWithMaxAreaOptimal(heights);
+    System.out.println(maxArea);
+  }
+
+  private static int containerWithMaxAreaOptimal(int[] heights) {
+    int maxArea = 0;
+    int left = 0;
+    int right = heights.length - 1;
+    while (left < right) {
+      // width
+      int w = right - left;
+      // height
+      int h = Math.min(heights[left], heights[right]);
+      int area = w * h;
+      maxArea = Math.max(maxArea, area);
+
+      if (heights[left] < heights[right])
+        left++;
+      else
+        right--;
     }
-
-    private static int containerWithMaxArea(int[] heights) {
-        int left = 0;
-        int right = heights.length - 1;
-        int maxArea = 0;
-
-        while (left < right) {
-            int width = right - left
-            // We use Math.min to ensure that the water height is determined by the shorter line, water will overflow if we use longer line
-            int area = Math.min(heights[left], heights[right])
-                    * (width);
-
-            maxArea = Math.max(maxArea, area);
-
-            // Move the shorter pointer
-            if (heights[left] < heights[right]) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-        return maxArea;
-    }
+    return maxArea;
+  }
 }
+
 ```
 >Time Complexity - O(n)
 

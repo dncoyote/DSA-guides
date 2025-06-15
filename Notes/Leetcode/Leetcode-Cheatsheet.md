@@ -18,5 +18,9 @@
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
 | [Valid Palindrome](/dsa/twopointers/ValidPalindrome.java)|Filter String for special characters and spaces&rarr;Reverse the filtered String&rarr;Compare both Strings | O(n) |O(n)| |O(n)|O(1)|
-|
+| [Three Sum](/dsa/twopointers/ThreeSum.java)| | O(n<sup>3</sup>) |O(1)| |O(n<sup>2</sup>)|O(1)|
+| [Container With Most Water](/dsa/twopointers/ContainerWithMostWater.java)| | O(n<sup>2</sup>) |O(1)| |O(n)|O(1)|
+
+
+
 
