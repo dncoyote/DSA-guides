@@ -7,12 +7,31 @@
 </div>
 
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
+public class BuyAndSellCrypto {
+  public static void main(String[] args) {
+    int[] crypto = { 10, 1, 5, 6, 7, 1 };
+    int profit = buyAndSellCryptoBrute(crypto);
+    System.out.println(profit);
+  }
 
+  private static int buyAndSellCryptoBrute(int[] crypto) {
+    int maxProfit = 0;
+    for (int i = 0; i < crypto.length; i++) {
+      for (int j = i + 1; j < crypto.length; j++) {
+        int profit = crypto[j] - crypto[i];
+        maxProfit = Math.max(maxProfit, profit);
+      }
+    }
+    return maxProfit;
+  }
+}
 ```
+>Time Complexity - O(n<sup>2</sup>) 
+ 
+>Space Complexity - O(1)
+- Uses constant extra space.
+
 #### Explanation
 
 -
@@ -20,27 +39,29 @@
 #### Optimal -
 
 ```java
-public class BuyAndSellCryptoOptimal {
-    public static void main(String[] args) {
-        int[] crypto = { 10, 1, 5, 6, 7, 1 };
-        int profit = buyAndSellCrypto(crypto);
-        System.out.println(profit);
-    }
 
-    private static int buyAndSellCrypto(int[] crypto) {
-        int left = 0;
-        int right = left + 1;
-        int maxProfit = 0;
-        while (right < crypto.length) {
-            if (crypto[left] < crypto[right]) {
-                maxProfit = Math.max(maxProfit, crypto[right] - crypto[left]);
-            } else {
-                left = right;
-            }
-            right++;
-        }
-        return maxProfit;
+public class BuyAndSellCrypto {
+  public static void main(String[] args) {
+    int[] crypto = { 10, 1, 5, 6, 7, 1 };
+    int profit = buyAndSellCryptoOptimal(crypto);
+    System.out.println(profit);
+  }
+
+  private static int buyAndSellCryptoOptimal(int[] crypto) {
+    int maxProfit = 0;
+    int left = 0;
+    int right = left + 1;
+    while (right < crypto.length) {
+      if (crypto[left] < crypto[right]) {
+        int profit = crypto[right] - crypto[left];
+        maxProfit = Math.max(maxProfit, profit);
+      } else {
+        left = right;
+      }
+      right++;
     }
+    return maxProfit;
+  }
 }
 ```
 >Time Complexity - O(n)

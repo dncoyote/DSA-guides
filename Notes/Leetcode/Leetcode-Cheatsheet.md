@@ -21,6 +21,12 @@
 | [Three Sum](/dsa/twopointers/ThreeSum.java)| | O(n<sup>3</sup>) |O(1)| |O(n<sup>2</sup>)|O(1)|
 | [Container With Most Water](/dsa/twopointers/ContainerWithMostWater.java)| | O(n<sup>2</sup>) |O(1)| |O(n)|O(1)|
 
+## Sliding Window
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Buy And Sell Crypto](/dsa/slidingwindow/BuyAndSellCrypto.java)| |O(n<sup>2</sup>) |O(1)| |O(n)|O(1)|
+
 
 
 
