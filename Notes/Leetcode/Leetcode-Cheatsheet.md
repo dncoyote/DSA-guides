@@ -25,7 +25,9 @@
 
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
-| [Buy And Sell Crypto](/dsa/slidingwindow/BuyAndSellCrypto.java)| |O(n<sup>2</sup>) |O(1)| |O(n)|O(1)|
+| [Buy And Sell Crypto](/dsa/slidingwindow/BuyAndSellCrypto.java) | |O(n<sup>2</sup>) |O(1)| |O(n)|O(1)|
+| [Longest Substring Without Repeating Characters](/dsa/slidingwindow/LongestSubstringWithoutRepeatingCharacters.java) | |O(n<sup>3</sup>) |O(min(m, n) or O(k))| |O(n)|O(min(m, n)) or O(k) or O(1)|
+
 
 
 

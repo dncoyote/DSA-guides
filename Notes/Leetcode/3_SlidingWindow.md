@@ -75,41 +75,42 @@ public class BuyAndSellCrypto {
 
 #### Brute - 
 ```java
-public static void main(String[] args) {
-        String s = "abcabcbb";
-        int result = longestSubstringWithoutDuplicates(s);
-        System.out.println(result);
-    }
+public class LongestSubstringWithoutRepeatingCharacters {
+  public static void main(String[] args) {
+    String s = "abcabcbb";
+    int result = longestSubstringWithoutDuplicatesOptimal(s);
+    System.out.println(result);
+  }
 
-    private static int longestSubstringWithoutDuplicates(String s) {
-        int left = 0;
-        int right = left + 1;
-        int length = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = 1; j < s.length(); j++) {
-                if (allunique(s, i, j)) {
-                    length = Math.max(length, j - i + 1);
-                }
-            }
+  private static int longestSubstringWithoutDuplicatesBrute(String s) {
+    int maxLength = 0;
+    for (int i = 0; i < s.length(); i++) {
+      for (int j = i + 1; j < s.length(); j++) {
+        if (allUnique(s, i, j)) {
+          maxLength = Math.max(maxLength, j - i);
         }
-        return length;
+      }
     }
+    return maxLength;
+  }
 
-    private static boolean allunique(String s, int start, int end) {
-        Set<Character> hashSet = new HashSet<>();
-        for (int i = start; i <= end; i++) {
-            if (hashSet.contains(s.charAt(i))) {
-                return false;
-            }
-            hashSet.add(s.charAt(i));
-        }
-        return true;
+  private static boolean allUnique(String s, int start, int end) {
+    HashSet<Character> set = new HashSet<>();
+    for (int i = start; i < end; i++) {
+      char c = s.charAt(i);
+      if (set.contains(c)) {
+        return false;
+      }
+      set.add(c);
     }
+    return true;
+  }
+}
 ```
->Time Complexity - O(n^3)
+>Time Complexity - O(n<sup>3</sup>)
 
->Space Complexity - O(n)
+>Space Complexity - O(min(m, n)) or O(k) or O(1)
+- m is alphabet size(26), n is string length.
 #### Explanation
 
 -
@@ -120,38 +121,39 @@ public static void main(String[] args) {
 
 #### Optimal -
 ```java
-public class LongestSubstringWithoutDuplicatesOptimal {
-    public static void main(String[] args) {
-        String s = "abcabcbb";
-        int result = longestSubstringWithoutDuplicatesOpt(s);
-        System.out.println(result);
+ public class LongestSubstringWithoutRepeatingCharacters {
+  public static void main(String[] args) {
+    String s = "abcabcbb";
+    int result = longestSubstringWithoutDuplicatesOptimal(s);
+    System.out.println(result);
+  }
+
+  private static int longestSubstringWithoutDuplicatesOptimal(String s) {
+    HashSet<Character> set = new HashSet<>();
+    int left = 0;
+    int right = 0;
+    int maxLength = 0;
+
+    while (right < s.length()) {
+      char c = s.charAt(right);
+      if (!set.contains(c)) {
+        set.add(c);
+        right++;
+        maxLength = Math.max(maxLength, right - left);
+      } else {
+        set.remove(s.charAt(left));
+        left++;
+      }
     }
+    return maxLength;
+  }
 
-    private static int longestSubstringWithoutDuplicatesOpt(String s) {
-        int left = 0;
-        int maxLength = 0;
-        Map<Character, Integer> charCount = new HashMap<>();
 
-        for (int right = 0; right < s.length(); right++) {
-            char currentChar = s.charAt(right);
-
-            // If character is already present, move `left` pointer
-            if (charCount.containsKey(currentChar)) {
-                // Move `left` to the max of its current value or the position after the last
-                // occurrence
-                left = Math.max(left, charCount.get(currentChar) + 1);
-            }
-            charCount.put(currentChar, right);
-            // Calculate the maximum length of substring
-            maxLength = Math.max(maxLength, right - left + 1);
-        }
-        return maxLength;
-    }
-}
 ```
 >Time Complexity - O(n)
 
->Space Complexity - O(k)
+>Space Complexity - O(min(m, n)) or O(k) or O(1)
+- m is alphabet size(26), n is string length.
 - k is the size of the character set (26 alphabets)
 
 #### Steps
