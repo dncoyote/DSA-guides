@@ -29,6 +29,12 @@
 | [Longest Substring Without Repeating Characters](/dsa/slidingwindow/LongestSubstringWithoutRepeatingCharacters.java) | |O(n<sup>3</sup>) |O(min(m, n) or O(k))| |O(n)|O(min(m, n)) or O(k) or O(1)|
 
 
+## Stack
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Valid Parentheses](/dsa/stack/ValidParentheses.java) | |O(n<sup>2</sup>) |O(n)| |O(n)|O(n)|
+
 
 
 

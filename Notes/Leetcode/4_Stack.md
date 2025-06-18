@@ -10,6 +10,32 @@
   <img alt="image" src="assets/Screenshot 2024-12-23 161641.png" />
 </div>
 
+#### Brute -
+```java
+public class ValidParenthesesOptimal {
+    public static void main(String[] args) {
+        String s = "[{()[]}{([])}]()]";
+        System.out.println(validParentheses(s));
+    }
+
+private static boolean validParenthesesBrute(String s) {
+    if (s == null || s.length() % 2 != 0)
+      return false;
+
+    String previous = "";
+    while (!s.equals(previous)) {
+      previous = s;
+      s = s.replace("()", "").replace("[]", "").replace("{}", "");
+    }
+    return s.isEmpty();
+  }
+}
+```
+>Time Complexity - O(n<sup>2</sup>)
+
+>Space Complexity - O(n)
+#### Explanation
+
 #### Better - 
 ```java
 public class ValidParenthesesBetter {
