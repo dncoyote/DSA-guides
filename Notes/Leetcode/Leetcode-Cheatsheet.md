@@ -36,5 +36,11 @@
 | [Valid Parentheses](/dsa/stack/ValidParentheses.java) | |O(n<sup>2</sup>) |O(n)| |O(n)|O(n)|
 
 
+## Binary Search
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Find Minimum in Rotated Sorted Array](/dsa/binarysearch/FindMinimumInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
+
 
 
