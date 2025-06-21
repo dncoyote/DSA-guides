@@ -40,8 +40,16 @@
 
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
-| [Find Minimum in Rotated Sorted Array](/dsa/binarysearch/FindMinimumInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
+| [Find Minimum in Rotated Sorted Array](/dsa/binarysearch/FindMinimuInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
 | [Find Target in Rotated Sorted Array](/dsa/binarysearch/FindTargetInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
+
+
+## Linked List
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Reverse Linked List](/dsa/linkedlist/ReverseLinkedList.java) | | | | |O(n)|O(1)|
+| [Merge Two Sorted Linked List](/dsa/linkedlist/MergeTwoSortedLinkedList.java) | | | | |O(n+m)|O(1)|
 
 
 
