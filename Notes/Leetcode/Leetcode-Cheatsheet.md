@@ -50,6 +50,9 @@
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
 | [Reverse Linked List](/dsa/linkedlist/ReverseLinkedList.java) | | | | |O(n)|O(1)|
 | [Merge Two Sorted Linked List](/dsa/linkedlist/MergeTwoSortedLinkedList.java) | | | | |O(n+m)|O(1)|
+| [Reorder Linked List](/dsa/linkedlist/ReorderList.java) | | | | |O(n)|O(1)|
+| [Remove nth Node From End of List](/dsa/linkedlist/RemoveNthNodeFromEndOfLinkedList.java) | | | | |O(n)|O(1)|
+
 
 
 
