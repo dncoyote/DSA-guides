@@ -503,6 +503,7 @@ private static ListNode mergeKSortedListsBrute(ListNode[] lists) {
 ```
 >Time Complexity - O(n log n)
 - n is the total number of nodes across all lists
+- Sorting takes O(n log n)
 >Space Complexity - O(n)
 #### Explanation
 
@@ -574,7 +575,8 @@ public class MergeKSortedLists {
 ```
 >Time Complexity - O(n log k)
 - n is the total number of elements across all lists
-- k is the numbder of lists.
+- k is the number of lists.
+- heap operations(poll and offer) take O(log k)
 
 >Space Complexity - O(k)
 - k is the number of lists, because we are storing up to k nodes in the heap at any point in time
