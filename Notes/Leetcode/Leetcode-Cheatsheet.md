@@ -40,7 +40,7 @@
 
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
-| [Find Minimum in Rotated Sorted Array](/dsa/binarysearch/FindMinimuInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
+| [Find Minimum in Rotated Sorted Array](/dsa/binarysearch/FindMinimumInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
 | [Find Target in Rotated Sorted Array](/dsa/binarysearch/FindTargetInRotatedSortedArray.java) | |O(n) |O(1)| |O(log n)|O(1)|
 
 
