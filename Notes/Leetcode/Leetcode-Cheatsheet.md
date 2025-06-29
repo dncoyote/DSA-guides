@@ -56,5 +56,18 @@
 | [Merge K Sorted Lists](/dsa/linkedlist/MergeKSortedLists.java) | Add all val from ListNodes to a list&rarr;sort the list&rarr;Add the values from the list to ListNode until empty. | O(n log n) | O(n) | Create a minHeap&rarr;Add first node of all ListNodes to minHeap&rarr;Poll the smallest value from minHeap and add to a ListNode using while loop&rarr;Check if smallest value has next value, if yes then add to the minHeap&rarr;Repeat process until minHeap is empty |O(n log k)|O(k)|
 
 
+## Binary Tree
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Invert Binary Tree](/dsa/binarytree/InvertBinaryTree.java) | | | | |O(n)|O(1)|
+| [Maximum Depth Of Binary Tree](/dsa/binarytree/MaximumDepthOfBinaryTree.java) | | | | |O(n+m)|O(1)|
+| [Same Tree](/dsa/binarytree/SameTree.java) | | | | |O(n)|O(1)|
+| [Subtree of Another Tree](/dsa/binarytree/SubtreeOfAnotherTree.java) | | | | |O(n)|O(1)|
+| [Lowest Common Ancestor](/dsa/binarytree/LowestCommonAncestor.java) |  | O(n) | O(n) | |O(n)|O(1)|
+| [Validate Binary Search Tree](/dsa/binarytree/ValidateBinarySearchTree.java) |  |  |  |  | | |
+| [Kth Smallest/Largest Element in BST](/dsa/binarytree/KthSmallestElementInBST.java) |  |  |  |  | | |
+
+
 
 
