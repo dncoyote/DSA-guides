@@ -21,11 +21,11 @@ public class RemoveNthNodeFromEndOfLinkedList {
     ListNode ptr1 = dummy;
     ListNode ptr2 = dummy;
 
-    for (int i = 0; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
       ptr2 = ptr2.next;
     }
 
-    while (ptr2 != null) {
+    while (ptr2.next != null) {
       ptr1 = ptr1.next;
       ptr2 = ptr2.next;
     }
