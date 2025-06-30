@@ -1029,61 +1029,53 @@ public class CountGoodNodesInBinaryTree {
 
 ```java
 public class ConstructBinaryTreeFromPreAndIn {
-    int preOrderIndex;
-    HashMap<Integer, Integer> inOrderMap;
 
-    public static void main(String[] args) {
-        // int[] preorder = { -1 };
-        // int[] inorder = { -1 };
+  HashMap<Integer, Integer> inOrderIndexMap;//To find the index of root to split the subtrees.
+  int preOrderIndex;//Tracks the root node in preorder array
 
-        int[] preorder = { 3, 9, 20, 15, 7 };
-        int[] inorder = { 9, 3, 15, 20, 7 };
+  public static void main(String[] args) {
 
-        ConstructBinaryTreeFromPreAndIn obj = new ConstructBinaryTreeFromPreAndIn();
+    int[] preorder = { 3, 9, 20, 15, 7 };
+    int[] inorder = { 9, 3, 15, 20, 7 };
 
-        TreeNode root = obj.buildTree(preorder, inorder);
-        printInOrder(root);
-        printTree(root, 0);
+    ConstructBinaryTreeFromPreAndIn obj = new ConstructBinaryTreeFromPreAndIn();
+
+    TreeNode root = obj.buildTree(preorder, inorder);
+    TreeNode.printTree(root, 0);
+  }
+
+  private TreeNode buildTree(int[] preorder, int[] inorder) {
+    preOrderIndex = 0;
+    inOrderIndexMap = new HashMap<>();
+    for (int i = 0; i < inorder.length; i++) {
+      inOrderIndexMap.put(inorder[i], i);
     }
+    return construct(preorder, 0, inorder.length - 1);
+  }
 
-    private TreeNode buildTree(int[] preorder, int[] inorder) {
-        inOrderMap = new HashMap<>();
+  private TreeNode construct(int[] preorder, int inStart, int inEnd) {
+    if (inStart > inEnd)
+      return null;
 
-        for (int i = 0; i < inorder.length; i++) {
-            inOrderMap.put(inorder[i], i);
-        }
+    int rootVal = preorder[preOrderIndex];
+    preOrderIndex++;
+    TreeNode root = new TreeNode(rootVal);
 
-        return construct(preorder, 0, inorder.length - 1);
-    }
+    int rootIndex = inOrderIndexMap.get(rootVal);
 
-    private TreeNode construct(int[] preorder, int inorderStart, int inorderEnd) {
-        if (inorderStart > inorderEnd) {
-            return null;
-        }
-        int rootValue = preorder[preOrderIndex];
-        preOrderIndex++;
-        TreeNode root = new TreeNode(rootValue);
+    root.left = construct(preorder, inStart, rootIndex - 1);
+    root.right = construct(preorder, rootIndex + 1, inEnd);
 
-        int rootIndex = inOrderMap.get(rootValue);
-
-        root.left = construct(preorder, inorderStart, rootIndex - 1);
-        root.right = construct(preorder, rootIndex + 1, inorderEnd);
-
-        return root;
-    }
-
-    private static void printInOrder(TreeNode root) {
-        if (root != null) {
-            printInOrder(root.left);
-            System.out.print(root.val + "-");
-            printInOrder(root.right);
-        }
-    }
+    return root;
+  }
 }
 ```
 >Time Complexity - O(n)
+- Each Node is visited exactly once.
 
 >Space Complexity - O(n)
+- Hashmap size is n.
+- Recursion stack will be height of tree, worst case O(n) for skewed tree, O(log n) for balanced tree.
 #### Explanation
 
 - Preorder array
@@ -1093,7 +1085,7 @@ public class ConstructBinaryTreeFromPreAndIn {
     - The elements before the root (in inorder) belong to the left subtree.
     - The elements after the root belong to the right subtree.
 - Use the root identified in preorder to split the inorder array into left and right subtrees.
-
+- This is done in `root.left = construct(preorder, inStart, rootIndex - 1)` - left subtree and `root.right = construct(preorder, rootIndex + 1, inEnd)` - right subtree. 
 #### Steps
 
 -
