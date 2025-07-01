@@ -67,6 +67,8 @@
 | [Lowest Common Ancestor](/dsa/binarytree/LowestCommonAncestor.java) |  | O(n) | O(n) | |O(n)|O(1)|
 | [Validate Binary Search Tree](/dsa/binarytree/ValidateBinarySearchTree.java) |  |  |  |  | | |
 | [Kth Smallest/Largest Element in BST](/dsa/binarytree/KthSmallestElementInBST.java) |  |  |  |  | | |
+| [Construct Binary Tree from Inorder and Preorder Traversal](/dsa/binarytree/ConstructBinaryTreeFromPreAndIn.java) |  |  |  |  | | |
+| [Serialize and Deserialize Binary Tree](/dsa/binarytree/SerializeAndDeserializeBinaryTree.java) | O(n) | O(n) |  |  | | |
 
 
 
