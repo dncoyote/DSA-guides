@@ -69,6 +69,8 @@
 | [Kth Smallest/Largest Element in BST](/dsa/binarytree/KthSmallestElementInBST.java) |  |  |  |  | | |
 | [Construct Binary Tree from Inorder and Preorder Traversal](/dsa/binarytree/ConstructBinaryTreeFromPreAndIn.java) |  |  |  |  | | |
 | [Serialize and Deserialize Binary Tree](/dsa/binarytree/SerializeAndDeserializeBinaryTree.java) | O(n) | O(n) |  |  | | |
+| [Binary Tree Level Order Traversal](/dsa/binarytree/BinaryTreeLevelOrderTraversal.java) |  |  |  |  |O(n) |O(n) |
+
 
 
 

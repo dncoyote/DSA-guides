@@ -899,6 +899,14 @@ public class BinaryTreeLevelOrderTraversal {
 - Each node is processed once
 >Space Complexity - O(n)
 
+#### Explanation
+
+- Start with the root in the queue.
+- For each level, process all nodes currently in the queue.
+- Add their values to a list, enqueue their children.
+- Add the list to the result.
+- Repeat until the queue is empty.
+
 
 ## **Binary Tree Right Side View**
 <div align="center">
