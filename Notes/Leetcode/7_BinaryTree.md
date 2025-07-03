@@ -1256,8 +1256,13 @@ public class BinaryTreeMaximumPathSum {
 #### Explanation
  
 #### Steps
+- For each node, calculate:
+    - Maximum path sum in left subtree;
+    - Maximum path sum in right subtree;
+    - Maximum path sum through the node;
+- Recurse on left and right children.
+- Update the global maximum sum.
 
--
 
 #### Follow up 
 
