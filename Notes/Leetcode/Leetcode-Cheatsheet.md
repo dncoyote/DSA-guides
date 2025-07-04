@@ -73,5 +73,9 @@
 | [Binary Tree Maximum Path Sum](/dsa/binarytree/BinaryTreeMaximumPathSum.java) |  |  |  |  |O(n) |O(h) |
 
 
+## Priority Queue and Heaps
 
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Find Median From Data Stream](/dsa/priorityqueuesheaps/FindMediaFromDataStream.java) | | O(n log n)|  O(n) | |O(log n)|O(1)|
 

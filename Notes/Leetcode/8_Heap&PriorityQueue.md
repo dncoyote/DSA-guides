@@ -1,5 +1,10 @@
 # **Heaps & Priority Queue**
 
+- maxHeap PriorityQueue can initilized in these 3 ways
+    - maxHeap = new PriorityQueue<>((a, b) -> b - a);
+    - maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+    - maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
 ## **Kth Largest Element in a Stream**
 <div align="center">
   <img alt="image" src="assets/Screenshot 2025-01-23 000129.png" />
@@ -43,7 +48,7 @@ public class KthLargestElementInStream {
 }
 ```
 >Time Complexity - 
-- add - O(m log m) becayse add to heap takes O(log k)
+- add - O(m log m) because add to heap takes O(log k)
 - initialization - O(n)
 - Total - O((n+m)log k)
 >Space Complexity - O(n)
@@ -313,16 +318,15 @@ public class FindMedianFromDataStreamBrute {
 >Time Complexity - 
 - add number - O(1)
 - Find media - O(n log n)
-- Overall for m additions and k median call - O(k n log n + m)
+- Sorting on every median method call is inefficient.
 
 >Space Complexity - O(n)
+- Storing in List
 #### Explanation
 
 -
 
 #### Steps
-
--
 
 #### Optimal -
 
@@ -383,7 +387,14 @@ public class FindMedianFromDataStream {
 
 #### Explanation
 
--
+- The max-heap helps us quickly get the largest value of the lower half.
+- The min-heap helps us quickly get the smallest value of the upper half.
+- Add numbers
+    - First, add the new number to the max-heap.
+    - Then, move the largest number from max-heap to min-heap to ensure all numbers in max-heap are ≤ numbers in min-heap.
+    - If the min-heap now has more elements, move the smallest number from min-heap back to max-heap.
+    - This keeps the heaps balanced, with max-heap either having the same size as min-heap or 1 extra element.
+
 
 #### Steps
 
