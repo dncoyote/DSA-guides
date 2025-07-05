@@ -142,15 +142,58 @@ public class SubsetsII {
 #### Brute - 
 
 ```java
+public class CombinationSum {
 
+  public static void main(String[] args) {
+    int[] nums = { 2, 3, 5 };
+    int target = 8;
+    System.out.println(combinationSumBrute(nums, target));
+  }
+
+  private static List<List<Integer>> combinationSumBrute(int[] nums, int target) {
+    List<List<Integer>> result = new ArrayList<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] == target) {
+        result.add(Arrays.asList(nums[i]));
+      }
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      for (int j = 0; j < nums.length; j++) {
+        if (target == nums[i] + nums[j]) {
+          result.add(Arrays.asList(nums[i], nums[j]));
+        }
+      }
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      for (int j = 0; j < nums.length; j++) {
+        for (int k = 0; k < nums.length; k++) {
+          if (target == nums[i] + nums[j] + nums[k]) {
+            result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+          }
+        }
+      }
+    }
+    return result;
+  }
+}
 ```
->Time Complexity - 
+>Time Complexity - O(n<sup>3</sup>) 
 
->Space Complexity - 
+>Space Complexity -  O(n<sup>3</sup>) 
+ 
 #### Explanation
 
--
-
+- What this does
+    - Checks all single elements equal to target.
+    - Checks all pairs whose sum equals target (with repeats allowed).
+    - Checks all triplets similarly.
+- Limitations
+    - Fixed combination length — no longer combos.
+    - Not efficient — grows exponentially with length.
+    - May contain duplicates (e.g., [2,3] and [3,2]) — no pruning or sorting.
 #### Steps
 
 -
@@ -192,9 +235,12 @@ public class CombinationSum {
     }
 }
 ```
->Time Complexity - 
-
->Space Complexity - 
+>Time Complexity - O(n <sup>k</sup>) 
+- Time complexity is exponential in nature, but pruning helps control the time needed.
+- `k = target/min(nums)`
+- `n` is number of values in `nums`.
+>Space Complexity - O(k)
+- due to recursive stack.
 #### Explanation
 
 -

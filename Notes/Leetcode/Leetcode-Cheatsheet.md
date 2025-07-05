@@ -77,5 +77,13 @@
 
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
-| [Find Median From Data Stream](/dsa/priorityqueuesheaps/FindMediaFromDataStream.java) | | O(n log n)|  O(n) | |O(log n)|O(1)|
+| [Find Median From Data Stream](/dsa/priorityqueueheaps/FindMedianFromDataStream.java) | | O(n log n)|  O(n) | |O(log n)|O(1)|
+
+
+## Backtracking
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Combination Sum](/dsa/backtracking/CombinationSum.java) | | O(n<sup>3</sup>)|   O(n<sup>3</sup>)| |O(n<sup>target/m</sup>)|O(target/m)|
+| [Word Search](/dsa/backtracking/WordSearch.java) | | | | |O(m x n x 4<sup>L</sup>)|O(L)|
 
