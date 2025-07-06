@@ -87,3 +87,11 @@
 | [Combination Sum](/dsa/backtracking/CombinationSum.java) | | O(n<sup>3</sup>)|   O(n<sup>3</sup>)| |O(n<sup>target/m</sup>)|O(target/m)|
 | [Word Search](/dsa/backtracking/WordSearch.java) | | | | |O(m x n x 4<sup>L</sup>)|O(L)|
 
+
+## Tries
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Implement Trie Prefix Tree](/dsa/trie/ImplementTrie.java) | | | | | | |
+| [Add and Search Words](/dsa/tries/AddAndSearchWord.java) | | | | | | |
+

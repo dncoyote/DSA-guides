@@ -6,6 +6,44 @@
   <img alt="image" src="assets/Screenshot 2025-02-17 221939.png" />
 </div>
 
+#### Brute -
+```java
+class TrieBrute {
+    List<String> words;
+
+    public TrieBrute() {
+        words = new ArrayList<>();
+    }
+
+    public void insert(String word) {
+        words.add(word);
+    }
+
+    public boolean search(String word) {
+        return words.contains(word);
+    }
+
+    public boolean startsWith(String prefix) {
+        for (String w : words) {
+            if (w.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+>Time Complexity - 
+- insert - `O(1)`
+- search - `O(n x k)`
+- startsWith - `O(n x k)`
+- `n` is number of words
+- `k` is length of words being inserted.
+>Space Complexity - 
+- startsWith - `O(k)`
+- worst case - O(n x k)
+
 #### Optimal -
 
 ```java
@@ -73,8 +111,17 @@ public class ImplementTries {
 }
 ```
 >Time Complexity - 
-
+- insert - `O(k)`
+- search - `O(k)`
+- startsWith - `O(k)`
+- `k` is length of words being inserted.
 >Space Complexity - 
+- insert - `O(k)`
+- search - `O(k)`
+- startsWith - `O(k)`
+- worst case - O(n x k)
+- `k` is length of words being inserted.
+- `n` is average length of words.
 #### Explanation
 
 -
@@ -96,10 +143,48 @@ public class ImplementTries {
 
 ```java
 
+class WordDictionaryBrute {
+  private List<String> words;
+
+  public WordDictionaryBrute() {
+    words = new ArrayList<>();
+  }
+
+  // Add word to list
+  public void addWord(String word) {
+    words.add(word);
+  }
+
+  // Search with '.' wildcard support
+  public boolean search(String word) {
+    for (String w : words) {
+      if (matches(w, word)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Helper method to check if stored word matches search word with '.' wildcard
+  private boolean matches(String word, String pattern) {
+    if (word.length() != pattern.length()) {
+      return false;
+    }
+    for (int i = 0; i < word.length(); i++) {
+      if (pattern.charAt(i) != '.' && word.charAt(i) != pattern.charAt(i)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
 ```
 >Time Complexity - 
-
->Space Complexity - 
+- addWord - O(1)
+- search - O(n x k)
+- n is number of stored words;
+- k is length of search word.
+>Space Complexity - O(n x k)
 #### Explanation
 
 -
@@ -178,9 +263,12 @@ public class AddAndSearchWords {
     }
 }
 ```
->Time Complexity - 
+>Time Complexity -
+- addWord - O(k)
+- search - O(26<sup>m</sup>)
+- m is search word length
 
->Space Complexity - 
+>Space Complexity - O(n x k) 
 #### Explanation
 
 -
