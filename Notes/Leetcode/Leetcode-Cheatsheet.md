@@ -92,6 +92,6 @@
 
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
-| [Implement Trie Prefix Tree](/dsa/trie/ImplementTrie.java) | | | | | | |
+| [Implement Trie Prefix Tree](/dsa/tries/ImplementTrie.java) | | | | | | |
 | [Add and Search Words](/dsa/tries/AddAndSearchWord.java) | | | | | | |
-
+| [Word Search II](/dsa/tries/WordSearchII.java) | | | | | | |
