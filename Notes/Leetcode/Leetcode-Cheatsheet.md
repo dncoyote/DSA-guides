@@ -95,3 +95,11 @@
 | [Implement Trie Prefix Tree](/dsa/tries/ImplementTrie.java) | | | | | | |
 | [Add and Search Words](/dsa/tries/AddAndSearchWord.java) | | | | | | |
 | [Word Search II](/dsa/tries/WordSearchII.java) | | | | | | |
+
+
+## Graphs
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Number of Islands](/dsa/graphs/NumberOfIslands.java) | | | | |O(m x n) |O(m x n) |
+|-  | | | | | | |

@@ -58,22 +58,6 @@ public class Graph {
   <img alt="image" src="assets/Screenshot 2025-02-19 075512.png" />
 </div>
 
-#### Brute - 
-
-```java
-
-```
->Time Complexity - 
-
->Space Complexity - 
-#### Explanation
-
--
-
-#### Steps
-
--
-
 #### Optimal -
 
 ```java
@@ -119,9 +103,10 @@ public class NumberOfIslands {
     }
 }
 ```
->Time Complexity - 
-
->Space Complexity - 
+>Time Complexity - O(m x n) 
+- m is number of rows.
+- n is number of columns.
+>Space Complexity - O(m x n) 
 
 #### Explanation
 
