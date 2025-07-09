@@ -29,7 +29,7 @@ public class NumberOfIslands {
         { '0', '0', '0', '0', '0' }
     };
 
-    System.out.println("Number of islands: " + numberOfIslands(grid3));
+    System.out.println("Number of islands: " + numberOfIslands(grid2));
   }
 
   private static int numberOfIslands(char[][] grid) {
@@ -59,6 +59,6 @@ public class NumberOfIslands {
     dfs(grid, row - 1, col);
     dfs(grid, row, col + 1);
     dfs(grid, row, col - 1);
-    
+
   }
 }

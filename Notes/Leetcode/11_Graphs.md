@@ -266,6 +266,9 @@ public class CloneGraph {
 
         Node cloneGraph = cloneGraph(node1);
         System.out.println("Cloned graph node value: " + cloneGraph.val);
+        for (Node neighbor : cloneGraph.neighbors) {
+            System.out.println("Neighbor:" + neighbor.val);
+        }
     }
 
     private static Node cloneGraph(Node node) {
@@ -292,9 +295,14 @@ public class CloneGraph {
     }
 }
 ```
->Time Complexity - 
+>Time Complexity - O(V + E)
+- V number of nodes(vertices).
+- E number of edges.
+- Each edge is visited once, each node is cloned once.
+- DFS ensures linear time.
 
->Space Complexity - 
+>Space Complexity - O(V)
+- Map and Recursion stack
 #### Explanation
 
 -
