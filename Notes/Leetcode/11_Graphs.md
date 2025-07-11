@@ -489,10 +489,6 @@ int[] directions = { 0, 1, 0, -1, 0 };
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class PacificAtlanticWaterFlow {
     public static void main(String[] args) {
@@ -561,6 +557,15 @@ public class PacificAtlanticWaterFlow {
  * [5, 4, 4, 5, 6, 7, 5]
  */
 ```
+
+>Time Complexity - O(m x n)
+- Each cell is visited at most once.
+- m is number of rows.
+- n is number of columns.
+
+>Space Complexity - O(m x n)
+- recursion stack.
+
 #### Explanation
 
 -
