@@ -710,44 +710,80 @@ public class SurroundedRegions {
 -
 
 ## **Course Schedule**
->
-#### Brute - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
-
-#### Better - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
+<div align="center">
+  <img alt="image" src="assets/Untitled-4.png" />
+</div>
 
 #### Optimal - Topological Sort(Kahns Algorithm)
+```java
+public class CourseSchedule{
+  public static void main(String[] args) {
+    // Example 1: Possible to finish all courses
+    int numCourses1 = 4;
+    int[][] prerequisites1 = { { 1, 0 }, { 2, 1 }, { 3, 2 } };
+    System.out.println(courseScheduleBFS(numCourses1, prerequisites1)); // Output:
+    // true
+
+    // Example 2: Cycle exists
+    int numCourses2 = 2;
+    int[][] prerequisites2 = { { 1, 0 }, { 0, 1 } };
+    System.out.println(courseScheduleBFS(numCourses2, prerequisites2)); // Output:
+    // false
+  }
+
+  private static boolean courseScheduleBFS(int numCourses, int[][] prerequisites) {
+    // Step 1: Build adjacency list graph  
+    List<List<Integer>> adjacencyGraph = new ArrayList<>();
+    for (int i = 0; i < numCourses; i++) {
+      adjacencyGraph.add(new ArrayList<>());
+    }
+    // Step 2: Calculate in-degree for each course (number of prerequisites)
+    int[] visited = new int[numCourses];
+    for (int[] pair : prerequisites) {
+      int course = pair[0];
+      int prereq = pair[1];
+      adjacencyGraph.get(prereq).add(course);
+      visited[course]++;
+    }
+
+    // Step 3: Initialize queue with courses having in-degree zero (no prerequisites)  
+    Queue<Integer> queue = new LinkedList<>();
+    for (int i = 0; i < numCourses; i++) {
+      if (visited[i] == 0) {
+        queue.add(i);
+      }
+    }
+
+    //Step 4: Process courses with zero in-degree
+    int completedCourses = 0;
+    while (!queue.isEmpty()) {
+      int course = queue.poll();
+      completedCourses++; //Mark this as completed
+
+      // Decrease in-degree of neighbor courses (courses dependent on current)     
+      for (int neighbor : adjacencyGraph.get(course)) {
+        visited[neighbor]--;
+        // If in-degree becomes zero, add to queue to process next
+        if (visited[neighbor] == 0) {
+          queue.add(neighbor);
+        }
+      }
+    }
+    // Step 5: Check if all courses have been processed
+    // If completedCourses == numCourses, no cycle detected, return true
+    // Otherwise, cycle exists and it's impossible to finish all courses  
+    return completedCourses == numCourses;
+  }
+}
+```
+>Time Complexity - O(V + E) 
+- V is number of courses(vertices)
+- E is number of prerequisites(edges)
+- Each prerequisite is visited once.
+>Space Complexity - O(V + E)
+
 
 #### Optimal - Cycle Detection using DFS
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class CourseSchedule {
     public static void main(String[] args) {
@@ -819,6 +855,11 @@ public class CourseSchedule {
     }
 }
 ```
+>Time Complexity - 
+
+>Space Complexity - 
+
+
 #### Explanation
 
 -
@@ -832,14 +873,71 @@ public class CourseSchedule {
 -
 
 ## **Graph Valid Tree**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Untitled-5.png" />
+</div>
 
->Space Complexity - 
+#### Optimal - BFS
 ```java
+public class GraphValidTree {
 
+  public static void main(String[] args) {
+    int n1 = 5;
+    int[][] edges1 = { { 0, 1 }, { 0, 2 }, { 0, 3 }, { 1, 4 } };
+    System.out.println(validTreeBFS(n1, edges1)); // true
+
+    int n2 = 5;
+    int[][] edges2 = { { 0, 1 }, { 1, 2 }, { 2, 3 }, { 1, 3 }, { 1, 4 } };
+    System.out.println(validTreeBFS(n2, edges2)); // false
+
+    int n3 = 4;
+    int[][] edges3 = { { 0, 1 }, { 2, 3 } };
+    System.out.println(validTreeBFS(n3, edges3)); // false
+  }
+
+  private static boolean validTreeBFS(int nodes, int[][] edges) {
+    if (edges.length != nodes - 1) {
+      return false;
+    }
+
+    List<List<Integer>> adjacencyGraph = new ArrayList<>();
+    for (int i = 0; i < nodes; i++) {
+      adjacencyGraph.add(new ArrayList<>());
+    }
+
+    for (int[] edge : edges) {
+      adjacencyGraph.get(edge[0]).add(edge[1]);
+      adjacencyGraph.get(edge[1]).add(edge[0]);
+    }
+
+    boolean[] visited = new boolean[nodes];
+    Queue<Integer> queue = new LinkedList<>();
+    queue.add(0);
+    visited[0] = true;
+
+    while (!queue.isEmpty()) {
+      int node = queue.poll();
+      for (int neighbor : adjacencyGraph.get(node)) {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.offer(neighbor);
+        }
+      }
+    }
+
+    for (boolean flag : visited) {
+      if (!flag)
+        return false;
+    }
+
+    return true;
+  }
+}
 ```
+>Time Complexity - O(V + E) 
+
+>Space Complexity - O(V + E) 
+
 #### Explanation
 
 -
@@ -848,22 +946,8 @@ public class CourseSchedule {
 
 -
 
-#### Better - 
->Time Complexity - 
 
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
-
-#### Optimal -
+#### Optimal - DFS
 >Time Complexity - 
 
 >Space Complexity - 

@@ -104,3 +104,5 @@
 | [Number of Islands](/dsa/graphs/NumberOfIslands.java) | | | | |O(m x n) |O(m x n) |
 | [Clone Graph](/dsa/graphs/CloneGraph.java)  | | | | | O(V + E) | O(V) |
 | [Pacific Atlantic Water Flow](/dsa/graphs/PacificAtlanticWaterFlow.java)  | | | | | O(m x n) | O(m x n) |
+| [Course Schedule](/dsa/graphs/CourseSchedule.java)  | | | | | O(V + E) | O(V + E) |
+| [Graph Valid Tree](/dsa/graphs/GraphValidTree.java)  | | | | | O(V + E) | O(V + E) |
