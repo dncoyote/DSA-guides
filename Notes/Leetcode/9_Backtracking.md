@@ -225,7 +225,7 @@ public class CombinationSum {
         for (int i = start; i < nums.length; i++) {
             int num = nums[i];
             if (num > target)
-                continue;
+              break;
             current.add(num);
             // Recurse with reduced target
             backtrack(nums, target - num, current, result, i);
@@ -427,7 +427,7 @@ public class WordSearch {
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (backtrack(board, word, row, col, 0)) {
+                if (dfs(board, word, row, col, 0)) {
                     return true;
                 }
             }
@@ -435,7 +435,7 @@ public class WordSearch {
         return false;
     }
 
-    private static boolean backtrack(char[][] board, String word, int row, int col, int i) {
+    private static boolean dfs(char[][] board, String word, int row, int col, int i) {
         if (i == word.length()) {
             return true;
         }
@@ -464,9 +464,17 @@ public class WordSearch {
     }
 }
 ```
->Time Complexity - 
-
+>Time Complexity - O(m x n x 4<sup>L</sup>)
+- m is number of rows.
+- n is number of columns.
+- L is length of word.
+- The algorithm potentially explores every cell on the board as a starting point:
+O(m * n) where m = number of rows, n = number of columns.
+- From each starting cell, in the worst case, the DFS explores up to 4 directions recursively for each character in the word.
+- Best case scenario - O(m x n x L)
 >Space Complexity - O(L)
+- recursion stack.
+
 #### Explanation
 
 -

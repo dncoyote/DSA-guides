@@ -27,7 +27,7 @@ public class CombinationSum {
     for (int i = start; i < nums.length; i++) {
       int num = nums[i];
       if (num > target)
-        continue;
+        break;
       current.add(num);
       backtrack(nums, target - num, current, result, i);
       current.remove(current.size() - 1);

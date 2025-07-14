@@ -1033,42 +1033,12 @@ public class GraphValidTree {
 -
 
 ## **Number of Connected Components In An Undirected Graph**
->
-#### Brute - 
->Time Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Untitled-6.png" />
+</div>
 
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
-
-#### Better - 
->Time Complexity - 
-
->Space Complexity - 
-```java
-
-```
-#### Explanation
-
--
-
-#### Steps
-
--
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class CountConnectedComponents {
     public static void main(String[] args) {
@@ -1120,8 +1090,31 @@ public class CountConnectedComponents {
             }
         }
     }
+    private static void bfs(int start, List<List<Integer>> adjacencyGraph, boolean[] visited) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(start);
+        visited[start] = true;
+
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            for (int neighbor : adjacencyGraph.get(node)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
 }
 ```
+
+>Time Complexity - O(V + E)
+- Each node and edge is visited once.
+
+>Space Complexity - O(V + E)
+- adjacencyGraph and visited array for bfs.
+- recursion stack and visited array for dfs.
+
 #### Explanation
 
 -

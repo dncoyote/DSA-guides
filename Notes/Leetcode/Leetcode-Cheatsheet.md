@@ -106,3 +106,4 @@
 | [Pacific Atlantic Water Flow](/dsa/graphs/PacificAtlanticWaterFlow.java)  | | | | | O(m x n) | O(m x n) |
 | [Course Schedule](/dsa/graphs/CourseSchedule.java)  | | | | | O(V + E) | O(V + E) |
 | [Graph Valid Tree](/dsa/graphs/GraphValidTree.java)  | | | | | O(V + E) | O(V + E) |
+| [Number of Connected Components in an Undirected Graph](/dsa/graphs/CountConnectedComponents.java)  | | | | | O(V + E) | O(V + E) |
