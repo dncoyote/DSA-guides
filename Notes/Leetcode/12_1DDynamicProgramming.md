@@ -7,55 +7,97 @@
 - We tend to store the value of sub problems in some map/table.
 
 ## **Climbing Stairs**
->
+<div align="center">
+  <img alt="image" src="assets/Untitled-9.png" />
+</div>
 
-#### Brute - 
->Time Complexity - 
-
->Space Complexity - 
+#### Brute - Recursion 
 ```java
+public class ClimbingStairs {
+  public static void main(String[] args) {
+    int n = 2;
+    int result = climbStairsBrute(n);
+    System.out.println(result);
+  }
 
+  private static int climbStairsBrute(int n) {
+    if (n == 0)
+      return 1;
+    if (n < 0)
+      return 0;
+
+    return climbStairsBrute(n-1)+climbStairsBrute(n-2);
+  }
+
+}
 ```
+>Time Complexity - O(2<sup>n</sup>) 
+- Each call to `climbStairsBrute(n)` makes two recursive calls.
+    - One for `n-1`.
+    - One for `n-2`.
+- Number of nodes (function calls) in this recursion tree is approximately 2<sup>n</sup> because each call branches into two more calls, except at base cases.
+- Hence, the total number of recursive calls grows exponentially with n.
+- Time complexity is exponential due to repeated calculations.
+>Space Complexity - O(n)
+- Recursion stack
+
 #### Explanation
 
--
-
+- Base cases
+    - If `n == 0`: You are already at the bottom (start), so there is exactly 1 way to stand still (do nothing).
+    - If `n < 0`: You have stepped beyond the bottom (invalid path), so there are 0 ways.
+- Recursive step
+    - For any `n > 0`, calculate:
+        - `ways(n) = ways(n-1) + ways(n-2)`
+        - Example: If `n` is 2, then `ways(2) = ways(1) + ways(0)` which is 1+1 = 2.
 #### Steps
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal - Dynamic Programming(Bottoms up)
 ```java
 public class ClimbingStairs {
-    public static void main(String[] args) {
-        int n = 2;
-        int result = climbStairs(n);
-        System.out.println(result);
+  public static void main(String[] args) {
+    int n = 2;
+    int result = climbStairsOptimal(n);
+    System.out.println(result);
+  }
+
+  private static int climbStairsOptimal(int n) {
+    if (n <= 1)
+      return 1;
+
+    int[] dp = new int[n + 1];
+    dp[0] = 1;
+    dp[1] = 1;
+
+    for (int i = 2; i <= n; i++) {
+      dp[i] = dp[i - 1] + dp[i - 2];
     }
 
-    private static int climbStairs(int n) {
-        if (n == 1)
-            return 1;
-
-        int[] dp = new int[n + 1];
-        dp[1] = 1;
-        dp[2] = 2;
-
-        for (int i = 3; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2];
-        }
-        return dp[n];
-    }
+    return dp[n];
+  }
 }
 ```
+
+>Time Complexity - O(n)
+- single loop from 2 to n.
+
+>Space Complexity - O(1)
+
+
 #### Explanation
+- If n is 4.
 
--
+| Step(i)      | dp[i] calculations     | dp[i] value      |
+| :---:  | :----:  |:---:           |
+| 0 | Base case | 1 |
+| 1 | Base case | 1 |
+| 2 | dp[1]+dp[2] = 1+1 | 2 |
+| 3 | dp[2]+dp[1] = 2+1 | 3 |
+| 4 | dp[3]+dp[2] = 3+2 | 5 |
 
+- Hence, there are 5 distinct ways to reach step 4.  
 #### Steps
 
 -
