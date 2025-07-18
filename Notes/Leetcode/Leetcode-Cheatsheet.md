@@ -107,3 +107,12 @@
 | [Course Schedule](/dsa/graphs/CourseSchedule.java)  | | | | | O(V + E) | O(V + E) |
 | [Graph Valid Tree](/dsa/graphs/GraphValidTree.java)  | | | | | O(V + E) | O(V + E) |
 | [Number of Connected Components in an Undirected Graph](/dsa/graphs/CountConnectedComponents.java)  | | | | | O(V + E) | O(V + E) |
+
+
+## 1D Dynamic Programming 
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Climbing Stairs](/dsa/dynamicprogramming1D/ClimbingStairs.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(1) |
+| [House Robber](/dsa/dynamicprogramming1D/HouseRobber.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
+| [House Robber II](/dsa/dynamicprogramming1D/HouseRobberII.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
