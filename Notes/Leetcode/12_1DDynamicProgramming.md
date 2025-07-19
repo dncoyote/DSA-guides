@@ -312,12 +312,46 @@ public class HouseRobberII {
 
 #### Brute - 
 ```java
+public class LongestPalindromicSubstring {
 
+  public static void main(String[] args) {
+    String s = "babad";
+    System.out.println(longestPalindromicSubstringOptimal(s)); // Output: "bab" or "aba"
+  }
+
+  private static String longestPalindromicSubstringBrute(String s) {
+    if (s == null || s.length() < 1)
+      return "";
+
+    int maxLength = 1;
+    int start = 0;
+
+    for (int i = 0; i < s.length(); i++) {
+      for (int j = i; j < s.length(); j++) {
+        if (isPalindromeBrute(s, i, j) && maxLength < (j - i + 1)) {
+          start = i;
+          maxLength = j - i + 1;
+        }
+      }
+    }
+    return s.substring(start, start + maxLength);
+  }
+
+  private static boolean isPalindromeBrute(String s, int left, int right) {
+    while (left < right) {
+      if (s.charAt(left) != s.charAt(right))
+        return false;
+      left++;
+      right--;
+    }
+    return true;
+  }
+}
 ```
 
->Time Complexity - 
+>Time Complexity - O(n<sup>3</sup>)
 
->Space Complexity - 
+>Space Complexity - O(1) 
 #### Explanation
 
 -
@@ -327,63 +361,62 @@ public class HouseRobberII {
 -
 
 #### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
 ```java
 public class LongestPalindromicSubstring {
-    public static void main(String[] args) {
-        // String str = "babad";
-        String str = "abrbadaabab";
-        System.out.println(longestPalindromicStubstring(str));
+
+  public static void main(String[] args) {
+    String s = "babad";
+    System.out.println(longestPalindromicSubstringOptimal(s)); // Output: "bab" or "aba"
+  }
+
+  private static String longestPalindromicSubstringOptimal(String s) {
+    int n = s.length();
+    if (n < 2)
+      return s;
+
+    boolean[][] dp = new boolean[n][n];
+
+    int maxLen = 1;
+    int start = 0;
+    // Step 1: Every single character is a palindrome by itself
+    for (int i = 0; i < n; i++) {
+      dp[i][i] = true;
     }
 
-    private static String longestPalindromicStubstring(String str) {
-        if (str.length() <= 1) {
-            return str;
-        }
-
-        String lps = "";
-
-        for (int i = 1; i < str.length(); i++) {
-            int low = i;
-            int high = i;
-
-            while (str.charAt(low) == str.charAt(high)) {
-                low--;
-                high++;
-
-                if (low == -1 || high == str.length())
-                    break;
-            }
-
-            String palindrome = str.substring(low + 1, high);
-            if (palindrome.length() > lps.length()) {
-                lps = palindrome;
-            }
-
-            low = i - 1;
-            high = i;
-
-            while (str.charAt(low) == str.charAt(high)) {
-                low--;
-                high++;
-
-                if (low == -1 || high == str.length())
-                    break;
-            }
-
-            palindrome = str.substring(low + 1, high);
-            if (palindrome.length() > lps.length()) {
-                lps = palindrome;
-            }
-
-        }
-        return lps;
+    // Step 2: Check for palindrome substrings of length 2
+    for (int i = 0; i < n - 1; i++) {
+      if (s.charAt(i) == s.charAt(i + 1)) {
+        dp[i][i + 1] = true;
+        start = i;
+        maxLen = 2;
+      }
     }
+    // Step 3: Check for palindromes longer than length 2
+    // length varies from 3 to n
+    for (int length = 3; length <= n; length++) {
+      for (int i = 0; i <= n - length; i++) {
+        int j = i + length - 1;
+        if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]) {
+          dp[i][j] = true;
+          if (length > maxLen) {
+            start = i;
+            maxLen = length;
+          }
+        }
+      }
+
+    }
+    return s.substring(start, start + maxLen);
+  }
 }
 ```
+
+>Time Complexity - O(n<sup>2</sup>) 
+- Double nested loops.
+
+>Space Complexity - O(n<sup>2</sup>) 
+- DP table size is n x n. 
+
 #### Explanation
 
 -

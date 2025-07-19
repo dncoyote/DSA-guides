@@ -116,3 +116,4 @@
 | [Climbing Stairs](/dsa/dynamicprogramming1D/ClimbingStairs.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(1) |
 | [House Robber](/dsa/dynamicprogramming1D/HouseRobber.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
 | [House Robber II](/dsa/dynamicprogramming1D/HouseRobberII.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
+| [Longest Palindromic Substring](/dsa/dynamicprogramming1D/LongestPalindromicSubtring.java) | |O(n<sup>3</sup>) |1 | |O(n<sup>2</sup>) |O(n<sup>2</sup>) |
