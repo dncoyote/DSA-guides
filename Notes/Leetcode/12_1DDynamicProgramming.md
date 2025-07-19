@@ -305,29 +305,19 @@ public class HouseRobberII {
 
 -
 ## **Longest Palindromic Substring**
->
+
+<div align="center">
+  <img alt="image" src="assets/Untitled-12.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
 
 ```
-#### Explanation
 
--
-
-#### Steps
-
--
-
-#### Better - 
 >Time Complexity - 
 
 >Space Complexity - 
-```java
-
-```
 #### Explanation
 
 -
