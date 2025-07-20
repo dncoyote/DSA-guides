@@ -426,14 +426,50 @@ public class LongestPalindromicSubstring {
 -
 
 ## **Palindromic Substring**
->
-#### Brute - 
->Time Complexity - 
 
->Space Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Untitled-13.png" />
+</div>
+
+#### Brute - 
 ```java
 
+public class PalindromicSubstrings {
+
+  public static void main(String[] args) {
+    // String str = "aaa";
+    String str = "abc";
+    System.out.println(palindromicSubstringOptimal(str));
+  }
+
+  private static int palindromicSubstringBrute(String str) {
+    int count = 0;
+    for (int i = 0; i < str.length(); i++) {
+      for (int j = i; j < str.length(); j++) {
+        if (isPalindromeBrute(str, i, j)) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+
+  private static boolean isPalindromeBrute(String str, int start, int end) {
+    while (start < end) {
+      if (str.charAt(start) != str.charAt(end))
+        return false;
+      start++;
+      end--;
+    }
+    return true;
+  }
+}
 ```
+
+>Time Complexity - O(n<sup>3</sup>) 
+- O(n<sup>2</sup>) - for generating all substrings.
+- O(n) - for palindrome check.
+>Space Complexity - O(1)
 #### Explanation
 
 -
@@ -442,39 +478,52 @@ public class LongestPalindromicSubstring {
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal - Dynamic Programming
 ```java
-public class PalindromicSubstring {
-    public static void main(String[] args) {
-        String str = "aaa";
-        System.out.println(palindromicSubstring(str));
+
+public class PalindromicSubstrings {
+
+  public static void main(String[] args) {
+    // String str = "aaa";
+    String str = "abc";
+    System.out.println(palindromicSubstringOptimal(str));
+  }
+
+  private static int palindromicSubstringOptimal(String str) {
+    int n = str.length();
+    int count = 0;
+    boolean[][] dp = new boolean[n][n];
+
+    for (int i = 0; i < n; i++) {
+      dp[i][i] = true;
+      count++;
     }
 
-    private static int palindromicSubstring(String str) {
-        int count = 0;
+    for (int i = 0; i < n - 1; i++) {
+      if (str.charAt(i) == str.charAt(i + 1)) {
+        dp[i][i + 1] = true;
+        count++;
+      }
+    }
 
-        for (int i = 0; i < str.length(); i++) {
-            count += countPalindrome(str, i, i);
-            count += countPalindrome(str, i, i + 1);
+    for (int length = 3; length <= n; length++) {
+      for (int i = 0; i <= n - length; i++) {
+        int j = i + length - 1;
+
+        if (str.charAt(i) == str.charAt(j) && dp[i + 1][j - 1]) {
+          dp[i][j] = true;
+          count++;
         }
-        return count;
+      }
     }
-
-    private static int countPalindrome(String str, int low, int high) {
-        int count = 0;
-        while (low >= 0 && high < str.length() && str.charAt(low) == str.charAt(high)) {
-            count++;
-            low--;
-            high++;
-        }
-        return count;
-    }
+    return count;
+  }
 }
 ```
+>Time Complexity - O(n<sup>2</sup>) 
+- Two nested loops to fill the DP table.
+>Space Complexity - O(n<sup>2</sup>) 
+- DP table space
 #### Explanation
 
 -
