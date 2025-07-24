@@ -729,14 +729,38 @@ public class CoinChange {
 -
 
 ## **Maximum Product Sub-array**
->
-#### Brute - 
->Time Complexity - 
 
->Space Complexity - 
+<div align="center">
+  <img alt="image" src="assets/Untitled-16.png" />
+</div>
+
+#### Brute - 
 ```java
 
+public class MaximumProductSubarray {
+
+  public static void main(String[] args) {
+    int[] nums = { 2, 3, -2, 4 };
+    System.out.println(maxProductOptimal(nums)); // Output: 6
+  }
+
+  private static int maxProductBrute(int[] nums) {
+    int maxProduct = Integer.MIN_VALUE;
+    for (int i = 0; i < nums.length; i++) {
+      int product = 1;
+      for (int j = i; j < nums.length; j++) {
+        product *= nums[j];
+        maxProduct = Math.max(maxProduct, product);
+      }
+    }
+    return maxProduct;
+  }
+}
 ```
+
+>Time Complexity - O(n<sup>2</sup>)
+
+>Space Complexity - O(1)
 #### Explanation
 
 -
@@ -746,38 +770,47 @@ public class CoinChange {
 -
 
 #### Optimal -
->Time Complexity - O(n)
-
->Space Complexity - O(1)
 
 ```java
 public class MaximumProductSubarray {
-    public static void main(String[] args) {
-        int[] nums = { 2, 3, -2, -5, 6, -1, 4 };
-        System.out.println(maximumProductSubarray(nums));
+
+  public static void main(String[] args) {
+    int[] nums = { 2, 3, -2, 4 };
+    System.out.println(maxProductOptimal(nums)); // Output: 6
+  }
+
+  private static int maxProductOptimal(int[] nums) {
+    int maxSoFar = nums[0];
+    int minSoFar = nums[0];
+    int result = nums[0];
+
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] < 0) {
+        int temp = maxSoFar;
+        maxSoFar = minSoFar;
+        minSoFar = temp;
+      }
+      maxSoFar = Math.max(nums[i], maxSoFar * nums[i]);
+      minSoFar = Math.min(nums[i], minSoFar * nums[i]);
+      result = Math.max(result, maxSoFar);
     }
+    return result;
+  }
 
-    private static int maximumProductSubarray(int[] nums) {
-        int leftProduct = 1;
-        int rightProduct = 1;
-        int ans = nums[0];
-
-        for (int i = 1; i < nums.length; i++) {
-            leftProduct = leftProduct == 0 ? 1 : leftProduct;
-            leftProduct *= nums[i];
-            rightProduct = rightProduct == 0 ? 1 : rightProduct;
-            rightProduct *= nums[nums.length - 1 - i];
-
-            ans = Math.max(ans, Math.max(leftProduct, rightProduct));
-        }
-        return ans;
-    }
 }
 ```
+
+>Time Complexity - O(n)
+
+>Space Complexity - O(1)
 #### Explanation
 
 - Kadane's algorithm
-
+- Since the array can contain negative numbers, the maximum product can become minimum if multiplied by a negative. So we keep track of both:
+    - max product ending at current position `maxSoFar`
+    - min product ending at current position `minSoFar`
+- When a negative number appears, swapping `maxSoFar` and `minSoFar` helps because multiplying by negative flips max and min. 
+- Update the global max as we iterate.
 #### Steps
 
 -

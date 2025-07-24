@@ -118,3 +118,6 @@
 | [House Robber II](/dsa/dynamicprogramming1D/HouseRobberII.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
 | [Longest Palindromic Substring](/dsa/dynamicprogramming1D/LongestPalindromicSubtring.java) | |O(n<sup>3</sup>) |1 | |O(n<sup>2</sup>) |O(n<sup>2</sup>) |
 | [Palindromic Substring](/dsa/dynamicprogramming1D/PalindromicSubtrings.java) | |O(n<sup>3</sup>) |1 | |O(n<sup>2</sup>) |O(n<sup>2</sup>) |
+| [Decode Ways](/dsa/dynamicprogramming1D/DecodeWays.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
+| [Coin Change](/dsa/dynamicprogramming1D/CoinChange.java) | |O(S<sup>n</sup>) |O(S) | |O(n x amount) |O(amount) |
+| [Maximum Product Subarray](/dsa/dynamicprogramming1D/MaximumProductSubarray.java) | |O(n<sup>2</sup>) |1 | |O(n) |O(1) |
