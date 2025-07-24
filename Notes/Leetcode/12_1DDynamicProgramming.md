@@ -625,6 +625,7 @@ public class DecodeWays {
 }
 ```
 >Time Complexity - O(n)
+ 
 >Space Complexity - O(n)
 #### Explanation
 
@@ -635,63 +636,94 @@ public class DecodeWays {
 -
 
 ## **Coin Change**
->
+<div align="center">
+  <img alt="image" src="assets/Untitled-15.png" />
+</div>
+
 #### Brute - 
->Time Complexity - 
-
->Space Complexity - 
 ```java
+public class CoinChange {
 
+  public static void main(String[] args) {
+    int[] coins = { 1, 2, 5 };
+    int amount = 11;
+    System.out.println(coinChangeBrute(coins, amount));
+  }
+
+  private static int coinChangeBrute(int[] coins, int amount) {
+    if (amount == 0)
+      return 0;
+    if (amount < 0)
+      return -1;
+
+    int minCoins = Integer.MAX_VALUE;
+    for (int coin : coins) {
+      int result = coinChangeBrute(coins, amount - coin);
+      if (result >= 0 && result < minCoins) {
+        minCoins = result + 1;
+      }
+    }
+    return minCoins == Integer.MAX_VALUE ? -1 : minCoins;
+  }
+}
 ```
+
+>Time Complexity - O(S<sup>n</sup>)
+- S is amount
+- n is number of coins
+- Exponential time complexity.
+
+>Space Complexity - O(S)
+
 #### Explanation
 
--
+- For each coin, recursively solve for `amount - coin`.
+- Keep track of minimum coins used among all coins.
+- Return minimum or -1 if no solution.
 
 #### Steps
 
 -
 
-#### Optimal -
->Time Complexity - 
-
->Space Complexity - 
-
+#### Optimal - Dynamic Programming
 ```java
+
 public class CoinChange {
-    public static void main(String[] args) {
-        int[] coins = { 1, 5, 6, 9 };
-        int amount = 11;
-        System.out.println(coinChange(coins, amount));
-    }
 
-    private static int coinChange(int[] coins, int amount) {
-        if (amount < 1)
-            return 0;
+  public static void main(String[] args) {
+    int[] coins = { 1, 2, 5 };
+    int amount = 11;
+    System.out.println(coinChangeOptimal(coins, amount));
+  }
 
-        int[] minCoinsDp = new int[amount + 1];
+  private static int coinChangeOptimal(int[] coins, int amount) {
+    int max = amount + 1; // Sentinel value
+    int[] dp = new int[amount + 1];
+    Arrays.fill(dp, max);
+    dp[0] = 0;
 
-        for (int i = 1; i <= amount; i++) {
-            minCoinsDp[i] = Integer.MAX_VALUE;
-            for (int coin : coins) {
-                // helps us avoid invalid updates to minCoinsDp[i]. Without it, we might
-                // incorrectly assume an unreachable amount is reachable, leading to incorrect
-                // results.
-                if (coin <= i && minCoinsDp[i - coin] != Integer.MAX_VALUE) {
-                    minCoinsDp[i] = Math.min(minCoinsDp[i], 1 + minCoinsDp[i - coin]);
-                }
-            }
+    for (int i = 1; i <= amount; i++) {
+      for (int coin : coins) {
+        if (coin <= i) {
+          dp[i] = Math.min(dp[i], dp[i - coin] + 1);
         }
-        if (minCoinsDp[amount] == Integer.MAX_VALUE)
-            return -1;
-
-        return minCoinsDp[amount];
+      }
     }
+    return dp[amount] > amount ? -1 : dp[amount];
+  }
 }
 ```
+
+>Time Complexity - O(n x amount)
+- n is number of coin denominations.
+- Outer loop - amount iteration i.e., first loop
+- Inner loop - n iteration for coins i.e., second loop
+>Space Complexity - O(amount)
+
 #### Explanation
 
--
-
+- `dp[i]` stores the minimum number of coins needed to make the amount `i` so far.
+- At each amount `i`, we try to build the solution from smaller subproblems. Specifically, if we pick a coin of value coin, the remaining amount is `i - coin`. We look at the minimum coins needed for that smaller amount `(dp[i - coin])`, then add 1 for the current coin. We update `dp[i]` by choosing the minimum between its current value and this new option, ensuring that we always track the least coins needed to make amount `i`.
 #### Steps
 
 -
