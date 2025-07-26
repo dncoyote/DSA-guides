@@ -120,4 +120,5 @@
 | [Palindromic Substring](/dsa/dynamicprogramming1D/PalindromicSubtrings.java) | |O(n<sup>3</sup>) |1 | |O(n<sup>2</sup>) |O(n<sup>2</sup>) |
 | [Decode Ways](/dsa/dynamicprogramming1D/DecodeWays.java) | |O(2<sup>n</sup>) |O(n) | |O(n) |O(n) |
 | [Coin Change](/dsa/dynamicprogramming1D/CoinChange.java) | |O(S<sup>n</sup>) |O(S) | |O(n x amount) |O(amount) |
-| [Maximum Product Subarray](/dsa/dynamicprogramming1D/MaximumProductSubarray.java) | |O(n<sup>2</sup>) |1 | |O(n) |O(1) |
+| [Maximum Product Subarray](/dsa/dynamicprogramming1D/MaximumProductSubarray.java) | |O(n<sup>2</sup>) |O(1) | |O(n) |O(1) |
+| [Word Break](/dsa/dynamicprogramming1D/WordBreak.java) | |O(2<sup>n</sup>) |O(n) | |O(n<sup>2</sup> x k) |O(n) |

@@ -814,3 +814,101 @@ public class MaximumProductSubarray {
 #### Steps
 
 -
+
+
+## **Word Break**
+
+<div align="center">
+  <img alt="image" src="assets/Untitled-17.png" />
+</div>
+
+#### Brute - 
+```java
+
+public class WordBreak {
+
+  public static void main(String[] args) {
+    String s1 = "leetcode";
+    List<String> wordDict1 = Arrays.asList("leet", "code");
+    String s2 = "catsandog";
+    List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
+    System.out.println(wordBreakOptimal(s1, wordDict1));// true
+    System.out.println(wordBreakOptimal(s2, wordDict2));// false
+  }
+
+  private static boolean wordBreakBrute(String s, List<String> wordDict) {
+    if (s.length() == 0)
+      return true;
+
+    for (int i = 1; i <= s.length(); i++) {
+      String prefix = s.substring(0, i);
+      if (wordDict.contains(prefix) && wordBreakBrute(s.substring(i), wordDict)) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
+
+>Time Complexity - O(2<sup>n</sup>)
+- n is length of string.
+- Every prefix split causes recursion.
+- Exponential.
+
+>Space Complexity - O(n)
+- Recursion stack.
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal - Dynamic Programming
+
+```java
+public class WordBreak {
+
+  public static void main(String[] args) {
+    String s1 = "leetcode";
+    List<String> wordDict1 = Arrays.asList("leet", "code");
+    String s2 = "catsandog";
+    List<String> wordDict2 = Arrays.asList("cats", "dog", "sand", "and", "cat");
+    System.out.println(wordBreakOptimal(s1, wordDict1));// true
+    System.out.println(wordBreakOptimal(s2, wordDict2));// false
+  }
+
+  private static boolean wordBreakOptimal(String s, List<String> wordDict) {
+    HashSet<String> wordSet = new HashSet<>(wordDict);
+    boolean[] dp = new boolean[s.length() + 1];
+    dp[0] = true;
+
+    for (int i = 1; i <= s.length(); i++) {
+      for (int j = 0; j < i; j++) {
+        if (dp[j] && wordSet.contains(s.substring(j, i))) {
+          dp[i] = true;
+          break;
+        }
+      }
+    }
+    return dp[s.length()];
+  }
+}
+```
+
+>Time Complexity - O(n<sup>2</sup> x k)
+- n is length of string.
+- k is avg substring check time.
+
+>Space Complexity - O(n)
+- DP boolean array size.
+
+#### Explanation
+- Use a boolean array dp where:
+    - `dp[i] = true` if substring `s[0 to i-1]` can be segmented.
+    - By segmented we mean if that substring is part of the word dictionary. 
+#### Steps
+
+-
