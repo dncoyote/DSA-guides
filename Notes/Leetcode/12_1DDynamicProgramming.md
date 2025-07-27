@@ -912,3 +912,68 @@ public class WordBreak {
 #### Steps
 
 -
+
+
+## **Longest Increasing Subsequence**
+
+<div align="center">
+  <img alt="image" src="assets/Untitled-18.png" />
+</div>
+
+#### Brute - 
+```java
+
+```
+
+>Time Complexity - 
+
+>Space Complexity -
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Optimal - Dynamic Programming - Bottoms up
+
+```java
+public class LongestIncreasingSubsequence {
+
+  public static void main(String[] args) {
+    int[] nums = { 10, 9, 2, 5, 3, 7, 101, 18 };
+    int result = LongestIncreasingSubsequenceOptimal(nums);
+    System.out.println("Length of Longest Increasing Subsequence is: " + result);
+  }
+
+  private static int LongestIncreasingSubsequenceOptimal(int[] nums) {
+    int[] dp = new int[nums.length];
+    Arrays.fill(dp, 1);
+    int maxLength = 1;
+
+    for (int i = 1; i < nums.length; i++) {
+      for (int j = 0; j < i; j++) {
+        if (nums[i] > nums[j]) {
+          dp[i] = Math.max(dp[i], dp[j] + 1);
+        }
+      }
+      maxLength = Math.max(maxLength, dp[i]);
+    }
+    return maxLength;
+  }
+}
+```
+
+>Time Complexity - O(n<sup>2</sup>)
+
+>Space Complexity - O(n)
+#### Explanation
+- dp array
+    - `dp[i]` represents the length of the Longest Increasing Subsequence that ends at index `i`.
+    - Since every element by itself can be a subsequence of length 1, initialize all `dp[i] = 1`.
+#### Steps
+
+-
+
+
