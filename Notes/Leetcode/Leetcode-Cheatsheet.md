@@ -122,3 +122,11 @@
 | [Coin Change](/dsa/dynamicprogramming1D/CoinChange.java) | |O(S<sup>n</sup>) |O(S) | |O(n x amount) |O(amount) |
 | [Maximum Product Subarray](/dsa/dynamicprogramming1D/MaximumProductSubarray.java) | |O(n<sup>2</sup>) |O(1) | |O(n) |O(1) |
 | [Word Break](/dsa/dynamicprogramming1D/WordBreak.java) | |O(2<sup>n</sup>) |O(n) | |O(n<sup>2</sup> x k) |O(n) |
+| [Longest Increasing Subsequence](/dsa/dynamicprogramming1D/LongestIncreasingSubsequence.java) | | | | |O(n<sup>2</sup> x k) |O(n) |
+
+
+## 2D Dynamic Programming 
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Unique Paths](/dsa/dynamicprogramming2D/UniquePaths.java) | |O(2<sup>m+n</sup>) |O(m+n) | |O(m x n) |O(m x n) |
