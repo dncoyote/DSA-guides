@@ -130,3 +130,4 @@
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
 | [Unique Paths](/dsa/dynamicprogramming2D/UniquePaths.java) | |O(2<sup>m+n</sup>) |O(m+n) | |O(m x n) |O(m x n) |
+| [Longest Common Subsequence](/dsa/dynamicprogramming2D/LongestCommonSubsequence.java) | |O(2<sup>m+n</sup>) |O(m+n) | |O(m x n) |O(m x n) |

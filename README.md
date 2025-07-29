@@ -37,6 +37,8 @@
 #### 1D Dynamic Programming
 [Notes](Notes/Leetcode/12_1DDynamicProgramming.md)
 
+#### 2D Dynamic Programming
+[Notes](Notes/Leetcode/13_2DDynamicProgramming.md)
 <!-- #### Arrays and Hashing
 [Theory](Notes/Blind75/1_Arrays_Hashing.md)  
 - [ ] Contains Duplicate - [Code](src/main/java/com/dncoyote/DSA/blind75/arrays_hashing/ContainsDuplicateOptimal.java)
