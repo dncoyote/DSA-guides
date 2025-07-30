@@ -131,3 +131,11 @@
 | :---  | :----  |:---:           | :---:|:---|:---:|:---:|
 | [Unique Paths](/dsa/dynamicprogramming2D/UniquePaths.java) | |O(2<sup>m+n</sup>) |O(m+n) | |O(m x n) |O(m x n) |
 | [Longest Common Subsequence](/dsa/dynamicprogramming2D/LongestCommonSubsequence.java) | |O(2<sup>m+n</sup>) |O(m+n) | |O(m x n) |O(m x n) |
+
+
+## Greedy 
+
+| Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|
+| :---  | :----  |:---:           | :---:|:---|:---:|:---:|
+| [Maximum Subarray](/dsa/greedy/MaximumSubarray.java) | |O(n<sup>2</sup>) |O(n) | |O(n) |O(1) |
+| [Longest Common Subsequence](/dsa/dynamicprogramming2D/LongestCommonSubsequence.java) | |O(2<sup>m+n</sup>) |O(m+n) | |O(m x n) |O(m x n) |
