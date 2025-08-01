@@ -6,8 +6,8 @@
 </div>
 
 #### Brute 
-```java
 
+```java
 public class MaximumSubarray {
   public static void main(String[] args) {
     int[] nums = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
@@ -27,6 +27,7 @@ public class MaximumSubarray {
     return maxSum;
   }
 }
+
 ```
 >Time Complexity - O(n<sup>2</sup>)
 
