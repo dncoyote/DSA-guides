@@ -115,13 +115,70 @@ public class MergeIntervals {
 }
 ```
 >Time Complexity - O(n log n)
-- We iterate over the intervals once.
+- We iterate over the intervals once - O(n)
+- Sorting - O(log n)
 
 >Space Complexity - O(n)
 - List size.
 
 #### Explanation
 
+#### Steps
+
+-
+
+
+## **Non-overlapping Intervals**
+<div align="center">
+  <img alt="image" src="assets/Untitled-25.png" />
+</div>
+
+#### Optimal - Greedy 
+
+```java
+public class NonOverlappingIntervals {
+
+  public static void main(String[] args) {
+    int[][] intervals = { { 1, 2 }, { 2, 3 }, { 3, 4 }, { 1, 3 } };
+    System.out.println("Minimum intervals to remove: " + nonOverlappingIntervals(intervals));
+  }
+
+  private static int nonOverlappingIntervals(int[][] intervals) {
+    if (intervals.length == 0)
+      return 0;
+
+    // Sorting intervals based on end times
+    Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
+
+    int count = 0;
+    int end = Integer.MIN_VALUE;
+
+    for (int[] interval : intervals) {
+      //compare the first value of the interval with the end value
+      if (interval[0] >= end) {
+        end = interval[1];
+        count++;
+      }
+    }
+    return intervals.length - count;
+  }
+}
+```
+>Time Complexity - O(n log n)
+- We iterate over the intervals once - O(n)
+- Sorting - O(log n)
+
+>Space Complexity - O(n)
+- List size.
+
+#### Explanation
+- If the current interval's start time is greater than or equal to end:
+    - This means it does not overlap with the last selected interval.
+    - Select this interval: increment count by 1.
+    - Update end to the current interval's end time.
+- Otherwise:
+    - The current interval overlaps with the previously selected interval.
+    - Skip this interval (do not increment count).
 #### Steps
 
 -
