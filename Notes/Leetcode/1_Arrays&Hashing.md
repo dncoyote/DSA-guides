@@ -25,7 +25,7 @@ public class ContainsDuplicateBrute {
     }
 }
 ```
->Time Complexity - O(n^2)
+>Time Complexity - O(n<sup>2</sup>)
 - nested for loops
 >Space Complexity - O(1)
 - array is used
@@ -52,7 +52,7 @@ public class ContainsDuplicateBetter {
     }
 }
 ```
->Time Complexity - O(nlogn)
+>Time Complexity - O(n log n)
 
 >Space Complexity - O(1)
 #### Explanation
