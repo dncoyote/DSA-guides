@@ -1,4 +1,5 @@
 # **Cheatsheet**
+[Mnemonic System](Notes/Leetcode/Mnemonic-System.md)  
 ## Arrays and Hashing
 
 | Problem      | Brute      | Time Complexity      | Space Complexity | Optimal      | Time Complexity      | Space Complexity|

@@ -1,5 +1,6 @@
 # **DSA guides**
 
+[Cheatsheet](Notes/Leetcode/Leetcode-Cheatsheet.md)  
 ## Leetcode
 #### Arrays and Hashing
 [Notes](Notes/Leetcode/1_Arrays&Hashing.md)  
