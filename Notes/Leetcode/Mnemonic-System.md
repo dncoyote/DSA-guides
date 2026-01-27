@@ -11,6 +11,17 @@
 - 📦 Space: 🎒O(n)
 
 
+## Valid Anagram 🐘   
+#### 🐢 Brute Force
+- 🛠️ Approach: convert to char array, sort char array, compare char array 
+- ⏱️ Time: 🪖🌲 O(n log n) 
+- 📦 Space: 🎒 O(n) 
+#### 🚀 Optimal
+- 🛠️ Approach: counter char array increment and decrement 
+- ⏱️ Time: 🪖O(n)
+- 📦 Space: 🧤  O(1)
+
+
 ### Legend
 #### Complexities 
 - 🪖 = O(n) Linear time - Soldiers march in a straight line

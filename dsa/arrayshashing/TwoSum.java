@@ -14,7 +14,7 @@ public class TwoSum {
 
   private static int[] twoSumBrute(int[] arr, int target) {
     for (int i = 0; i < arr.length; i++) {
-      for (int j = 1; j < arr.length; j++) {
+      for (int j = i+1; j < arr.length; j++) {
         int val = arr[i] + arr[j];
         if (target == val)
           return new int[] { i, j };
