@@ -22,6 +22,16 @@
 - 📦 Space: 🧤  O(1)
 
 
+## Two Sum 🤼‍♂️ 
+#### 🐢 Brute Force
+- 🛠️ Approach: Check every pair using nested loops
+- ⏱️ Time: ♟️ O(n²)
+- 📦 Space: 🧤O(1)
+#### 🚀 Optimal
+- 🛠️ Approach: Store complement (target − x) in HashMap and check lookup
+- ⏱️ Time: 🪖O(n)
+- 📦 Space: 🧤  O(1)
+
 ### Legend
 #### Complexities 
 - 🪖 = O(n) Linear time - Soldiers march in a straight line
