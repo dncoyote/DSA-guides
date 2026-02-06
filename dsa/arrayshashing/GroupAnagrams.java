@@ -4,34 +4,47 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GroupAnagrams {
   public static void main(String[] args) {
     String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
-    List<List<String>> result = groupAnagramsOptimal(val);
+    List<List<String>> result = groupAnagramsBrute_neet(val);
     for (List<String> s : result)
       System.out.println(s);
   }
 
-  private static List<List<String>> groupAnagramsBrute(String[] val) {
-    List<List<String>>groups = new ArrayList<>();
+  private static List<List<String>> groupAnagramsBrute_neet(String[] val) {
+    Map<String, List<String>> result = new HashMap<>();
+    for (String s : val) {
+      char[] a = s.toCharArray();
+      Arrays.sort(a);
+      String sorted = new String(a);
+      result.putIfAbsent(sorted, new ArrayList<>());
+      result.get(sorted).add(s);
+    }
+    return new ArrayList<>(result.values());
+  }
 
-    for(String str:val){
+  private static List<List<String>> groupAnagramsBrute(String[] val) {
+    List<List<String>> groups = new ArrayList<>();
+
+    for (String str : val) {
       boolean foundGroup = false;
-      for(List<String>group:groups){
-        if(isAnagram(str, group.get(0))){
-          foundGroup=true;
+      for (List<String> group : groups) {
+        if (isAnagram(str, group.get(0))) {
+          foundGroup = true;
           group.add(str);
           break;
         }
       }
-      if(!foundGroup){
-        List<String>newGroup = new ArrayList<>();
+      if (!foundGroup) {
+        List<String> newGroup = new ArrayList<>();
         newGroup.add(str);
         groups.add(newGroup);
       }
     }
-  return groups;
+    return groups;
   }
 
   private static boolean isAnagram(String str1, String str2) {

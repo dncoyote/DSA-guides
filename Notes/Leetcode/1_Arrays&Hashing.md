@@ -320,6 +320,38 @@ public class GroupAnagrams {
 >Space Complexity - O(nk)
 - Storing groups of strings: O(nk) (all strings stored).
 
+
+#### Brute
+```java
+public class GroupAnagrams {
+  public static void main(String[] args) {
+    String[] val = { "eat", "tea", "tan", "ate", "nat", "bat" };
+    List<List<String>> result = groupAnagramsBrute_neet(val);
+    for (List<String> s : result)
+      System.out.println(s);
+  }
+
+  private static List<List<String>> groupAnagramsBrute_neet(String[] val) {
+    Map<String, List<String>> result = new HashMap<>();
+    for (String s : val) {
+      char[] a = s.toCharArray();
+      Arrays.sort(a);
+      String sorted = new String(a);
+      result.putIfAbsent(sorted, new ArrayList<>());
+      result.get(sorted).add(s);
+    }
+    return new ArrayList<>(result.values());
+  }
+}
+```
+>Time Complexity - O(m n log n)
+- Where `m` is number of strings and `n` is the length of the longest String.
+- Checking if two strings are anagrams takes O(n log n) (sorting each string).
+
+>Space Complexity - O(mn)
+- Storing groups of strings: O(mn) (all strings stored).
+
+
 #### Optimal
 ```java
 public class GroupAnagrams {
@@ -347,11 +379,11 @@ public class GroupAnagrams {
 
 }
 ```
->Time Complexity - O(nk)
-- Where `n` is number of strings and `k` is the length of the longest String.
+>Time Complexity - O(mn)
+- Where `m` is number of strings and `n` is the length of the longest String.
 
->Space Complexity - O(nk)
-- Storing groups of strings: O(nk) (all strings stored).
+>Space Complexity - O(mn)
+- Storing groups of strings: O(mn) (all strings stored).
 
 #### Explanation
 - If we used a simple `map.put(key, value)` instead of `putIfAbsent()`, we would overwrite the value every time we encounter a key that already exists.
