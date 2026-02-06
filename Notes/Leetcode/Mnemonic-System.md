@@ -32,6 +32,17 @@
 - ⏱️ Time: 🪖O(n)
 - 📦 Space: 🧤  O(1)
 
+
+## Group Anagrams 🐘🐘🐘 
+#### 🐢 Brute Force
+- 🛠️ Approach: Create a HashMap that store sorted string as key and List<String> of that sorted string as value→Return the values 
+- ⏱️ Time: 🪖🌲  O(n m log n) (Where `m` is number of strings and `n` is the length of the longest String.)
+- 📦 Space: 🎒 O(nm)
+#### 🚀 Optimal
+- 🛠️ Approach: Create a HashMap that store char[26] count String as key and List<String> of that count as value→Return the values 
+- ⏱️ Time: 🪖O(nm) (Where `m` is number of strings and `n` is the length of the longest String.)
+- 📦 Space: 🎒 O(nm)
+
 ### Legend
 #### Complexities 
 - 🪖 = O(n) Linear time - Soldiers march in a straight line
