@@ -464,10 +464,9 @@ public class TopKFrequentElements {
   }
 }
 ```
->Time Complexity - O(n + m log m)
- - `n` is number of elements, `m` is number of unique elements
- - Count frequencies of all elements - O(n)
- - Sort all unique elements - O(m log m)
+>Time Complexity - O(n log n)
+ - `n` is number of elements 
+ - Sort all unique elements - O(n log n)
 >Space Complexity - O(n)
  - Worst case complexity is O(n)
 
@@ -521,6 +520,61 @@ public class TopKFrequentElements {
 #### Explanation
 - `PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a,b)->a.getValue()-b.getValue())` creates a min-heap that orders the entries based on the values of the `Map.Entry<Integer, Integer> elements`
 - A min-heap is a specialized binary tree-based data structure that satisfies the heap property. Specifically, for a min-heap, the value of each parent node is less than or equal to the values of its children, ensuring that the smallest element is always at the root of the tree.
+
+
+#### Optimal - Bucket Sort 
+```java
+public class TopKFrequentElements {
+  public static void main(String[] args) {
+    int[] nums = { 5, 5, 5, 4, 4, 3 };
+    int k = 2;
+    int[] result = bucketSortOpt(nums, k);
+    for (int n : result) {
+      System.out.println(n);
+    }
+  }
+
+  private static int[] bucketSortOpt(int[] nums, int k) {
+    HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+
+    for (int num : nums) {
+      frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+    }
+
+    List<Integer>[] buckets = new List[nums.length + 1];
+
+    for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+      int number = entry.getKey();
+      int count = entry.getValue();
+
+      if (buckets[count] == null) {
+        buckets[count] = new ArrayList<>();
+      }
+      buckets[count].add(number);
+    }
+
+    int[] result = new int[k];
+    int index = 0;
+
+    for (int count = buckets.length - 1; count >= 1 && index < k; count--) {
+      if (buckets[count] == null)
+        continue;
+
+      for (int number : buckets[count]) {
+        result[index++] = number;
+        if (index == k)
+          break;
+      }
+    }
+    return result;
+  }
+}
+```
+
+>Time Complexity - O(n)
+- n is the length of the array
+- Bucket Sort
+>Space Complexity - O(n)
 
 ## **Longest Consecutive Sequence**
 <div align="center">
