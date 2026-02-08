@@ -825,9 +825,12 @@ public class EncodeAndDecodeStrings {
     List<String> decodeString = new ArrayList<>();
     int i = 0;
     while (i < encodeString.length()) {
+      //find the first occurence of # from i
       int j = encodeString.indexOf("#", i);
       int length = Integer.parseInt(encodeString.substring(i, j));
+      //j+1-> start of string, j+1+length-> end of string
       decodeString.add(encodeString.substring(j + 1, j + 1 + length));
+      //incrementing i to next string
       i = j + 1 + length;
     }
     return decodeString;

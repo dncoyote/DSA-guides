@@ -43,6 +43,17 @@
 - ⏱️ Time: 🪖O(nm) (Where `m` is number of strings and `n` is the length of the longest String.)
 - 📦 Space: 🎒 O(nm)
 
+
+## Encode Decode String 🔒🔓
+#### 🐢 Brute Force
+- 🛠️ Approach:  Join with delimiter "#", decode by split("#")
+- ⏱️ Time: 🪖  O(L) (Where `L` is Length of string.)
+- 📦 Space: 🎒 O(L)
+#### 🚀 Optimal
+- 🛠️ Approach: Length-prefix each string: "<len>#<string>"  
+- ⏱️ Time: 🪖  O(L) (Where `L` is Length of string.)
+- 📦 Space: 🎒 O(L)
+
 ### Legend
 #### Complexities 
 - 🪖 = O(n) Linear time - Soldiers march in a straight line
