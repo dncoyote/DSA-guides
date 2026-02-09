@@ -29,7 +29,7 @@
 - 📦 Space: 🧤O(1)
 #### 🚀 Optimal
 - 🛠️ Approach: Store complement (target − x) in HashMap and check lookup
-- ⏱️ Time: 🪖O(n)
+- ⏱️ Time: 🪖 O(n)
 - 📦 Space: 🧤  O(1)
 
 
@@ -53,6 +53,18 @@
 - 🛠️ Approach: Length-prefix each string: "<len>#<string>"  
 - ⏱️ Time: 🪖  O(L) (Where `L` is Length of string.)
 - 📦 Space: 🎒 O(L)
+
+
+## Product of Array Except Self ✖️⁉ 
+#### 🐢 Brute Force
+- 🛠️ Approach: using nested loops
+- ⏱️ Time: ♟️ O(n²)
+- 📦 Space: 🧤O(1)
+#### 🚀 Optimal
+- 🛠️ Approach: Compute prefix product = product of elements to the left, Compute suffix product = product of elements to the right, multiply both together 
+- ⏱️ Time: 🪖 O(n)
+- 📦 Space: 🧤  O(1)
+
 
 ### Legend
 #### Complexities 
