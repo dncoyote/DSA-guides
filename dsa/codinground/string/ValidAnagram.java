@@ -4,26 +4,26 @@ import java.util.Arrays;
 
 public class ValidAnagram {
     public static void main(String[] args) {
-    String s = "anagram";
-    String t = "nagaram";
-    boolean isAnagram = validAnagramOptimal(s, t);
-    if (isAnagram) {
-      System.out.println("Anagram");
-    } else {
-      System.out.println("Not anagram");
+        String s = "anagram";
+        String t = "nagaram";
+        boolean isAnagram = validAnagramOptimal(s, t);
+        if (isAnagram) {
+            System.out.println("Anagram");
+        } else {
+            System.out.println("Not anagram");
+        }
     }
-  }
 
     private static boolean validAnagramOptimal(String s, String t) {
 
         int[] count = new int[26];
-        for(int i=0;i<s.length();i++){
-            count[s.charAt(i)-'a']++;
-            count[t.charAt(i)-'a']--;
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
         }
 
-        for(int i=0;i<26;i++){
-            if(count[i]!=0){
+        for (int i = 0; i < 26; i++) {
+            if (count[i] != 0) {
                 return false;
             }
         }
